@@ -1,11 +1,11 @@
 {
     "compilerOptions": {
-        "lib": ["es2020"],
+        "lib": ["es2022"],
         "noEmit": true,
         "jsx": "react",
         "jsxFactory": "Chat.h",
         "jsxFragmentFactory": "Chat.Fragment",
-        "target": "es2020",
+        "target": "es2022",
         "skipLibCheck": true,
         "module": "CommonJS",
         "moduleResolution": "node",
@@ -17,9 +17,16 @@
         "allowUnreachableCode": false,
         "esModuleInterop": true,
         "noImplicitOverride": true,
-        "useDefineForClassFields": false
+        "useDefineForClassFields": false,
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "strictNullChecks": true,
+        "strictFunctionTypes": true,
+        "strictPropertyInitialization": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true
     },
-    "types": ["node"],
+    "types": ["node", "bun-types"],
     "exclude": [
         "/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/node_modules/typescript/lib/lib.dom.d.ts",
         "./dist/**/*",
@@ -38,6 +45,6 @@
         "./sim/**/*",
         "./tools/set-import/*.ts",
         "./tools/modlog/*.ts",
-        "./translations/**/*.ts",
+        "./translations/**/*.ts"
     ]
 }

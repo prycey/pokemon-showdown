@@ -69,6 +69,29 @@ If you'd like to contribute to programming and don't know where to start, feel f
   [10]: https://github.com/smogon/pokemon-showdown/issues/2444
 
 
+Modernization
+------------------------------------------------------------------------
+
+This repository has been modernized with the following enhancements:
+
+- **Runtime**: Using Bun instead of Node.js for improved performance
+- **TypeScript**: Enhanced strict TypeScript configuration for better type safety
+  - Added strict null checks, unused variables/parameters detection
+  - Enforces proper type initialization
+- **Code Quality**:
+  - Added Prettier for consistent code formatting
+  - Implemented Husky for git hooks to automatically format code on commit
+- **Development Workflow**: 
+  - Improved build process with better error handling
+  - Added CLAUDE.md for workflow configuration
+
+To use these new features:
+- Install Bun: `curl -fsSL https://bun.sh/install | bash`
+- Install dependencies: `bun install`
+- Build the project: `bun run build`
+- Start the server: `bun ./pokemon-showdown start`
+- Format code: `bun run format`
+
 License
 ------------------------------------------------------------------------
 

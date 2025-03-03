@@ -1,54 +1,55 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 "use strict";
 
-try {
-	// technically this was introduced in Node 17, but we'll ask for the most recent LTS with it to be safe
-	structuredClone({});
-} catch (e) {
-	console.log("We require Node.js version 18 or later; you're using " + process.version);
-	process.exit(1);
-}
-
-var child_process = require('child_process');
-var fs = require('fs');
-var decl = ['--decl', 'decl'].includes(process.argv[2]);
-var force = decl || ['--force', 'force', '--full', 'full'].includes(process.argv[2]);
+const { execSync } = require('child_process');
+const { existsSync, writeFileSync, readFileSync } = require('fs');
+const path = require('path');
+const buildUtils = require('./tools/build-utils');
 
 process.chdir(__dirname);
 
+const args = process.argv.slice(2);
+const decl = ['--decl', 'decl'].includes(args[0]);
+const force = decl || ['--force', 'force', '--full', 'full'].includes(args[0]);
+const postinstall = args[0] === 'postinstall';
+
 function shell(cmd) {
-	child_process.execSync(cmd, {stdio: 'inherit'});
+	execSync(cmd, {stdio: 'inherit'});
 }
 
 // Check to make sure the most recently added or updated dependency is installed at the correct version
 try {
-	var version = require('esbuild').version.split('.');
+	const esbuild = require('esbuild');
+	const version = esbuild.version.split('.');
 	if (parseInt(version[1]) < 16) {
 		throw new Error("esbuild version too old");
 	}
 } catch (e) {
 	console.log('Installing dependencies...');
-	shell('npm install');
+	shell('bun install');
 }
 
 // Make sure config.js exists. If not, copy it over synchronously from
 // config-example.js, since it's needed before we can start the server
-try {
-	require.resolve('./config/config');
-} catch (err) {
-	if (err.code !== 'MODULE_NOT_FOUND') throw err; // should never happen
-
+if (!existsSync('./config/config.js')) {
 	console.log('config.js does not exist. Creating one with default settings...');
-	fs.writeFileSync(
+	writeFileSync(
 		'config/config.js',
-		fs.readFileSync('config/config-example.js')
+		readFileSync('config/config-example.js')
 	);
 }
 
-// for some reason, esbuild won't be requirable until a tick has passed
-// see https://stackoverflow.com/questions/53270058/node-cant-find-certain-modules-after-synchronous-install
-setImmediate(() => {
-	// npm package, don't rebuild
-	if (process.argv[2] === 'postinstall' && fs.existsSync('dist')) return;
-	require('./tools/build-utils').transpile(force, decl);
-});
+// npm package, don't rebuild
+if (postinstall && existsSync('dist')) {
+	process.exit(0);
+}
+
+// Run the build
+buildUtils.transpile(force, decl)
+  .then(() => {
+    console.log('Build completed successfully');
+  })
+  .catch(err => {
+    console.error('Build failed:', err);
+    process.exit(1);
+  });

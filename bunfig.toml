@@ -1,0 +1,9 @@
+[test]
+preload = "./test/setup.ts"
+
+[install]
+pnp = false
+registry = "https://registry.npmjs.org"
+
+[install.cache]
+dir = ".bun-cache"

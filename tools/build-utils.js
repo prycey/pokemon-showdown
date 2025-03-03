@@ -1,8 +1,9 @@
 "use strict";
 
-const fs = require("fs");
-const child_process = require("child_process");
+const fs = require('fs');
+const { execSync } = require('child_process');
 const esbuild = require('esbuild');
+const path = require('path');
 
 const copyOverDataJSON = (file = 'data') => {
 	const files = fs.readdirSync(file);
@@ -10,7 +11,7 @@ const copyOverDataJSON = (file = 'data') => {
 		if (fs.statSync(`${file}/${f}`).isDirectory()) {
 			copyOverDataJSON(`${file}/${f}`);
 		} else if (f.endsWith('.json')) {
-			fs.copyFileSync(`${file}/${f}`, require('path').resolve('dist', `${file}/${f}`));
+			fs.copyFileSync(`${file}/${f}`, path.resolve('dist', `${file}/${f}`));
 		}
 	}
 };
@@ -22,11 +23,11 @@ const shouldBeCompiled = file => {
 	return false;
 };
 
-const findFilesForPath = path => {
+const findFilesForPath = dirPath => {
 	const out = [];
-	const files = fs.readdirSync(path);
+	const files = fs.readdirSync(dirPath);
 	for (const file of files) {
-		const cur = `${path}/${file}`;
+		const cur = `${dirPath}/${file}`;
 		// HACK: Logs and databases exclusions are a hack. Logs is too big to
 		// traverse, databases adds/removes files which can lead to a filesystem
 		// race between readdirSync and statSync. Please, at some point someone
@@ -41,14 +42,16 @@ const findFilesForPath = path => {
 	return out;
 };
 
-exports.transpile = decl => {
-	esbuild.buildSync({
+exports.transpile = async (force, decl) => {
+	await esbuild.build({
 		entryPoints: findFilesForPath('./'),
 		outdir: './dist',
 		outbase: '.',
 		format: 'cjs',
 		tsconfig: './tsconfig.json',
 		sourcemap: true,
+		target: 'es2022',
+		platform: 'node',
 	});
 	fs.copyFileSync('./config/config-example.js', './dist/config/config-example.js');
 	copyOverDataJSON();
@@ -61,6 +64,6 @@ exports.transpile = decl => {
 
 exports.buildDecls = () => {
 	try {
-		child_process.execSync(`node ./node_modules/typescript/bin/tsc -p sim`, { stdio: 'inherit' });
+		execSync(`bunx tsc -p sim`, { stdio: 'inherit' });
 	} catch {}
 };
