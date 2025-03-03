@@ -4,311 +4,347 @@
  * @author Kris
  */
 
-import { FS, Utils } from "../../lib";
+import { FS, Utils } from '../../lib';
 
 const SAMPLE_TEAMS = 'config/chat-plugins/sample-teams.json';
 
 interface SampleTeamsData {
-	whitelist: { [formatid: string]: RoomID[] };
-	/** Teams are stored in the packed format */
-	teams: {
-		[formatid: string]: {
-			uncategorized: { [k: string]: string },
-			[category: string]: { [teamName: string]: string },
-		},
-	};
+  whitelist: { [formatid: string]: RoomID[] };
+  /** Teams are stored in the packed format */
+  teams: {
+    [formatid: string]: {
+      uncategorized: { [k: string]: string };
+      [category: string]: { [teamName: string]: string };
+    };
+  };
 }
 
 export const teamData: SampleTeamsData = (() => {
-	try {
-		return JSON.parse(FS(SAMPLE_TEAMS).readIfExistsSync());
-	} catch {
-		return {
-			whitelist: {},
-			teams: {},
-		};
-	}
+  try {
+    return JSON.parse(FS(SAMPLE_TEAMS).readIfExistsSync());
+  } catch {
+    return {
+      whitelist: {},
+      teams: {},
+    };
+  }
 })();
 
 function save() {
-	FS(SAMPLE_TEAMS).writeUpdate(() => JSON.stringify(teamData));
+  FS(SAMPLE_TEAMS).writeUpdate(() => JSON.stringify(teamData));
 }
 
 for (const formatid in teamData.teams) {
-	if (!teamData.teams[formatid].uncategorized) teamData.teams[formatid].uncategorized = {};
+  if (!teamData.teams[formatid].uncategorized) teamData.teams[formatid].uncategorized = {};
 }
 save();
 
-export const SampleTeams = new class SampleTeams {
-	private isRoomStaff(user: User, roomids: RoomID[]) {
-		let matched = false;
-		if (!roomids?.length) return false;
-		for (const roomid of roomids) {
-			const room = Rooms.search(roomid);
-			// Malformed entry from botched room rename
-			if (!room) continue;
-			matched = room.auth.isStaff(user.id);
-			if (matched) break;
-		}
-		return matched;
-	}
+export const SampleTeams = new (class SampleTeams {
+  private isRoomStaff(user: User, roomids: RoomID[]) {
+    let matched = false;
+    if (!roomids?.length) return false;
+    for (const roomid of roomids) {
+      const room = Rooms.search(roomid);
+      // Malformed entry from botched room rename
+      if (!room) continue;
+      matched = room.auth.isStaff(user.id);
+      if (matched) break;
+    }
+    return matched;
+  }
 
-	isDevMod(user: User) {
-		return !!Rooms.get('development')?.auth.atLeast(user, '@');
-	}
+  isDevMod(user: User) {
+    return !!Rooms.get('development')?.auth.atLeast(user, '@');
+  }
 
-	checkPermissions(user: User, roomids: RoomID[]) {
-		// Give Development room mods access to help fix crashes
-		return this.isRoomStaff(user, roomids) || user.can('bypassall') || this.isDevMod(user);
-	}
+  checkPermissions(user: User, roomids: RoomID[]) {
+    // Give Development room mods access to help fix crashes
+    return this.isRoomStaff(user, roomids) || user.can('bypassall') || this.isDevMod(user);
+  }
 
-	whitelistedRooms(formatid: string, names = false) {
-		formatid = this.sanitizeFormat(formatid);
-		if (!teamData.whitelist[formatid]?.length) return null;
-		return Utils.sortBy(teamData.whitelist[formatid], x => {
-			if (!names) return x;
-			const room = Rooms.search(x);
-			if (!room) return x;
-			return room.title;
-		});
-	}
+  whitelistedRooms(formatid: string, names = false) {
+    formatid = this.sanitizeFormat(formatid);
+    if (!teamData.whitelist[formatid]?.length) return null;
+    return Utils.sortBy(teamData.whitelist[formatid], x => {
+      if (!names) return x;
+      const room = Rooms.search(x);
+      if (!room) return x;
+      return room.title;
+    });
+  }
 
-	whitelistRooms(formatids: string[], roomids: string[]) {
-		for (const unsanitizedFormatid of formatids) {
-			const formatid = this.sanitizeFormat(unsanitizedFormatid);
-			if (!teamData.whitelist[formatid]) teamData.whitelist[formatid] = [];
-			for (const roomid of roomids) {
-				const targetRoom = Rooms.search(roomid);
-				if (!targetRoom?.persist) {
-					throw new Chat.ErrorMessage(`Room ${roomid} not found. Check spelling?`);
-				}
-				if (teamData.whitelist[formatid].includes(targetRoom.roomid)) {
-					throw new Chat.ErrorMessage(`Room ${targetRoom.title} is already added.`);
-				}
-				teamData.whitelist[formatid].push(targetRoom.roomid);
-				save();
-			}
-		}
-	}
+  whitelistRooms(formatids: string[], roomids: string[]) {
+    for (const unsanitizedFormatid of formatids) {
+      const formatid = this.sanitizeFormat(unsanitizedFormatid);
+      if (!teamData.whitelist[formatid]) teamData.whitelist[formatid] = [];
+      for (const roomid of roomids) {
+        const targetRoom = Rooms.search(roomid);
+        if (!targetRoom?.persist) {
+          throw new Chat.ErrorMessage(`Room ${roomid} not found. Check spelling?`);
+        }
+        if (teamData.whitelist[formatid].includes(targetRoom.roomid)) {
+          throw new Chat.ErrorMessage(`Room ${targetRoom.title} is already added.`);
+        }
+        teamData.whitelist[formatid].push(targetRoom.roomid);
+        save();
+      }
+    }
+  }
 
-	unwhitelistRoom(formatid: string, roomid: string) {
-		formatid = this.sanitizeFormat(formatid, false);
-		const targetRoom = Rooms.search(roomid);
-		if (!targetRoom?.persist) throw new Chat.ErrorMessage(`Room ${roomid} not found. Check spelling?`);
-		if (!teamData.whitelist[formatid]?.length) throw new Chat.ErrorMessage(`No rooms are whitelisted for ${formatid}.`);
-		if (!teamData.whitelist[formatid].includes(targetRoom.roomid)) {
-			throw new Chat.ErrorMessage(`Room ${targetRoom.title} isn't whitelisted.`);
-		}
-		const index = teamData.whitelist[formatid].indexOf(targetRoom.roomid);
-		teamData.whitelist[formatid].splice(index, 1);
-		if (!teamData.whitelist[formatid].length) delete teamData.whitelist[formatid];
-		save();
-	}
+  unwhitelistRoom(formatid: string, roomid: string) {
+    formatid = this.sanitizeFormat(formatid, false);
+    const targetRoom = Rooms.search(roomid);
+    if (!targetRoom?.persist)
+      throw new Chat.ErrorMessage(`Room ${roomid} not found. Check spelling?`);
+    if (!teamData.whitelist[formatid]?.length)
+      throw new Chat.ErrorMessage(`No rooms are whitelisted for ${formatid}.`);
+    if (!teamData.whitelist[formatid].includes(targetRoom.roomid)) {
+      throw new Chat.ErrorMessage(`Room ${targetRoom.title} isn't whitelisted.`);
+    }
+    const index = teamData.whitelist[formatid].indexOf(targetRoom.roomid);
+    teamData.whitelist[formatid].splice(index, 1);
+    if (!teamData.whitelist[formatid].length) delete teamData.whitelist[formatid];
+    save();
+  }
 
-	sanitizeFormat(formatid: string, checkExists = false) {
-		const format = Dex.formats.get(formatid);
-		if (checkExists && format.effectType !== 'Format') {
-			throw new Chat.ErrorMessage(`Format "${formatid.trim()}" not found. Check spelling?`);
-		}
-		if (format.team) {
-			throw new Chat.ErrorMessage(`Formats with computer-generated teams can't have team storage.`);
-		}
-		return format.id;
-	}
+  sanitizeFormat(formatid: string, checkExists = false) {
+    const format = Dex.formats.get(formatid);
+    if (checkExists && format.effectType !== 'Format') {
+      throw new Chat.ErrorMessage(`Format "${formatid.trim()}" not found. Check spelling?`);
+    }
+    if (format.team) {
+      throw new Chat.ErrorMessage(`Formats with computer-generated teams can't have team storage.`);
+    }
+    return format.id;
+  }
 
-	initializeFormat(formatid: string) {
-		if (!teamData.teams[formatid]) {
-			teamData.teams[formatid] = { uncategorized: {} };
-			save();
-		}
-	}
+  initializeFormat(formatid: string) {
+    if (!teamData.teams[formatid]) {
+      teamData.teams[formatid] = { uncategorized: {} };
+      save();
+    }
+  }
 
-	addCategory(user: User, formatid: string, category: string) {
-		formatid = this.sanitizeFormat(formatid);
-		if (!this.checkPermissions(user, teamData.whitelist[formatid])) {
-			let rankNeeded = `a global administrator`;
-			if (teamData.whitelist[formatid]) {
-				rankNeeded = `staff in ${Chat.toListString(teamData.whitelist[formatid], "or")}`;
-			}
-			throw new Chat.ErrorMessage(`Access denied. You need to be ${rankNeeded} to add teams for ${formatid}`);
-		}
-		category = category.trim();
-		this.initializeFormat(formatid);
-		if (this.findCategory(formatid, category)) {
-			throw new Chat.ErrorMessage(`The category named ${category} already exists.`);
-		}
-		teamData.teams[formatid][category] = {};
-		save();
-	}
+  addCategory(user: User, formatid: string, category: string) {
+    formatid = this.sanitizeFormat(formatid);
+    if (!this.checkPermissions(user, teamData.whitelist[formatid])) {
+      let rankNeeded = `a global administrator`;
+      if (teamData.whitelist[formatid]) {
+        rankNeeded = `staff in ${Chat.toListString(teamData.whitelist[formatid], 'or')}`;
+      }
+      throw new Chat.ErrorMessage(
+        `Access denied. You need to be ${rankNeeded} to add teams for ${formatid}`
+      );
+    }
+    category = category.trim();
+    this.initializeFormat(formatid);
+    if (this.findCategory(formatid, category)) {
+      throw new Chat.ErrorMessage(`The category named ${category} already exists.`);
+    }
+    teamData.teams[formatid][category] = {};
+    save();
+  }
 
-	removeCategory(user: User, formatid: string, category: string) {
-		formatid = this.sanitizeFormat(formatid, false);
-		if (!this.checkPermissions(user, teamData.whitelist[formatid])) {
-			let rankNeeded = `a global administrator`;
-			if (teamData.whitelist[formatid]) {
-				rankNeeded = `staff in ${Chat.toListString(teamData.whitelist[formatid], "or")}`;
-			}
-			throw new Chat.ErrorMessage(`Access denied. You need to be ${rankNeeded} to add teams for ${formatid}`);
-		}
-		const categoryName = this.findCategory(formatid, category);
-		if (!categoryName) {
-			throw new Chat.ErrorMessage(`There's no category named "${category.trim()}" for the format ${formatid}.`);
-		}
-		delete teamData.teams[formatid][categoryName];
-		save();
-	}
+  removeCategory(user: User, formatid: string, category: string) {
+    formatid = this.sanitizeFormat(formatid, false);
+    if (!this.checkPermissions(user, teamData.whitelist[formatid])) {
+      let rankNeeded = `a global administrator`;
+      if (teamData.whitelist[formatid]) {
+        rankNeeded = `staff in ${Chat.toListString(teamData.whitelist[formatid], 'or')}`;
+      }
+      throw new Chat.ErrorMessage(
+        `Access denied. You need to be ${rankNeeded} to add teams for ${formatid}`
+      );
+    }
+    const categoryName = this.findCategory(formatid, category);
+    if (!categoryName) {
+      throw new Chat.ErrorMessage(
+        `There's no category named "${category.trim()}" for the format ${formatid}.`
+      );
+    }
+    delete teamData.teams[formatid][categoryName];
+    save();
+  }
 
-	/**
-	 * @param user
-	 * @param formatid
-	 * @param teamName
-	 * @param team - Can be a team in the packed, JSON, or exported format
-	 * @param category - Category the team will go in, defaults to uncategorized
-	 */
-	addTeam(user: User, formatid: string, teamName: string, team: string, category = "uncategorized") {
-		formatid = this.sanitizeFormat(formatid);
-		if (!this.checkPermissions(user, teamData.whitelist[formatid])) {
-			let rankNeeded = `a global administrator`;
-			if (teamData.whitelist[formatid]?.length) {
-				rankNeeded = `staff in ${Chat.toListString(teamData.whitelist[formatid], "or")}`;
-			}
-			throw new Chat.ErrorMessage(`Access denied. You need to be ${rankNeeded} to add teams for ${formatid}`);
-		}
-		teamName = teamName.trim();
-		category = category.trim();
-		this.initializeFormat(formatid);
-		if (this.findTeamName(formatid, category, teamName)) {
-			throw new Chat.ErrorMessage(`There is already a team for ${formatid} with the name ${teamName} in the ${category} category.`);
-		}
-		if (!teamData.teams[formatid][category]) this.addCategory(user, formatid, category);
-		teamData.teams[formatid][category][teamName] = Teams.pack(Teams.import(team.trim()));
-		save();
-		return teamData.teams[formatid][category][teamName];
-	}
+  /**
+   * @param user
+   * @param formatid
+   * @param teamName
+   * @param team - Can be a team in the packed, JSON, or exported format
+   * @param category - Category the team will go in, defaults to uncategorized
+   */
+  addTeam(
+    user: User,
+    formatid: string,
+    teamName: string,
+    team: string,
+    category = 'uncategorized'
+  ) {
+    formatid = this.sanitizeFormat(formatid);
+    if (!this.checkPermissions(user, teamData.whitelist[formatid])) {
+      let rankNeeded = `a global administrator`;
+      if (teamData.whitelist[formatid]?.length) {
+        rankNeeded = `staff in ${Chat.toListString(teamData.whitelist[formatid], 'or')}`;
+      }
+      throw new Chat.ErrorMessage(
+        `Access denied. You need to be ${rankNeeded} to add teams for ${formatid}`
+      );
+    }
+    teamName = teamName.trim();
+    category = category.trim();
+    this.initializeFormat(formatid);
+    if (this.findTeamName(formatid, category, teamName)) {
+      throw new Chat.ErrorMessage(
+        `There is already a team for ${formatid} with the name ${teamName} in the ${category} category.`
+      );
+    }
+    if (!teamData.teams[formatid][category]) this.addCategory(user, formatid, category);
+    teamData.teams[formatid][category][teamName] = Teams.pack(Teams.import(team.trim()));
+    save();
+    return teamData.teams[formatid][category][teamName];
+  }
 
-	removeTeam(user: User, formatid: string, teamid: string, category: string) {
-		formatid = this.sanitizeFormat(formatid, false);
-		category = category.trim();
-		if (!this.checkPermissions(user, teamData.whitelist[formatid])) {
-			let required = `an administrator`;
-			if (teamData.whitelist[formatid]) {
-				required = `staff in ${Chat.toListString(teamData.whitelist[formatid], "or")}`;
-			}
-			throw new Chat.ErrorMessage(`Access denied. You need to be ${required} to add teams for ${formatid}`);
-		}
-		const categoryName = this.findCategory(formatid, category);
-		if (!categoryName) {
-			throw new Chat.ErrorMessage(`There are no teams for ${formatid} under the category ${category.trim()}. Check spelling?`);
-		}
-		const teamName = this.findTeamName(formatid, category, teamid);
-		if (!teamName) {
-			throw new Chat.ErrorMessage(`There is no team for ${formatid} with the name of "${teamid}". Check spelling?`);
-		}
-		const oldTeam = teamData.teams[formatid][categoryName][teamName];
-		delete teamData.teams[formatid][categoryName][teamName];
-		if (!Object.keys(teamData.teams[formatid][categoryName]).length) delete teamData.teams[formatid][categoryName];
-		if (!Object.keys(teamData.teams[formatid]).filter(x => x !== 'uncategorized').length) delete teamData.teams[formatid];
-		save();
-		return oldTeam;
-	}
+  removeTeam(user: User, formatid: string, teamid: string, category: string) {
+    formatid = this.sanitizeFormat(formatid, false);
+    category = category.trim();
+    if (!this.checkPermissions(user, teamData.whitelist[formatid])) {
+      let required = `an administrator`;
+      if (teamData.whitelist[formatid]) {
+        required = `staff in ${Chat.toListString(teamData.whitelist[formatid], 'or')}`;
+      }
+      throw new Chat.ErrorMessage(
+        `Access denied. You need to be ${required} to add teams for ${formatid}`
+      );
+    }
+    const categoryName = this.findCategory(formatid, category);
+    if (!categoryName) {
+      throw new Chat.ErrorMessage(
+        `There are no teams for ${formatid} under the category ${category.trim()}. Check spelling?`
+      );
+    }
+    const teamName = this.findTeamName(formatid, category, teamid);
+    if (!teamName) {
+      throw new Chat.ErrorMessage(
+        `There is no team for ${formatid} with the name of "${teamid}". Check spelling?`
+      );
+    }
+    const oldTeam = teamData.teams[formatid][categoryName][teamName];
+    delete teamData.teams[formatid][categoryName][teamName];
+    if (!Object.keys(teamData.teams[formatid][categoryName]).length)
+      delete teamData.teams[formatid][categoryName];
+    if (!Object.keys(teamData.teams[formatid]).filter(x => x !== 'uncategorized').length)
+      delete teamData.teams[formatid];
+    save();
+    return oldTeam;
+  }
 
-	formatTeam(teamName: string, teamStr: string, broadcasting = false) {
-		const team = Teams.unpack(teamStr);
-		if (!team) return `Team is not correctly formatted. PM room staff to fix the formatting.`;
-		let buf = ``;
-		if (!broadcasting) {
-			buf += `<center><strong style="letter-spacing:1.2pt">${team.map(x => `<psicon pokemon="${x.species}" />`).join('')}`;
-			buf += `<br />${Utils.escapeHTML(teamName.toUpperCase())}</strong></center>`;
-			buf += Chat.getReadmoreCodeBlock(Teams.export(team).trim());
-		} else {
-			buf += `<details><summary>${team.map(x => `<psicon pokemon="${x.species}" />`).join('')} &ndash; ${Utils.escapeHTML(teamName)}</summary>`;
-			buf += `<code style="white-space: pre-wrap; display: table; tab-size: 3">${Teams.export(team).trim().replace(/\n/g, '<br />')}</code></details>`;
-		}
-		return buf;
-	}
+  formatTeam(teamName: string, teamStr: string, broadcasting = false) {
+    const team = Teams.unpack(teamStr);
+    if (!team) return `Team is not correctly formatted. PM room staff to fix the formatting.`;
+    let buf = ``;
+    if (!broadcasting) {
+      buf += `<center><strong style="letter-spacing:1.2pt">${team.map(x => `<psicon pokemon="${x.species}" />`).join('')}`;
+      buf += `<br />${Utils.escapeHTML(teamName.toUpperCase())}</strong></center>`;
+      buf += Chat.getReadmoreCodeBlock(Teams.export(team).trim());
+    } else {
+      buf += `<details><summary>${team.map(x => `<psicon pokemon="${x.species}" />`).join('')} &ndash; ${Utils.escapeHTML(teamName)}</summary>`;
+      buf += `<code style="white-space: pre-wrap; display: table; tab-size: 3">${Teams.export(team).trim().replace(/\n/g, '<br />')}</code></details>`;
+    }
+    return buf;
+  }
 
-	modlog(context: Chat.CommandContext, formatid: string, action: string, note: string, log: string) {
-		formatid = this.sanitizeFormat(formatid);
-		const whitelistedRooms = this.whitelistedRooms(formatid);
-		if (whitelistedRooms?.length) {
-			for (const roomid of whitelistedRooms) {
-				const room = Rooms.get(roomid);
-				if (!room) continue;
-				context.room = room;
-				context.modlog(action, null, `${formatid}: ${note}`);
-				context.privateModAction(log);
-			}
-		} else {
-			context.room = Rooms.get('staff') || null;
-			context.globalModlog(action, null, `${formatid}: ${note}`);
-			context.privateGlobalModAction(log);
-		}
-	}
+  modlog(
+    context: Chat.CommandContext,
+    formatid: string,
+    action: string,
+    note: string,
+    log: string
+  ) {
+    formatid = this.sanitizeFormat(formatid);
+    const whitelistedRooms = this.whitelistedRooms(formatid);
+    if (whitelistedRooms?.length) {
+      for (const roomid of whitelistedRooms) {
+        const room = Rooms.get(roomid);
+        if (!room) continue;
+        context.room = room;
+        context.modlog(action, null, `${formatid}: ${note}`);
+        context.privateModAction(log);
+      }
+    } else {
+      context.room = Rooms.get('staff') || null;
+      context.globalModlog(action, null, `${formatid}: ${note}`);
+      context.privateGlobalModAction(log);
+    }
+  }
 
-	/**
-	 * Returns the category name of the provided category ID if there is one.
-	 */
-	findCategory(formatid: string, categoryid: string) {
-		formatid = toID(formatid);
-		categoryid = toID(categoryid);
-		let match: string | null = null;
-		for (const categoryName in teamData.teams[formatid] || {}) {
-			if (toID(categoryName) === categoryid) {
-				match = categoryName;
-				break;
-			}
-		}
-		return match;
-	}
+  /**
+   * Returns the category name of the provided category ID if there is one.
+   */
+  findCategory(formatid: string, categoryid: string) {
+    formatid = toID(formatid);
+    categoryid = toID(categoryid);
+    let match: string | null = null;
+    for (const categoryName in teamData.teams[formatid] || {}) {
+      if (toID(categoryName) === categoryid) {
+        match = categoryName;
+        break;
+      }
+    }
+    return match;
+  }
 
-	findTeamName(formatid: string, categoryid: string, teamid: string) {
-		const categoryName = this.findCategory(formatid, categoryid);
-		if (!categoryName) return null;
-		let match: string | null = null;
-		for (const teamName in teamData.teams[formatid][categoryName] || {}) {
-			if (toID(teamName) === teamid) {
-				match = teamName;
-				break;
-			}
-		}
-		return match;
-	}
+  findTeamName(formatid: string, categoryid: string, teamid: string) {
+    const categoryName = this.findCategory(formatid, categoryid);
+    if (!categoryName) return null;
+    let match: string | null = null;
+    for (const teamName in teamData.teams[formatid][categoryName] || {}) {
+      if (toID(teamName) === teamid) {
+        match = teamName;
+        break;
+      }
+    }
+    return match;
+  }
 
-	getFormatName(formatid: string) {
-		return Dex.formats.get(formatid).exists ? Dex.formats.get(formatid).name : formatid;
-	}
+  getFormatName(formatid: string) {
+    return Dex.formats.get(formatid).exists ? Dex.formats.get(formatid).name : formatid;
+  }
 
-	destroy() {
-		for (const formatid in teamData.whitelist) {
-			for (const [i, roomid] of teamData.whitelist[formatid].entries()) {
-				const room = Rooms.search(roomid);
-				if (room) continue;
-				teamData.whitelist[formatid].splice(i, 1);
-				if (!teamData.whitelist[formatid].length) delete teamData.whitelist[formatid];
-				save();
-			}
-		}
-	}
-};
+  destroy() {
+    for (const formatid in teamData.whitelist) {
+      for (const [i, roomid] of teamData.whitelist[formatid].entries()) {
+        const room = Rooms.search(roomid);
+        if (room) continue;
+        teamData.whitelist[formatid].splice(i, 1);
+        if (!teamData.whitelist[formatid].length) delete teamData.whitelist[formatid];
+        save();
+      }
+    }
+  }
+})();
 
 export const destroy = SampleTeams.destroy;
 
 export const handlers: Chat.Handlers = {
-	onRenameRoom(oldID, newID) {
-		for (const formatid in teamData.whitelist) {
-			if (!SampleTeams.whitelistedRooms(formatid)?.includes(oldID)) continue;
-			SampleTeams.unwhitelistRoom(formatid, oldID);
-			SampleTeams.whitelistRooms([formatid], [newID]);
-		}
-	},
+  onRenameRoom(oldID, newID) {
+    for (const formatid in teamData.whitelist) {
+      if (!SampleTeams.whitelistedRooms(formatid)?.includes(oldID)) continue;
+      SampleTeams.unwhitelistRoom(formatid, oldID);
+      SampleTeams.whitelistRooms([formatid], [newID]);
+    }
+  },
 };
 
 export const commands: Chat.ChatCommands = {
-	sampleteams(target, room, user) {
-		this.sendReply(`Sample Teams are being deprecated. Please do \`\`/tier [formatid]\`\` to view their resources.`);
-		this.sendReply(`If you are room staff for a room and would like to access old samples for your room's formats, please contact an admin.`);
-	},
-	/* sampleteams: {
+  sampleteams(target, room, user) {
+    this.sendReply(
+      `Sample Teams are being deprecated. Please do \`\`/tier [formatid]\`\` to view their resources.`
+    );
+    this.sendReply(
+      `If you are room staff for a room and would like to access old samples for your room's formats, please contact an admin.`
+    );
+  },
+  /* sampleteams: {
 		''(target, room, user) {
 			this.runBroadcast();
 			let [formatid, category] = target.split(',');

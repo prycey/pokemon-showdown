@@ -1,5 +1,4 @@
-Protocol
-========
+# Protocol
 
 Pokémon Showdown's protocol is relatively simple.
 
@@ -14,25 +13,23 @@ Showdown directly using WebSocket:
 Client implementations you might want to look at for reference include:
 
 - Majeur's android client (Kotlin/Java) -
-    https://github.com/MajeurAndroid/Android-Unofficial-Showdown-Client
+  https://github.com/MajeurAndroid/Android-Unofficial-Showdown-Client
 - pickdenis' chat bot (Ruby) -
-    https://github.com/pickdenis/ps-chatbot
+  https://github.com/pickdenis/ps-chatbot
 - Quinella and TalkTakesTime's chat bot (Node.js) -
-    https://github.com/TalkTakesTime/Pokemon-Showdown-Bot
+  https://github.com/TalkTakesTime/Pokemon-Showdown-Bot
 - Nixola's chat bot (Lua) -
-    https://github.com/Nixola/NixPSbot
+  https://github.com/Nixola/NixPSbot
 - Morfent's chat bot (Perl 6) -
-    https://github.com/Kaiepi/p6-PSBot
+  https://github.com/Kaiepi/p6-PSBot
 - the official client (HTML5 + JavaScript) -
-    https://github.com/smogon/pokemon-showdown-client
+  https://github.com/smogon/pokemon-showdown-client
 
 The official client logs protocol messages in the JavaScript console,
 so opening that (F12 in most browsers) can help tell you what's going
 on.
 
-
-Client-to-server messages
--------------------------
+## Client-to-server messages
 
 Messages from the user to the server are in the form:
 
@@ -49,9 +46,7 @@ A partial list of available commands can be found with `/help`.
 
 To log in, look at the documentation for the `|challstr|` server message.
 
-
-Server-to-client messages
--------------------------
+## Server-to-client messages
 
 Messages from the server to the user are in the form:
 
@@ -104,9 +99,7 @@ displayed inline because they happen too often. For instance, the main server
 gets around 5 joins/leaves a second, and showing that inline with chat would
 make it near-impossible to chat.
 
-
-Server-to-client message types
-------------------------------
+## Server-to-client message types
 
 `USER` = a user, the first character being their rank (users with no rank are
 represented by a space), and the rest of the string being their username.
@@ -307,7 +300,7 @@ represented by a space), and the rest of the string being their username.
 > `JSON` is a JSON object representing the changes in the tournament
 > since the last update you recieved or the start of the tournament.
 > These include:
->
+
     format: the tournament's custom name or the format being used
     teambuilderFormat: the format being used; sent if a custom name was set
     isStarted: whether or not the tournament has started
@@ -373,7 +366,7 @@ represented by a space), and the rest of the string being their username.
 `|tournament|end|JSON`
 
 > The tournament ended. `JSON` is a JSON object containing:
->
+
     results: the name(s) of the winner(s) of the tournament
     format: the tournament's custom name or the format that was used
     generator: the type of bracket that was used by the tournament
@@ -407,21 +400,19 @@ represented by a space), and the rest of the string being their username.
 > You have `TIME` seconds to make or accept a challenge, or else you will be
 > disqualified for inactivity.
 
-
-Battles
--------
+## Battles
 
 ### Playing battles
 
 Battle rooms will have a mix of room messages and battle messages. [Battle
 messages are documented in `SIM-PROTOCOL.md`][sim-protocol].
 
-  [sim-protocol]: ./sim/SIM-PROTOCOL.md
+[sim-protocol]: ./sim/SIM-PROTOCOL.md
 
 To make decisions in battle, players should use the `/choose` command,
 [also documented in `SIM-PROTOCOL.md`][sending-decisions].
 
-  [sending-decisions]: ./sim/SIM-PROTOCOL.md#sending-decisions
+[sending-decisions]: ./sim/SIM-PROTOCOL.md#sending-decisions
 
 ### Starting battles through challenges
 

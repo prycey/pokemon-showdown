@@ -1,5 +1,4 @@
-Dashycode
-=========
+# Dashycode
 
 Dashycode is a code for arbitrary strings into a restricted lowercase-alphanumeric-with-dashes character set.
 
@@ -14,7 +13,6 @@ For instance:
 Its intended use is to reversibly store arbitrary strings in URLs or domain-names as human-readably as possible.
 
 Dashycode is similar to other ways of encoding strings into restricted character sets, like urlencoding, punycode, or Base64. It's more human-readable than urlencoding or Base64, and can handle strings punycode can't handle.
-
 
 # Features
 
@@ -42,8 +40,7 @@ As an encoding, Dashycode is reversible: any string will always encode to a uniq
 
 Dashycode is designed for human-readable text, but any data you can stuff into a JavaScript string can be encoded. However, if you primarily want to encode binary data, you should probably be using [Base32]. (Dashycode is ~20% less efficient than Base32 for max-entropy binary data.)
 
-  [Base32]: https://en.wikipedia.org/wiki/Base32
-
+[Base32]: https://en.wikipedia.org/wiki/Base32
 
 # Readability
 
@@ -63,7 +60,6 @@ Only strings with other characters (or with multiple spaces in a row) will have 
     'this-is-a-regular-sentence--32e5'
 
 Also for readability, the code part will not contain `0`, `o`, `l`, or `1`.
-
 
 # Compared to other encodings
 
@@ -100,7 +96,6 @@ The reason for the slightly lower efficiency on non-ASCII text is to make common
 
     > Dashycode.encode("CamelCase")
     'camelcase--fa'
-
 
 # License
 

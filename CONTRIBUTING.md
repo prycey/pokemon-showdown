@@ -1,8 +1,6 @@
-Contributing to Pokémon Showdown
-========================================================================
+# Contributing to Pokémon Showdown
 
-Building and running
-------------------------------------------------------------------------
+## Building and running
 
 [README.md](./README.md) contains most of the relevant information here.
 
@@ -16,9 +14,7 @@ Unit tests can be run with `npm test`. You can run specific unit tests with `npx
 
 Packaging for npm is done by running `./build decl && npm publish`. Only Zarel has the NPM credentials to do this, but feel free to request a new NPM package if you need something.
 
-
-Contributing
-------------------------------------------------------------------------
+## Contributing
 
 In general, we welcome pull requests that fix bugs.
 
@@ -34,17 +30,13 @@ There's no need to worry about code standards too much (unit tests will automati
 
 We try to respond to pull requests within a few days, but feel free to bump yours if it seems like we forget about it. Sometimes we did, and sometimes there might be a miscommunication in terms of who is waiting for what.
 
-
-License
-------------------------------------------------------------------------
+## License
 
 Your submitted code should be MIT licensed. The GitHub ToS (and the fact that your fork also contains our LICENSE file) ensures this, so we won't ask when you submit a pull request, but keep this in mind.
 
 For simplicity (mostly to make relicensing easier), client code should be also be MIT licensed. The first time you make a client pull request, we'll ask you to explicitly state that you agree to MIT license it.
 
-
-Design standards
-------------------------------------------------------------------------
+## Design standards
 
 We strive to be maximally intuitive and accessible. Sure, "that's what they all say", but the currently-popular flat design trend straight-up sacrifices usability for aesthetics, and we try to take the other side of that trade-off.
 
@@ -88,9 +80,7 @@ This is why we notify for ignored messages once per session. If your friend send
 
 Part of this overlaps with D5 (buttons that shouldn't be clicked multiple times should be disabled after the first click), but part of this is about not hiding information if it would confuse users. This does conflict with D1 (less is better) a bit, so a useful rule is that if the user has trouble understanding what's going on (e.g. because you replaced some text with a confusing symbol), you've taken D1 too far.
 
-
-Comment standards
-------------------------------------------------------------------------
+## Comment standards
 
 ### C1. Don't teach JavaScript
 
@@ -113,13 +103,13 @@ BAD:
 
 ```ts
 /** move name */
-let value = "Stealth Rock";
+let value = 'Stealth Rock';
 ```
 
 GOOD:
 
 ```ts
-let moveName = "Stealth Rock";
+let moveName = 'Stealth Rock';
 ```
 
 Good variable and function names can massively increase readability, by much more than comments. Often, this means simply creating a variable so you can give it a name:
@@ -170,9 +160,7 @@ We allow jokes in comments. You're always allowed to have fun!
 if (!species) species = 'Unown';
 ```
 
-
-Commit message standards
-------------------------------------------------------------------------
+## Commit message standards
 
 ### CM1. What, not how
 
@@ -228,9 +216,7 @@ Here is a guide for squashing, if you need help with that: https://redew.github.
 
 If, while rebasing, you somehow unintentionally break your pull request, do not close it and make a new one to replace it. Instead, you can ask in the Development chatroom for help on trying to fix it; it can almost always be fixed.
 
-
-Code standards
-------------------------------------------------------------------------
+## Code standards
 
 We enforce most of our code standards through `eslint`. Just run `npm test` and it'll tell you if something's wrong.
 
@@ -265,9 +251,9 @@ The simulator (code in `sim/` and `data/`) will often have functions with return
 
 Specifically:
 
-* `false` means "this action failed"
-* `null` means "this action failed silently; suppress any 'But it failed!' messages"
-* `undefined` means "this action should be ignored, and treated as if nothing unexpected happened"
+- `false` means "this action failed"
+- `null` means "this action failed silently; suppress any 'But it failed!' messages"
+- `undefined` means "this action should be ignored, and treated as if nothing unexpected happened"
 
 So, if Thunder Wave hits a Ground type, the immunity checker returns `false` to indicate the immunity.
 
@@ -287,9 +273,7 @@ If, at a future point, TypeScript does allow us to constrain types better, we mi
 
 It is, of course, completely fine to use `??` in the cases where we don't want `0` or `''` or `false` to fall back to something else.
 
-
-Modern JavaScript/TypeScript syntax convention
-------------------------------------------------------------------------
+## Modern JavaScript/TypeScript syntax convention
 
 We care a lot about performance, but also readability. Fortunately, recent versions of V8 usually have both, but here are some exceptions.
 
@@ -309,9 +293,7 @@ In general, we prefer modern ways of writing things as long as they're supported
 
 - Default Properties: Mediocre performance when compiled with `sucrase`. This is fine for objects that are rarely created, but prefer setting properties directly in a constructor, for objects created in inner loops.
 
-
-Dependencies
-------------------------------------------------------------------------
+## Dependencies
 
 We oppose the usual JavaScript culture of casually adding dependencies from NPM.
 
@@ -323,8 +305,6 @@ In practice, for any dependency we could reimplement in around 30 lines of code,
 
 To be clear, we're not _opposed_ to new dependencies and will accept them where they make sense. But we try to avoid them more most than other Node projects do.
 
-
-`package-lock.json`
-------------------------------------------------------------------------
+## `package-lock.json`
 
 In the past, we didn't use `package-lock`. The reasons are historical. We do now. If you see a project without package-lock, feel free to add it.

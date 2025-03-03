@@ -1,11 +1,8 @@
-Pokémon Showdown command-line tools
-===================================
+# Pokémon Showdown command-line tools
 
 Pokémon Showdown provides a command-line utility `pokemon-showdown`. You can access its help anytime with `pokemon-showdown -h`.
 
-
-Setup
------
+## Setup
 
 Install Node.js, clone this repository and run `./build` from inside it. (Windows users should use `node build`, and replace all future mentions of `./` in this document with `node` followed by a space.)
 
@@ -13,9 +10,7 @@ Every time you update the code here (such as with `git pull`), run `./build` aga
 
 Afterwards, you can use any of the following commands:
 
-
-Supported commands
-------------------
+## Supported commands
 
 Note: Commands that ask for a team want the team in [packed team format](./sim/TEAMS.md#packed-format) or JSON format. Teambuilder export format is not supported.
 
@@ -65,9 +60,7 @@ Note: Commands that ask for a team want the team in [packed team format](./sim/T
 
 - Displays this reference
 
-
-Piping
-------
+## Piping
 
 These commands are very unixy (using stdin and stdout), so you can of course pipe them together:
 
