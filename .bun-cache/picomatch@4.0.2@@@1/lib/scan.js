@@ -2,21 +2,21 @@
 
 const utils = require('./utils');
 const {
-  CHAR_ASTERISK,             /* * */
-  CHAR_AT,                   /* @ */
-  CHAR_BACKWARD_SLASH,       /* \ */
-  CHAR_COMMA,                /* , */
-  CHAR_DOT,                  /* . */
-  CHAR_EXCLAMATION_MARK,     /* ! */
-  CHAR_FORWARD_SLASH,        /* / */
-  CHAR_LEFT_CURLY_BRACE,     /* { */
-  CHAR_LEFT_PARENTHESES,     /* ( */
-  CHAR_LEFT_SQUARE_BRACKET,  /* [ */
-  CHAR_PLUS,                 /* + */
-  CHAR_QUESTION_MARK,        /* ? */
-  CHAR_RIGHT_CURLY_BRACE,    /* } */
-  CHAR_RIGHT_PARENTHESES,    /* ) */
-  CHAR_RIGHT_SQUARE_BRACKET  /* ] */
+  CHAR_ASTERISK /* * */,
+  CHAR_AT /* @ */,
+  CHAR_BACKWARD_SLASH /* \ */,
+  CHAR_COMMA /* , */,
+  CHAR_DOT /* . */,
+  CHAR_EXCLAMATION_MARK /* ! */,
+  CHAR_FORWARD_SLASH /* / */,
+  CHAR_LEFT_CURLY_BRACE /* { */,
+  CHAR_LEFT_PARENTHESES /* ( */,
+  CHAR_LEFT_SQUARE_BRACKET /* [ */,
+  CHAR_PLUS /* + */,
+  CHAR_QUESTION_MARK /* ? */,
+  CHAR_RIGHT_CURLY_BRACE /* } */,
+  CHAR_RIGHT_PARENTHESES /* ) */,
+  CHAR_RIGHT_SQUARE_BRACKET /* ] */,
 } = require('./constants');
 
 const isPathSeparator = code => {
@@ -159,7 +159,7 @@ const scan = (input, options) => {
       token = { value: '', depth: 0, isGlob: false };
 
       if (finished === true) continue;
-      if (prev === CHAR_DOT && index === (start + 1)) {
+      if (prev === CHAR_DOT && index === start + 1) {
         start += 2;
         continue;
       }
@@ -169,11 +169,12 @@ const scan = (input, options) => {
     }
 
     if (opts.noext !== true) {
-      const isExtglobChar = code === CHAR_PLUS
-        || code === CHAR_AT
-        || code === CHAR_ASTERISK
-        || code === CHAR_QUESTION_MARK
-        || code === CHAR_EXCLAMATION_MARK;
+      const isExtglobChar =
+        code === CHAR_PLUS ||
+        code === CHAR_AT ||
+        code === CHAR_ASTERISK ||
+        code === CHAR_QUESTION_MARK ||
+        code === CHAR_EXCLAMATION_MARK;
 
       if (isExtglobChar === true && peek() === CHAR_LEFT_PARENTHESES) {
         isGlob = token.isGlob = true;
@@ -336,7 +337,7 @@ const scan = (input, options) => {
     isExtglob,
     isGlobstar,
     negated,
-    negatedExtglob
+    negatedExtglob,
   };
 
   if (opts.tokens === true) {

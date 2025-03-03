@@ -6,7 +6,7 @@ const {
   REGEX_BACKSLASH,
   REGEX_REMOVE_BACKSLASH,
   REGEX_SPECIAL_CHARS,
-  REGEX_SPECIAL_CHARS_GLOBAL
+  REGEX_SPECIAL_CHARS_GLOBAL,
 } = require('./constants');
 
 exports.isObject = val => val !== null && typeof val === 'object' && !Array.isArray(val);
@@ -23,7 +23,7 @@ exports.removeBackslashes = str => {
 
 exports.supportsLookbehinds = () => {
   const segs = process.version.slice(1).split('.').map(Number);
-  if (segs.length === 3 && segs[0] >= 9 || (segs[0] === 8 && segs[1] >= 10)) {
+  if ((segs.length === 3 && segs[0] >= 9) || (segs[0] === 8 && segs[1] >= 10)) {
     return true;
   }
   return false;

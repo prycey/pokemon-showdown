@@ -17,27 +17,27 @@ export namespace builders {
   type Doc = string | Doc[] | DocCommand;
 
   interface Align {
-    type: "align";
+    type: 'align';
     contents: Doc;
-    n: number | string | { type: "root" };
+    n: number | string | { type: 'root' };
   }
 
   interface BreakParent {
-    type: "break-parent";
+    type: 'break-parent';
   }
 
   interface Cursor {
-    type: "cursor";
+    type: 'cursor';
     placeholder: symbol;
   }
 
   interface Fill {
-    type: "fill";
+    type: 'fill';
     parts: Doc[];
   }
 
   interface Group {
-    type: "group";
+    type: 'group';
     id?: symbol;
     contents: Doc;
     break: boolean;
@@ -49,40 +49,40 @@ export namespace builders {
   }
 
   interface IfBreak {
-    type: "if-break";
+    type: 'if-break';
     breakContents: Doc;
     flatContents: Doc;
   }
 
   interface Indent {
-    type: "indent";
+    type: 'indent';
     contents: Doc;
   }
 
   interface IndentIfBreak {
-    type: "indent-if-break";
+    type: 'indent-if-break';
   }
 
   interface Label {
-    type: "label";
+    type: 'label';
     label: any;
     contents: Doc;
   }
 
   interface Line {
-    type: "line";
+    type: 'line';
     soft?: boolean | undefined;
     hard?: boolean | undefined;
     literal?: boolean | undefined;
   }
 
   interface LineSuffix {
-    type: "line-suffix";
+    type: 'line-suffix';
     contents: Doc;
   }
 
   interface LineSuffixBoundary {
-    type: "line-suffix-boundary";
+    type: 'line-suffix-boundary';
   }
 
   interface LiterallineWithoutBreakParent extends Line {
@@ -99,7 +99,7 @@ export namespace builders {
   type Hardline = [HardlineWithoutBreakParent, BreakParent];
 
   interface Trim {
-    type: "trim";
+    type: 'trim';
   }
 
   interface GroupOptions {
@@ -110,7 +110,7 @@ export namespace builders {
   function addAlignmentToDoc(doc: Doc, size: number, tabWidth: number): Doc;
 
   /** @see [align](https://github.com/prettier/prettier/blob/main/commands.md#align) */
-  function align(widthOrString: Align["n"], doc: Doc): Align;
+  function align(widthOrString: Align['n'], doc: Doc): Align;
 
   /** @see [breakParent](https://github.com/prettier/prettier/blob/main/commands.md#breakparent) */
   const breakParent: BreakParent;
@@ -140,7 +140,7 @@ export namespace builders {
   function ifBreak(
     ifBreak: Doc,
     noBreak?: Doc,
-    options?: { groupId?: symbol | undefined },
+    options?: { groupId?: symbol | undefined }
   ): IfBreak;
 
   /** @see [indent](https://github.com/prettier/prettier/blob/main/commands.md#indent) */
@@ -149,7 +149,7 @@ export namespace builders {
   /** @see [indentIfBreak](https://github.com/prettier/prettier/blob/main/commands.md#indentifbreak) */
   function indentIfBreak(
     doc: Doc,
-    opts: { groupId: symbol; negate?: boolean | undefined },
+    opts: { groupId: symbol; negate?: boolean | undefined }
   ): IndentIfBreak;
 
   /** @see [join](https://github.com/prettier/prettier/blob/main/commands.md#join) */
@@ -189,7 +189,7 @@ export namespace builders {
 export namespace printer {
   function printDocToString(
     doc: builders.Doc,
-    options: Options,
+    options: Options
   ): {
     formatted: string;
     /**
@@ -233,22 +233,16 @@ export namespace utils {
     doc: builders.Doc,
     onEnter?: (doc: builders.Doc) => void | boolean,
     onExit?: (doc: builders.Doc) => void,
-    shouldTraverseConditionalGroups?: boolean,
+    shouldTraverseConditionalGroups?: boolean
   ): void;
   function findInDoc<T = builders.Doc>(
     doc: builders.Doc,
     callback: (doc: builders.Doc) => T,
-    defaultValue: T,
+    defaultValue: T
   ): T;
-  function mapDoc<T = builders.Doc>(
-    doc: builders.Doc,
-    callback: (doc: builders.Doc) => T,
-  ): T;
+  function mapDoc<T = builders.Doc>(doc: builders.Doc, callback: (doc: builders.Doc) => T): T;
   function removeLines(doc: builders.Doc): builders.Doc;
   function stripTrailingHardline(doc: builders.Doc): builders.Doc;
-  function replaceEndOfLine(
-    doc: builders.Doc,
-    replacement?: builders.Doc,
-  ): builders.Doc;
+  function replaceEndOfLine(doc: builders.Doc, replacement?: builders.Doc): builders.Doc;
   function canBreak(doc: builders.Doc): boolean;
 }

@@ -53,7 +53,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - failing test for protocol pollution [`0efed03`](https://github.com/minimistjs/minimist/commit/0efed0340ec8433638758f7ca0c77cb20a0bfbab)
 - cleanup [`67d3722`](https://github.com/minimistjs/minimist/commit/67d3722413448d00a62963d2d30c34656a92d7e2)
 - console.dir -&gt; console.log [`47acf72`](https://github.com/minimistjs/minimist/commit/47acf72c715a630bf9ea013867f47f1dd69dfc54)
-- don't assign onto __proto__ [`63e7ed0`](https://github.com/minimistjs/minimist/commit/63e7ed05aa4b1889ec2f3b196426db4500cbda94)
+- don't assign onto **proto** [`63e7ed0`](https://github.com/minimistjs/minimist/commit/63e7ed05aa4b1889ec2f3b196426db4500cbda94)
 
 ## [v1.2.1](https://github.com/minimistjs/minimist/compare/v1.2.0...v1.2.1) - 2020-03-10
 

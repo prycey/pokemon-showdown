@@ -550,7 +550,7 @@ mp.promise().then(
   },
   er => {
     // stream emitted an error
-  }
+  },
 )
 ```
 
@@ -683,7 +683,7 @@ someSource
         console.log('END', chunk, encoding)
         return super.end(chunk, encoding, callback)
       }
-    })()
+    })(),
   )
   .pipe(someDest)
 ```
@@ -735,15 +735,17 @@ class NDJSONEncode extends Minipass {
 
 ```js
 class NDJSONDecode extends Minipass {
-  constructor (options) {
+  constructor(options) {
     // always be in object mode, as far as Minipass is concerned
     super({ objectMode: true })
     this._jsonBuffer = ''
   }
-  write (chunk, encoding, cb) {
-    if (typeof chunk === 'string' &&
-        typeof encoding === 'string' &&
-        encoding !== 'utf8') {
+  write(chunk, encoding, cb) {
+    if (
+      typeof chunk === 'string' &&
+      typeof encoding === 'string' &&
+      encoding !== 'utf8'
+    ) {
       chunk = Buffer.from(chunk, encoding).toString()
     } else if (Buffer.isBuffer(chunk)) {
       chunk = chunk.toString()
@@ -762,8 +764,7 @@ class NDJSONDecode extends Minipass {
         continue
       }
     }
-    if (cb)
-      cb()
+    if (cb) cb()
   }
 }
 ```

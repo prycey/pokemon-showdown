@@ -11,7 +11,7 @@ fanciful decoration.
 
 # example
 
-``` js
+```js
 var argv = require('minimist')(process.argv.slice(2));
 console.dir(argv);
 ```
@@ -35,8 +35,8 @@ $ node example/parse.js -x 3 -y 4 -n5 -abc --beep=boop foo bar baz
 
 # methods
 
-``` js
-var parseArgs = require('minimist')
+```js
+var parseArgs = require('minimist');
 ```
 
 ## var argv = parseArgs(args, opts={})
@@ -53,12 +53,12 @@ Any arguments after `'--'` will not be parsed and will end up in `argv._`.
 
 options can be:
 
-* `opts.string` - a string or array of strings argument names to always treat as
-strings
-* `opts.boolean` - a string or array of strings to always treat as booleans
-* `opts.alias` - an object mapping string names to strings or arrays of string
-argument names to use as aliases
-* `opts.default` - an object mapping string argument names to default values
+- `opts.string` - a string or array of strings argument names to always treat as
+  strings
+- `opts.boolean` - a string or array of strings to always treat as booleans
+- `opts.alias` - an object mapping string names to strings or arrays of string
+  argument names to use as aliases
+- `opts.default` - an object mapping string argument names to default values
 
 # install
 

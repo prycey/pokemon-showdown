@@ -53,15 +53,15 @@ declare namespace Minipass {
   type Options<T> = T extends string
     ? StringOptions
     : T extends Buffer
-    ? BufferOptions
-    : ObjectModeOptions
+      ? BufferOptions
+      : ObjectModeOptions
 }
 
 declare class Minipass<
     RType extends any = Buffer,
     WType extends any = RType extends Minipass.BufferOrString
       ? Minipass.ContiguousData
-      : RType
+      : RType,
   >
   extends Stream
   implements Minipass.DualIterable<RType>
@@ -145,7 +145,7 @@ declare class Minipass<
       | 'prefinish'
       | 'finish'
       | 'close',
-    listener: () => any
+    listener: () => any,
   ): this
 
   [Symbol.iterator](): Iterator<RType>

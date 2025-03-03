@@ -3,12 +3,12 @@ name: Update the npm package version
 on:
   workflow_dispatch:
     inputs:
-        version:
-          required: true
-          type: choice
-          description: Version type
-          default: patch
-          options: 
+      version:
+        required: true
+        type: choice
+        description: Version type
+        default: patch
+        options:
           - major
           - minor
           - patch
@@ -39,4 +39,3 @@ jobs:
           commit-message: Bump package.json version to v${{ steps.bump_version.outputs.new_version }}
           branch: npm-version-bump
           base: master
-    

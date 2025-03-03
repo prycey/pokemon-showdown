@@ -1,5 +1,4 @@
-Pokemon Showdown architecture
-=============================
+# Pokemon Showdown architecture
 
 At the highest level, PS is split into three parts:
 
@@ -17,9 +16,7 @@ The user's web browser will also connect to the Game server, through SockJS. The
 
 The Game server also communicates with the Login server, to handle replay uploads (and, for the main server, ladder updates).
 
-
-Game server
------------
+## Game server
 
 The game server is written in TypeScript and runs on Node.js.
 
@@ -35,9 +32,7 @@ Its entry point is [server/index.ts](./server/index.ts), which launches several 
 
 `Rooms` also includes support for battle rooms, which is where the server connects to the game simulator itself. Game simulation code is in [sim/](./sim/).
 
-
-Client
-------
+## Client
 
 The client is built in a mix of TypeScript and JavaScript, with a mostly hand-rolled framework built on Backbone. There’s a rewrite to migrate it to Preact but it’s very stalled.
 
@@ -45,9 +40,7 @@ Its entry point is [index.template.html](https://github.com/smogon/pokemon-showd
 
 It was written long ago, so instead of a single JS entry point, it includes a lot of JS files. Everything important is launched from [js/client.js](https://github.com/smogon/pokemon-showdown-client/blob/master/play.pokemonshowdown.com/js/client.js)
 
-
-Login server
-------------
+## Login server
 
 The client’s login server, which handles logins and most database interaction, is written in TypeScript. The backend is currently split between a MySQL InnoDB database (for users, ladder, and most other things) and a Postgres (technically Cockroach) database (for Replays).
 

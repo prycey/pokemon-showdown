@@ -201,8 +201,8 @@ export class Minipass extends Stream {
         'error',
         Object.assign(
           new Error('Cannot call write after a stream was destroyed'),
-          { code: 'ERR_STREAM_DESTROYED' }
-        )
+          { code: 'ERR_STREAM_DESTROYED' },
+        ),
       )
       return true
     }
@@ -399,7 +399,7 @@ export class Minipass extends Stream {
       this[PIPES].push(
         !opts.proxyErrors
           ? new Pipe(this, dest, opts)
-          : new PipeProxyErrors(this, dest, opts)
+          : new PipeProxyErrors(this, dest, opts),
       )
       if (this[ASYNC]) defer(() => this[RESUME]())
       else this[RESUME]()
@@ -464,8 +464,8 @@ export class Minipass extends Stream {
       return !this[OBJECTMODE] && !data
         ? false
         : this[ASYNC]
-        ? defer(() => this[EMITDATA](data))
-        : this[EMITDATA](data)
+          ? defer(() => this[EMITDATA](data))
+          : this[EMITDATA](data)
     } else if (ev === 'end') {
       return this[EMITEND]()
     } else if (ev === 'close') {
@@ -559,8 +559,8 @@ export class Minipass extends Stream {
           this[OBJECTMODE]
             ? Promise.reject(new Error('cannot concat in objectMode'))
             : this[ENCODING]
-            ? buf.join('')
-            : Buffer.concat(buf, buf.dataLength)
+              ? buf.join('')
+              : Buffer.concat(buf, buf.dataLength),
         )
   }
 
@@ -698,5 +698,3 @@ export class Minipass extends Stream {
     )
   }
 }
-
-

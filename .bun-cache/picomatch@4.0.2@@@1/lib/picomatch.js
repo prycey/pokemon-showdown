@@ -125,7 +125,7 @@ picomatch.test = (input, regex, options, { glob, posix } = {}) => {
   const opts = options || {};
   const format = opts.format || (posix ? utils.toPosixSlashes : null);
   let match = input === glob;
-  let output = (match && format) ? format(input) : input;
+  let output = match && format ? format(input) : input;
 
   if (match === false) {
     output = format ? format(input) : input;

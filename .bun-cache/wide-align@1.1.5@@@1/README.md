@@ -1,5 +1,4 @@
-wide-align
-----------
+## wide-align
 
 A wide-character aware text alignment function for use in terminals / on the
 console.
@@ -27,20 +26,20 @@ console.log(align.right('古古古', 10))   // '    古古古'
 
 #### `align.center(str, length)` → `str`
 
-Returns *str* with spaces added to both sides such that that it is *length*
+Returns _str_ with spaces added to both sides such that that it is _length_
 chars long and centered in the spaces.
 
 #### `align.left(str, length)` → `str`
 
-Returns *str* with spaces to the right such that it is *length* chars long.
+Returns _str_ with spaces to the right such that it is _length_ chars long.
 
 ### `align.right(str, length)` → `str`
 
-Returns *str* with spaces to the left such that it is *length* chars long.
+Returns _str_ with spaces to the left such that it is _length_ chars long.
 
 ### Origins
 
-These functions were originally taken from 
+These functions were originally taken from
 [cliui](https://npmjs.com/package/cliui). Changes include switching to the
 MUCH faster pad generation function from
 [lodash](https://npmjs.com/package/lodash), making center alignment pad

@@ -5,7 +5,7 @@ const {
   REGEX_BACKSLASH,
   REGEX_REMOVE_BACKSLASH,
   REGEX_SPECIAL_CHARS,
-  REGEX_SPECIAL_CHARS_GLOBAL
+  REGEX_SPECIAL_CHARS_GLOBAL,
 } = require('./constants');
 
 exports.isObject = val => val !== null && typeof val === 'object' && !Array.isArray(val);

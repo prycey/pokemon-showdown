@@ -2,7 +2,14 @@
 // Add any global test setup here
 
 // Bun test compatibility layer for Mocha tests
-const { describe: bunDescribe, test: bunTest, beforeEach, afterEach, beforeAll, afterAll } = require('bun:test');
+const {
+  describe: bunDescribe,
+  test: bunTest,
+  beforeEach,
+  afterEach,
+  beforeAll,
+  afterAll,
+} = require('bun:test');
 
 // @ts-ignore - add globals for compatibility with existing tests
 globalThis.describe = bunDescribe;

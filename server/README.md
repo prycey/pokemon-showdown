@@ -1,13 +1,10 @@
-Pokémon Showdown Server
-========================================================================
+# Pokémon Showdown Server
 
 This repository contains the files needed to set up your own Pokémon Showdown server. Note that to set up a server, you'll also need a server computer.
 
 You can use your own computer as a server, but for other people to connect to your computer, you'll need to expose a port (default is 8000 but you can choose a different one) to connect to, which sometimes requires [port forwarding][5]. Note that some internet providers don't let you host a server at all, in which case you'll have to rent a VPS to use as a server.
 
-
-Installing
-------------------------------------------------------------------------
+## Installing
 
     ./pokemon-showdown
 
@@ -18,9 +15,7 @@ If your distro package manager has an old Node.js version, the simplest way to u
     npm install --global n
     n latest
 
-
-Detailed installation instructions
-------------------------------------------------------------------------
+## Detailed installation instructions
 
 Pokémon Showdown requires you to have [Node.js][6] installed, v14.x or later.
 
@@ -60,12 +55,10 @@ You will be redirected to `http://SERVER.psim.us`. The reason your server is vis
 
 If you truly want to host the client yourself, there is [a repository for the Pokémon Showdown Client][7]. It's not recommended for beginners, though.
 
-  [6]: https://nodejs.org/
-  [7]: https://github.com/smogon/pokemon-showdown-client
+[6]: https://nodejs.org/
+[7]: https://github.com/smogon/pokemon-showdown-client
 
-
-Setting up an Administrator account
-------------------------------------------------------------------------
+## Setting up an Administrator account
 
 Once your server is up, you probably want to make yourself an Administrator (~) on it.
 

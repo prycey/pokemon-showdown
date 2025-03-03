@@ -75,7 +75,7 @@ const options = {
   fetchMethod: async (
     key,
     staleValue,
-    { options, signal, context }
+    { options, signal, context },
   ) => {},
 }
 
@@ -1048,7 +1048,7 @@ const cache = {
     }
     cache.timers.set(
       k,
-      setTimeout(() => cache.delete(k), ttl)
+      setTimeout(() => cache.delete(k), ttl),
     )
     cache.data.set(k, v)
   },

@@ -1,6 +1,6 @@
-import { createRequire as __prettierCreateRequire } from "module";
-import { fileURLToPath as __prettierFileUrlToPath } from "url";
-import { dirname as __prettierDirname } from "path";
+import { createRequire as __prettierCreateRequire } from 'module';
+import { fileURLToPath as __prettierFileUrlToPath } from 'url';
+import { dirname as __prettierDirname } from 'path';
 const require = __prettierCreateRequire(import.meta.url);
 const __filename = __prettierFileUrlToPath(import.meta.url);
 const __dirname = __prettierDirname(__filename);
@@ -11,64 +11,97 @@ var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __typeError = (msg) => {
+var __typeError = msg => {
   throw TypeError(msg);
 };
-var __require = /* @__PURE__ */ ((x) => typeof require !== "undefined" ? require : typeof Proxy !== "undefined" ? new Proxy(x, {
-  get: (a, b) => (typeof require !== "undefined" ? require : a)[b]
-}) : x)(function(x) {
-  if (typeof require !== "undefined") return require.apply(this, arguments);
+var __require = /* @__PURE__ */ (x =>
+  typeof require !== 'undefined'
+    ? require
+    : typeof Proxy !== 'undefined'
+      ? new Proxy(x, {
+          get: (a, b) => (typeof require !== 'undefined' ? require : a)[b],
+        })
+      : x)(function (x) {
+  if (typeof require !== 'undefined') return require.apply(this, arguments);
   throw Error('Dynamic require of "' + x + '" is not supported');
 });
-var __commonJS = (cb, mod) => function __require2() {
-  return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
-};
+var __commonJS = (cb, mod) =>
+  function __require2() {
+    return (
+      mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports
+    );
+  };
 var __copyProps = (to, from, except, desc) => {
-  if (from && typeof from === "object" || typeof from === "function") {
+  if ((from && typeof from === 'object') || typeof from === 'function') {
     for (let key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
-        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+        __defProp(to, key, {
+          get: () => from[key],
+          enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable,
+        });
   }
   return to;
 };
-var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
-  // If the importer is in node compatibility mode or this is not an ESM
-  // file that has been converted to a CommonJS file using a Babel-
-  // compatible transform (i.e. "__esModule" has not been set), then set
-  // "default" to the CommonJS "module.exports" for node compatibility.
-  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
-  mod
-));
-var __accessCheck = (obj, member, msg) => member.has(obj) || __typeError("Cannot " + msg);
-var __privateGet = (obj, member, getter) => (__accessCheck(obj, member, "read from private field"), getter ? getter.call(obj) : member.get(obj));
-var __privateAdd = (obj, member, value) => member.has(obj) ? __typeError("Cannot add the same private member more than once") : member instanceof WeakSet ? member.add(obj) : member.set(obj, value);
-var __privateSet = (obj, member, value, setter) => (__accessCheck(obj, member, "write to private field"), setter ? setter.call(obj, value) : member.set(obj, value), value);
+var __toESM = (mod, isNodeMode, target) => (
+  (target = mod != null ? __create(__getProtoOf(mod)) : {}),
+  __copyProps(
+    // If the importer is in node compatibility mode or this is not an ESM
+    // file that has been converted to a CommonJS file using a Babel-
+    // compatible transform (i.e. "__esModule" has not been set), then set
+    // "default" to the CommonJS "module.exports" for node compatibility.
+    isNodeMode || !mod || !mod.__esModule
+      ? __defProp(target, 'default', { value: mod, enumerable: true })
+      : target,
+    mod
+  )
+);
+var __accessCheck = (obj, member, msg) => member.has(obj) || __typeError('Cannot ' + msg);
+var __privateGet = (obj, member, getter) => (
+  __accessCheck(obj, member, 'read from private field'), getter ? getter.call(obj) : member.get(obj)
+);
+var __privateAdd = (obj, member, value) =>
+  member.has(obj)
+    ? __typeError('Cannot add the same private member more than once')
+    : member instanceof WeakSet
+      ? member.add(obj)
+      : member.set(obj, value);
+var __privateSet = (obj, member, value, setter) => (
+  __accessCheck(obj, member, 'write to private field'),
+  setter ? setter.call(obj, value) : member.set(obj, value),
+  value
+);
 
 // node_modules/dashify/index.js
 var require_dashify = __commonJS({
-  "node_modules/dashify/index.js"(exports, module) {
-    "use strict";
+  'node_modules/dashify/index.js'(exports, module) {
+    'use strict';
     module.exports = (str, options) => {
-      if (typeof str !== "string") throw new TypeError("expected a string");
-      return str.trim().replace(/([a-z])([A-Z])/g, "$1-$2").replace(/\W/g, (m) => /[À-ž]/.test(m) ? m : "-").replace(/^-+|-+$/g, "").replace(/-{2,}/g, (m) => options && options.condense ? "-" : m).toLowerCase();
+      if (typeof str !== 'string') throw new TypeError('expected a string');
+      return str
+        .trim()
+        .replace(/([a-z])([A-Z])/g, '$1-$2')
+        .replace(/\W/g, m => (/[À-ž]/.test(m) ? m : '-'))
+        .replace(/^-+|-+$/g, '')
+        .replace(/-{2,}/g, m => (options && options.condense ? '-' : m))
+        .toLowerCase();
     };
-  }
+  },
 });
 
 // node_modules/minimist/index.js
 var require_minimist = __commonJS({
-  "node_modules/minimist/index.js"(exports, module) {
-    "use strict";
+  'node_modules/minimist/index.js'(exports, module) {
+    'use strict';
     function hasKey(obj, keys2) {
       var o = obj;
-      keys2.slice(0, -1).forEach(function(key2) {
+      keys2.slice(0, -1).forEach(function (key2) {
         o = o[key2] || {};
       });
       var key = keys2[keys2.length - 1];
       return key in o;
     }
     function isNumber(x) {
-      if (typeof x === "number") {
+      if (typeof x === 'number') {
         return true;
       }
       if (/^0x[0-9a-f]+$/i.test(x)) {
@@ -77,53 +110,66 @@ var require_minimist = __commonJS({
       return /^[-+]?(?:\d+(?:\.\d*)?|\.\d+)(e[-+]?\d+)?$/.test(x);
     }
     function isConstructorOrProto(obj, key) {
-      return key === "constructor" && typeof obj[key] === "function" || key === "__proto__";
+      return (key === 'constructor' && typeof obj[key] === 'function') || key === '__proto__';
     }
-    module.exports = function(args, opts) {
+    module.exports = function (args, opts) {
       if (!opts) {
         opts = {};
       }
       var flags = {
         bools: {},
         strings: {},
-        unknownFn: null
+        unknownFn: null,
       };
-      if (typeof opts.unknown === "function") {
+      if (typeof opts.unknown === 'function') {
         flags.unknownFn = opts.unknown;
       }
-      if (typeof opts.boolean === "boolean" && opts.boolean) {
+      if (typeof opts.boolean === 'boolean' && opts.boolean) {
         flags.allBools = true;
       } else {
-        [].concat(opts.boolean).filter(Boolean).forEach(function(key2) {
-          flags.bools[key2] = true;
-        });
+        []
+          .concat(opts.boolean)
+          .filter(Boolean)
+          .forEach(function (key2) {
+            flags.bools[key2] = true;
+          });
       }
       var aliases = {};
       function aliasIsBoolean(key2) {
-        return aliases[key2].some(function(x) {
+        return aliases[key2].some(function (x) {
           return flags.bools[x];
         });
       }
-      Object.keys(opts.alias || {}).forEach(function(key2) {
+      Object.keys(opts.alias || {}).forEach(function (key2) {
         aliases[key2] = [].concat(opts.alias[key2]);
-        aliases[key2].forEach(function(x) {
-          aliases[x] = [key2].concat(aliases[key2].filter(function(y) {
-            return x !== y;
-          }));
+        aliases[key2].forEach(function (x) {
+          aliases[x] = [key2].concat(
+            aliases[key2].filter(function (y) {
+              return x !== y;
+            })
+          );
         });
       });
-      [].concat(opts.string).filter(Boolean).forEach(function(key2) {
-        flags.strings[key2] = true;
-        if (aliases[key2]) {
-          [].concat(aliases[key2]).forEach(function(k) {
-            flags.strings[k] = true;
-          });
-        }
-      });
+      []
+        .concat(opts.string)
+        .filter(Boolean)
+        .forEach(function (key2) {
+          flags.strings[key2] = true;
+          if (aliases[key2]) {
+            [].concat(aliases[key2]).forEach(function (k) {
+              flags.strings[k] = true;
+            });
+          }
+        });
       var defaults = opts.default || {};
       var argv = { _: [] };
       function argDefined(key2, arg2) {
-        return flags.allBools && /^--[^=]+$/.test(arg2) || flags.strings[key2] || flags.bools[key2] || aliases[key2];
+        return (
+          (flags.allBools && /^--[^=]+$/.test(arg2)) ||
+          flags.strings[key2] ||
+          flags.bools[key2] ||
+          aliases[key2]
+        );
       }
       function setKey(obj, keys2, value2) {
         var o = obj;
@@ -135,7 +181,11 @@ var require_minimist = __commonJS({
           if (o[key2] === void 0) {
             o[key2] = {};
           }
-          if (o[key2] === Object.prototype || o[key2] === Number.prototype || o[key2] === String.prototype) {
+          if (
+            o[key2] === Object.prototype ||
+            o[key2] === Number.prototype ||
+            o[key2] === String.prototype
+          ) {
             o[key2] = {};
           }
           if (o[key2] === Array.prototype) {
@@ -153,7 +203,7 @@ var require_minimist = __commonJS({
         if (o === Array.prototype) {
           o = [];
         }
-        if (o[lastKey] === void 0 || flags.bools[lastKey] || typeof o[lastKey] === "boolean") {
+        if (o[lastKey] === void 0 || flags.bools[lastKey] || typeof o[lastKey] === 'boolean') {
           o[lastKey] = value2;
         } else if (Array.isArray(o[lastKey])) {
           o[lastKey].push(value2);
@@ -168,18 +218,18 @@ var require_minimist = __commonJS({
           }
         }
         var value2 = !flags.strings[key2] && isNumber(val) ? Number(val) : val;
-        setKey(argv, key2.split("."), value2);
-        (aliases[key2] || []).forEach(function(x) {
-          setKey(argv, x.split("."), value2);
+        setKey(argv, key2.split('.'), value2);
+        (aliases[key2] || []).forEach(function (x) {
+          setKey(argv, x.split('.'), value2);
         });
       }
-      Object.keys(flags.bools).forEach(function(key2) {
+      Object.keys(flags.bools).forEach(function (key2) {
         setArg(key2, defaults[key2] === void 0 ? false : defaults[key2]);
       });
       var notFlags = [];
-      if (args.indexOf("--") !== -1) {
-        notFlags = args.slice(args.indexOf("--") + 1);
-        args = args.slice(0, args.indexOf("--"));
+      if (args.indexOf('--') !== -1) {
+        notFlags = args.slice(args.indexOf('--') + 1);
+        args = args.slice(0, args.indexOf('--'));
       }
       for (var i = 0; i < args.length; i++) {
         var arg = args[i];
@@ -190,7 +240,7 @@ var require_minimist = __commonJS({
           key = m[1];
           var value = m[2];
           if (flags.bools[key]) {
-            value = value !== "false";
+            value = value !== 'false';
           }
           setArg(key, value, arg);
         } else if (/^--no-.+/.test(arg)) {
@@ -199,25 +249,31 @@ var require_minimist = __commonJS({
         } else if (/^--.+/.test(arg)) {
           key = arg.match(/^--(.+)/)[1];
           next = args[i + 1];
-          if (next !== void 0 && !/^(-|--)[^-]/.test(next) && !flags.bools[key] && !flags.allBools && (aliases[key] ? !aliasIsBoolean(key) : true)) {
+          if (
+            next !== void 0 &&
+            !/^(-|--)[^-]/.test(next) &&
+            !flags.bools[key] &&
+            !flags.allBools &&
+            (aliases[key] ? !aliasIsBoolean(key) : true)
+          ) {
             setArg(key, next, arg);
             i += 1;
           } else if (/^(true|false)$/.test(next)) {
-            setArg(key, next === "true", arg);
+            setArg(key, next === 'true', arg);
             i += 1;
           } else {
-            setArg(key, flags.strings[key] ? "" : true, arg);
+            setArg(key, flags.strings[key] ? '' : true, arg);
           }
         } else if (/^-[^-]+/.test(arg)) {
-          var letters = arg.slice(1, -1).split("");
+          var letters = arg.slice(1, -1).split('');
           var broken = false;
           for (var j = 0; j < letters.length; j++) {
             next = arg.slice(j + 2);
-            if (next === "-") {
+            if (next === '-') {
               setArg(letters[j], next, arg);
               continue;
             }
-            if (/[A-Za-z]/.test(letters[j]) && next[0] === "=") {
+            if (/[A-Za-z]/.test(letters[j]) && next[0] === '=') {
               setArg(letters[j], next.slice(1), arg);
               broken = true;
               break;
@@ -232,19 +288,24 @@ var require_minimist = __commonJS({
               broken = true;
               break;
             } else {
-              setArg(letters[j], flags.strings[letters[j]] ? "" : true, arg);
+              setArg(letters[j], flags.strings[letters[j]] ? '' : true, arg);
             }
           }
           key = arg.slice(-1)[0];
-          if (!broken && key !== "-") {
-            if (args[i + 1] && !/^(-|--)[^-]/.test(args[i + 1]) && !flags.bools[key] && (aliases[key] ? !aliasIsBoolean(key) : true)) {
+          if (!broken && key !== '-') {
+            if (
+              args[i + 1] &&
+              !/^(-|--)[^-]/.test(args[i + 1]) &&
+              !flags.bools[key] &&
+              (aliases[key] ? !aliasIsBoolean(key) : true)
+            ) {
               setArg(key, args[i + 1], arg);
               i += 1;
             } else if (args[i + 1] && /^(true|false)$/.test(args[i + 1])) {
-              setArg(key, args[i + 1] === "true", arg);
+              setArg(key, args[i + 1] === 'true', arg);
               i += 1;
             } else {
-              setArg(key, flags.strings[key] ? "" : true, arg);
+              setArg(key, flags.strings[key] ? '' : true, arg);
             }
           }
         } else {
@@ -257,88 +318,90 @@ var require_minimist = __commonJS({
           }
         }
       }
-      Object.keys(defaults).forEach(function(k) {
-        if (!hasKey(argv, k.split("."))) {
-          setKey(argv, k.split("."), defaults[k]);
-          (aliases[k] || []).forEach(function(x) {
-            setKey(argv, x.split("."), defaults[k]);
+      Object.keys(defaults).forEach(function (k) {
+        if (!hasKey(argv, k.split('.'))) {
+          setKey(argv, k.split('.'), defaults[k]);
+          (aliases[k] || []).forEach(function (x) {
+            setKey(argv, x.split('.'), defaults[k]);
           });
         }
       });
-      if (opts["--"]) {
-        argv["--"] = notFlags.slice();
+      if (opts['--']) {
+        argv['--'] = notFlags.slice();
       } else {
-        notFlags.forEach(function(k) {
+        notFlags.forEach(function (k) {
           argv._.push(k);
         });
       }
       return argv;
     };
-  }
+  },
 });
 
 // node_modules/fast-json-stable-stringify/index.js
 var require_fast_json_stable_stringify = __commonJS({
-  "node_modules/fast-json-stable-stringify/index.js"(exports, module) {
-    "use strict";
-    module.exports = function(data, opts) {
+  'node_modules/fast-json-stable-stringify/index.js'(exports, module) {
+    'use strict';
+    module.exports = function (data, opts) {
       if (!opts) opts = {};
-      if (typeof opts === "function") opts = { cmp: opts };
-      var cycles = typeof opts.cycles === "boolean" ? opts.cycles : false;
-      var cmp = opts.cmp && /* @__PURE__ */ function(f) {
-        return function(node) {
-          return function(a, b) {
-            var aobj = { key: a, value: node[a] };
-            var bobj = { key: b, value: node[b] };
-            return f(aobj, bobj);
+      if (typeof opts === 'function') opts = { cmp: opts };
+      var cycles = typeof opts.cycles === 'boolean' ? opts.cycles : false;
+      var cmp =
+        opts.cmp &&
+        /* @__PURE__ */ (function (f) {
+          return function (node) {
+            return function (a, b) {
+              var aobj = { key: a, value: node[a] };
+              var bobj = { key: b, value: node[b] };
+              return f(aobj, bobj);
+            };
           };
-        };
-      }(opts.cmp);
+        })(opts.cmp);
       var seen = [];
-      return function stringify5(node) {
-        if (node && node.toJSON && typeof node.toJSON === "function") {
+      return (function stringify5(node) {
+        if (node && node.toJSON && typeof node.toJSON === 'function') {
           node = node.toJSON();
         }
         if (node === void 0) return;
-        if (typeof node == "number") return isFinite(node) ? "" + node : "null";
-        if (typeof node !== "object") return JSON.stringify(node);
+        if (typeof node == 'number') return isFinite(node) ? '' + node : 'null';
+        if (typeof node !== 'object') return JSON.stringify(node);
         var i, out;
         if (Array.isArray(node)) {
-          out = "[";
+          out = '[';
           for (i = 0; i < node.length; i++) {
-            if (i) out += ",";
-            out += stringify5(node[i]) || "null";
+            if (i) out += ',';
+            out += stringify5(node[i]) || 'null';
           }
-          return out + "]";
+          return out + ']';
         }
-        if (node === null) return "null";
+        if (node === null) return 'null';
         if (seen.indexOf(node) !== -1) {
-          if (cycles) return JSON.stringify("__cycle__");
-          throw new TypeError("Converting circular structure to JSON");
+          if (cycles) return JSON.stringify('__cycle__');
+          throw new TypeError('Converting circular structure to JSON');
         }
         var seenIndex = seen.push(node) - 1;
         var keys2 = Object.keys(node).sort(cmp && cmp(node));
-        out = "";
+        out = '';
         for (i = 0; i < keys2.length; i++) {
           var key = keys2[i];
           var value = stringify5(node[key]);
           if (!value) continue;
-          if (out) out += ",";
-          out += JSON.stringify(key) + ":" + value;
+          if (out) out += ',';
+          out += JSON.stringify(key) + ':' + value;
         }
         seen.splice(seenIndex, 1);
-        return "{" + out + "}";
-      }(data);
+        return '{' + out + '}';
+      })(data);
     };
-  }
+  },
 });
 
 // node_modules/common-path-prefix/index.js
 var require_common_path_prefix = __commonJS({
-  "node_modules/common-path-prefix/index.js"(exports, module) {
-    "use strict";
-    var { sep: DEFAULT_SEPARATOR } = __require("path");
-    var determineSeparator = (paths) => {
+  'node_modules/common-path-prefix/index.js'(exports, module) {
+    'use strict';
+    var { sep: DEFAULT_SEPARATOR } = __require('path');
+    var determineSeparator = paths => {
       for (const path12 of paths) {
         const match = /(\/|\\)/.exec(path12);
         if (match !== null) return match[0];
@@ -346,8 +409,8 @@ var require_common_path_prefix = __commonJS({
       return DEFAULT_SEPARATOR;
     };
     module.exports = function commonPathPrefix2(paths, sep = determineSeparator(paths)) {
-      const [first = "", ...remaining] = paths;
-      if (first === "" || remaining.length === 0) return "";
+      const [first = '', ...remaining] = paths;
+      if (first === '' || remaining.length === 0) return '';
       const parts = first.split(sep);
       let endOfPrefix = parts.length;
       for (const path12 of remaining) {
@@ -357,23 +420,23 @@ var require_common_path_prefix = __commonJS({
             endOfPrefix = i;
           }
         }
-        if (endOfPrefix === 0) return "";
+        if (endOfPrefix === 0) return '';
       }
       const prefix = parts.slice(0, endOfPrefix).join(sep);
       return prefix.endsWith(sep) ? prefix : prefix + sep;
     };
-  }
+  },
 });
 
 // src/cli/index.js
-import * as prettier2 from "../index.mjs";
+import * as prettier2 from '../index.mjs';
 
 // scripts/build/shims/at.js
 var at = (isOptionalObject, object2, index) => {
   if (isOptionalObject && (object2 === void 0 || object2 === null)) {
     return;
   }
-  if (Array.isArray(object2) || typeof object2 === "string") {
+  if (Array.isArray(object2) || typeof object2 === 'string') {
     return object2[index < 0 ? object2.length + index : index];
   }
   return object2.at(index);
@@ -382,178 +445,175 @@ var at_default = at;
 
 // src/cli/options/get-context-options.js
 var import_dashify = __toESM(require_dashify(), 1);
-import { getSupportInfo } from "../index.mjs";
+import { getSupportInfo } from '../index.mjs';
 
 // src/cli/cli-options.evaluate.js
 var cli_options_evaluate_default = {
-  "cache": {
-    "default": false,
-    "description": "Only format changed files. Cannot use with --stdin-filepath.",
-    "type": "boolean"
+  cache: {
+    default: false,
+    description: 'Only format changed files. Cannot use with --stdin-filepath.',
+    type: 'boolean',
   },
-  "cacheLocation": {
-    "description": "Path to the cache file.",
-    "type": "path"
+  cacheLocation: {
+    description: 'Path to the cache file.',
+    type: 'path',
   },
-  "cacheStrategy": {
-    "choices": [
+  cacheStrategy: {
+    choices: [
       {
-        "description": "Use the file metadata such as timestamps as cache keys",
-        "value": "metadata"
+        description: 'Use the file metadata such as timestamps as cache keys',
+        value: 'metadata',
       },
       {
-        "description": "Use the file content as cache keys",
-        "value": "content"
-      }
+        description: 'Use the file content as cache keys',
+        value: 'content',
+      },
     ],
-    "description": "Strategy for the cache to use for detecting changed files.",
-    "type": "choice"
+    description: 'Strategy for the cache to use for detecting changed files.',
+    type: 'choice',
   },
-  "check": {
-    "alias": "c",
-    "category": "Output",
-    "description": "Check if the given files are formatted, print a human-friendly summary\nmessage and paths to unformatted files (see also --list-different).",
-    "type": "boolean"
+  check: {
+    alias: 'c',
+    category: 'Output',
+    description:
+      'Check if the given files are formatted, print a human-friendly summary\nmessage and paths to unformatted files (see also --list-different).',
+    type: 'boolean',
   },
-  "color": {
-    "default": true,
-    "description": "Colorize error messages.",
-    "oppositeDescription": "Do not colorize error messages.",
-    "type": "boolean"
+  color: {
+    default: true,
+    description: 'Colorize error messages.',
+    oppositeDescription: 'Do not colorize error messages.',
+    type: 'boolean',
   },
-  "config": {
-    "category": "Config",
-    "description": "Path to a Prettier configuration file (.prettierrc, package.json, prettier.config.js).",
-    "exception": (value) => value === false,
-    "oppositeDescription": "Do not look for a configuration file.",
-    "type": "path"
+  config: {
+    category: 'Config',
+    description:
+      'Path to a Prettier configuration file (.prettierrc, package.json, prettier.config.js).',
+    exception: value => value === false,
+    oppositeDescription: 'Do not look for a configuration file.',
+    type: 'path',
   },
-  "configPrecedence": {
-    "category": "Config",
-    "choices": [
+  configPrecedence: {
+    category: 'Config',
+    choices: [
       {
-        "description": "CLI options take precedence over config file",
-        "value": "cli-override"
+        description: 'CLI options take precedence over config file',
+        value: 'cli-override',
       },
       {
-        "description": "Config file take precedence over CLI options",
-        "value": "file-override"
+        description: 'Config file take precedence over CLI options',
+        value: 'file-override',
       },
       {
-        "description": "If a config file is found will evaluate it and ignore other CLI options.\nIf no config file is found CLI options will evaluate as normal.",
-        "value": "prefer-file"
-      }
+        description:
+          'If a config file is found will evaluate it and ignore other CLI options.\nIf no config file is found CLI options will evaluate as normal.',
+        value: 'prefer-file',
+      },
     ],
-    "default": "cli-override",
-    "description": "Define in which order config files and CLI options should be evaluated.",
-    "type": "choice"
+    default: 'cli-override',
+    description: 'Define in which order config files and CLI options should be evaluated.',
+    type: 'choice',
   },
-  "debugBenchmark": {
-    "type": "boolean"
+  debugBenchmark: {
+    type: 'boolean',
   },
-  "debugCheck": {
-    "type": "boolean"
+  debugCheck: {
+    type: 'boolean',
   },
-  "debugPrintAst": {
-    "type": "boolean"
+  debugPrintAst: {
+    type: 'boolean',
   },
-  "debugPrintComments": {
-    "type": "boolean"
+  debugPrintComments: {
+    type: 'boolean',
   },
-  "debugPrintDoc": {
-    "type": "boolean"
+  debugPrintDoc: {
+    type: 'boolean',
   },
-  "debugRepeat": {
-    "default": 0,
-    "type": "int"
+  debugRepeat: {
+    default: 0,
+    type: 'int',
   },
-  "editorconfig": {
-    "category": "Config",
-    "default": true,
-    "description": "Take .editorconfig into account when parsing configuration.",
-    "oppositeDescription": "Don't take .editorconfig into account when parsing configuration.",
-    "type": "boolean"
+  editorconfig: {
+    category: 'Config',
+    default: true,
+    description: 'Take .editorconfig into account when parsing configuration.',
+    oppositeDescription: "Don't take .editorconfig into account when parsing configuration.",
+    type: 'boolean',
   },
-  "errorOnUnmatchedPattern": {
-    "oppositeDescription": "Prevent errors when pattern is unmatched.",
-    "type": "boolean"
+  errorOnUnmatchedPattern: {
+    oppositeDescription: 'Prevent errors when pattern is unmatched.',
+    type: 'boolean',
   },
-  "fileInfo": {
-    "description": "Extract the following info (as JSON) for a given file path. Reported fields:\n* ignored (boolean) - true if file path is filtered by --ignore-path\n* inferredParser (string | null) - name of parser inferred from file path",
-    "type": "path"
+  fileInfo: {
+    description:
+      'Extract the following info (as JSON) for a given file path. Reported fields:\n* ignored (boolean) - true if file path is filtered by --ignore-path\n* inferredParser (string | null) - name of parser inferred from file path',
+    type: 'path',
   },
-  "findConfigPath": {
-    "category": "Config",
-    "description": "Find and print the path to a configuration file for the given input file.",
-    "type": "path"
+  findConfigPath: {
+    category: 'Config',
+    description: 'Find and print the path to a configuration file for the given input file.',
+    type: 'path',
   },
-  "help": {
-    "alias": "h",
-    "description": "Show CLI usage, or details about the given flag.\nExample: --help write",
-    "exception": (value) => value === "",
-    "type": "flag"
+  help: {
+    alias: 'h',
+    description: 'Show CLI usage, or details about the given flag.\nExample: --help write',
+    exception: value => value === '',
+    type: 'flag',
   },
-  "ignorePath": {
-    "array": true,
-    "category": "Config",
-    "default": [
+  ignorePath: {
+    array: true,
+    category: 'Config',
+    default: [
       {
-        "value": [
-          ".gitignore",
-          ".prettierignore"
-        ]
-      }
+        value: ['.gitignore', '.prettierignore'],
+      },
     ],
-    "description": "Path to a file with patterns describing files to ignore.\nMultiple values are accepted.",
-    "type": "path"
+    description:
+      'Path to a file with patterns describing files to ignore.\nMultiple values are accepted.',
+    type: 'path',
   },
-  "ignoreUnknown": {
-    "alias": "u",
-    "description": "Ignore unknown files.",
-    "type": "boolean"
+  ignoreUnknown: {
+    alias: 'u',
+    description: 'Ignore unknown files.',
+    type: 'boolean',
   },
-  "listDifferent": {
-    "alias": "l",
-    "category": "Output",
-    "description": "Print the names of files that are different from Prettier's formatting (see also --check).",
-    "type": "boolean"
+  listDifferent: {
+    alias: 'l',
+    category: 'Output',
+    description:
+      "Print the names of files that are different from Prettier's formatting (see also --check).",
+    type: 'boolean',
   },
-  "logLevel": {
-    "choices": [
-      "silent",
-      "error",
-      "warn",
-      "log",
-      "debug"
-    ],
-    "default": "log",
-    "description": "What level of logs to report.",
-    "type": "choice"
+  logLevel: {
+    choices: ['silent', 'error', 'warn', 'log', 'debug'],
+    default: 'log',
+    description: 'What level of logs to report.',
+    type: 'choice',
   },
-  "supportInfo": {
-    "description": "Print support information as JSON.",
-    "type": "boolean"
+  supportInfo: {
+    description: 'Print support information as JSON.',
+    type: 'boolean',
   },
-  "version": {
-    "alias": "v",
-    "description": "Print Prettier version.",
-    "type": "boolean"
+  version: {
+    alias: 'v',
+    description: 'Print Prettier version.',
+    type: 'boolean',
   },
-  "withNodeModules": {
-    "category": "Config",
-    "description": "Process files inside 'node_modules' directory.",
-    "type": "boolean"
+  withNodeModules: {
+    category: 'Config',
+    description: "Process files inside 'node_modules' directory.",
+    type: 'boolean',
   },
-  "write": {
-    "alias": "w",
-    "category": "Output",
-    "description": "Edit files in-place. (Beware!)",
-    "type": "boolean"
-  }
+  write: {
+    alias: 'w',
+    category: 'Output',
+    description: 'Edit files in-place. (Beware!)',
+    type: 'boolean',
+  },
 };
 
 // src/cli/prettier-internal.js
-import { __internal as sharedWithCli } from "../index.mjs";
+import { __internal as sharedWithCli } from '../index.mjs';
 var {
   errors,
   optionCategories,
@@ -565,19 +625,19 @@ var {
   vnopts,
   fastGlob,
   createTwoFilesPatch,
-  mockable
+  mockable,
 } = sharedWithCli;
 
 // src/cli/options/get-context-options.js
-var detailedCliOptions = normalizeOptionSettings(cli_options_evaluate_default).map(
-  (option) => normalizeDetailedOption(option)
+var detailedCliOptions = normalizeOptionSettings(cli_options_evaluate_default).map(option =>
+  normalizeDetailedOption(option)
 );
 function apiOptionToCliOption(apiOption) {
   const cliOption = {
     ...apiOption,
     description: apiOption.cliDescription ?? apiOption.description,
     category: apiOption.cliCategory ?? optionCategories.CATEGORY_FORMAT,
-    forwardToApi: apiOption.name
+    forwardToApi: apiOption.name,
   };
   if (apiOption.deprecated) {
     delete cliOption.forwardToApi;
@@ -593,34 +653,37 @@ function normalizeDetailedOption(option) {
     category: optionCategories.CATEGORY_OTHER,
     ...option,
     name: option.cliName ?? (0, import_dashify.default)(option.name),
-    choices: (_a = option.choices) == null ? void 0 : _a.map((choice) => {
-      const newChoice = {
-        description: "",
-        deprecated: false,
-        ...typeof choice === "object" ? choice : { value: choice }
-      };
-      if (newChoice.value === true) {
-        newChoice.value = "";
-      }
-      return newChoice;
-    })
+    choices:
+      (_a = option.choices) == null
+        ? void 0
+        : _a.map(choice => {
+            const newChoice = {
+              description: '',
+              deprecated: false,
+              ...(typeof choice === 'object' ? choice : { value: choice }),
+            };
+            if (newChoice.value === true) {
+              newChoice.value = '';
+            }
+            return newChoice;
+          }),
   };
 }
 function supportInfoToContextOptions({ options: supportOptions, languages }) {
   const detailedOptions = [
     ...detailedCliOptions,
-    ...supportOptions.map((apiOption) => apiOptionToCliOption(apiOption))
+    ...supportOptions.map(apiOption => apiOptionToCliOption(apiOption)),
   ];
   return {
     supportOptions,
     languages,
-    detailedOptions
+    detailedOptions,
   };
 }
 async function getContextOptions(plugins) {
   const supportInfo = await getSupportInfo({
     showDeprecated: true,
-    plugins
+    plugins,
   });
   return supportInfoToContextOptions(supportInfo);
 }
@@ -650,9 +713,9 @@ var LOWERCASE = /[\p{Ll}]/u;
 var LEADING_CAPITAL = /^[\p{Lu}](?![\p{Lu}])/gu;
 var IDENTIFIER = /([\p{Alpha}\p{N}_]|$)/u;
 var SEPARATORS = /[_.\- ]+/;
-var LEADING_SEPARATORS = new RegExp("^" + SEPARATORS.source);
-var SEPARATORS_AND_IDENTIFIER = new RegExp(SEPARATORS.source + IDENTIFIER.source, "gu");
-var NUMBERS_AND_IDENTIFIER = new RegExp("\\d+" + IDENTIFIER.source, "gu");
+var LEADING_SEPARATORS = new RegExp('^' + SEPARATORS.source);
+var SEPARATORS_AND_IDENTIFIER = new RegExp(SEPARATORS.source + IDENTIFIER.source, 'gu');
+var NUMBERS_AND_IDENTIFIER = new RegExp('\\d+' + IDENTIFIER.source, 'gu');
 var preserveCamelCase = (string, toLowerCase, toUpperCase, preserveConsecutiveUppercase2) => {
   let isLastCharLower = false;
   let isLastCharUpper = false;
@@ -660,22 +723,29 @@ var preserveCamelCase = (string, toLowerCase, toUpperCase, preserveConsecutiveUp
   let isLastLastCharPreserved = false;
   for (let index = 0; index < string.length; index++) {
     const character = string[index];
-    isLastLastCharPreserved = index > 2 ? string[index - 3] === "-" : true;
+    isLastLastCharPreserved = index > 2 ? string[index - 3] === '-' : true;
     if (isLastCharLower && UPPERCASE.test(character)) {
-      string = string.slice(0, index) + "-" + string.slice(index);
+      string = string.slice(0, index) + '-' + string.slice(index);
       isLastCharLower = false;
       isLastLastCharUpper = isLastCharUpper;
       isLastCharUpper = true;
       index++;
-    } else if (isLastCharUpper && isLastLastCharUpper && LOWERCASE.test(character) && (!isLastLastCharPreserved || preserveConsecutiveUppercase2)) {
-      string = string.slice(0, index - 1) + "-" + string.slice(index - 1);
+    } else if (
+      isLastCharUpper &&
+      isLastLastCharUpper &&
+      LOWERCASE.test(character) &&
+      (!isLastLastCharPreserved || preserveConsecutiveUppercase2)
+    ) {
+      string = string.slice(0, index - 1) + '-' + string.slice(index - 1);
       isLastLastCharUpper = isLastCharUpper;
       isLastCharUpper = false;
       isLastCharLower = true;
     } else {
-      isLastCharLower = toLowerCase(character) === character && toUpperCase(character) !== character;
+      isLastCharLower =
+        toLowerCase(character) === character && toUpperCase(character) !== character;
       isLastLastCharUpper = isLastCharUpper;
-      isLastCharUpper = toUpperCase(character) === character && toLowerCase(character) !== character;
+      isLastCharUpper =
+        toUpperCase(character) === character && toLowerCase(character) !== character;
     }
   }
   return string;
@@ -687,7 +757,7 @@ var preserveConsecutiveUppercase = (input, toLowerCase) => {
     false,
     input,
     LEADING_CAPITAL,
-    (match) => toLowerCase(match)
+    match => toLowerCase(match)
   );
 };
 var postProcess = (input, toUpperCase) => {
@@ -701,43 +771,60 @@ var postProcess = (input, toUpperCase) => {
       false,
       input,
       NUMBERS_AND_IDENTIFIER,
-      (match, pattern, offset) => ["_", "-"].includes(input.charAt(offset + match.length)) ? match : toUpperCase(match)
+      (match, pattern, offset) =>
+        ['_', '-'].includes(input.charAt(offset + match.length)) ? match : toUpperCase(match)
     ),
     SEPARATORS_AND_IDENTIFIER,
     (_2, identifier) => toUpperCase(identifier)
   );
 };
 function camelCase(input, options) {
-  if (!(typeof input === "string" || Array.isArray(input))) {
-    throw new TypeError("Expected the input to be `string | string[]`");
+  if (!(typeof input === 'string' || Array.isArray(input))) {
+    throw new TypeError('Expected the input to be `string | string[]`');
   }
   options = {
     pascalCase: false,
     preserveConsecutiveUppercase: false,
-    ...options
+    ...options,
   };
   if (Array.isArray(input)) {
-    input = input.map((x) => x.trim()).filter((x) => x.length).join("-");
+    input = input
+      .map(x => x.trim())
+      .filter(x => x.length)
+      .join('-');
   } else {
     input = input.trim();
   }
   if (input.length === 0) {
-    return "";
+    return '';
   }
-  const toLowerCase = options.locale === false ? (string) => string.toLowerCase() : (string) => string.toLocaleLowerCase(options.locale);
-  const toUpperCase = options.locale === false ? (string) => string.toUpperCase() : (string) => string.toLocaleUpperCase(options.locale);
+  const toLowerCase =
+    options.locale === false
+      ? string => string.toLowerCase()
+      : string => string.toLocaleLowerCase(options.locale);
+  const toUpperCase =
+    options.locale === false
+      ? string => string.toUpperCase()
+      : string => string.toLocaleUpperCase(options.locale);
   if (input.length === 1) {
     if (SEPARATORS.test(input)) {
-      return "";
+      return '';
     }
     return options.pascalCase ? toUpperCase(input) : toLowerCase(input);
   }
   const hasUpperCase = input !== toLowerCase(input);
   if (hasUpperCase) {
-    input = preserveCamelCase(input, toLowerCase, toUpperCase, options.preserveConsecutiveUppercase);
+    input = preserveCamelCase(
+      input,
+      toLowerCase,
+      toUpperCase,
+      options.preserveConsecutiveUppercase
+    );
   }
-  input = input.replace(LEADING_SEPARATORS, "");
-  input = options.preserveConsecutiveUppercase ? preserveConsecutiveUppercase(input, toLowerCase) : toLowerCase(input);
+  input = input.replace(LEADING_SEPARATORS, '');
+  input = options.preserveConsecutiveUppercase
+    ? preserveConsecutiveUppercase(input, toLowerCase)
+    : toLowerCase(input);
   if (options.pascalCase) {
     input = toUpperCase(input.charAt(0)) + input.slice(1);
   }
@@ -745,8 +832,8 @@ function camelCase(input, options) {
 }
 
 // src/cli/utils.js
-import fs from "fs/promises";
-import path from "path";
+import fs from 'fs/promises';
+import path from 'path';
 
 // node_modules/sdbm/index.js
 function sdbm(string) {
@@ -758,7 +845,7 @@ function sdbm(string) {
 }
 
 // src/cli/utils.js
-import { __internal as sharedWithCli2 } from "../index.mjs";
+import { __internal as sharedWithCli2 } from '../index.mjs';
 var printToScreen = console.log.bind(console);
 function groupBy(array2, iteratee) {
   const result = /* @__PURE__ */ Object.create(null);
@@ -773,7 +860,7 @@ function groupBy(array2, iteratee) {
   return result;
 }
 function pick(object2, keys2) {
-  const entries = keys2.map((key) => [key, object2[key]]);
+  const entries = keys2.map(key => [key, object2[key]]);
   return Object.fromEntries(entries);
 }
 function createHash(source) {
@@ -783,7 +870,7 @@ async function statSafe(filePath) {
   try {
     return await fs.stat(filePath);
   } catch (error) {
-    if (error.code !== "ENOENT") {
+    if (error.code !== 'ENOENT') {
       throw error;
     }
   }
@@ -792,7 +879,7 @@ async function lstatSafe(filePath) {
   try {
     return await fs.lstat(filePath);
   } catch (error) {
-    if (error.code !== "ENOENT") {
+    if (error.code !== 'ENOENT') {
       throw error;
     }
   }
@@ -805,13 +892,17 @@ function isJson(value) {
     return false;
   }
 }
-var normalizeToPosix = path.sep === "\\" ? (filepath) => string_replace_all_default(
-  /* isOptionalObject */
-  false,
-  filepath,
-  "\\",
-  "/"
-) : (filepath) => filepath;
+var normalizeToPosix =
+  path.sep === '\\'
+    ? filepath =>
+        string_replace_all_default(
+          /* isOptionalObject */
+          false,
+          filepath,
+          '\\',
+          '/'
+        )
+    : filepath => filepath;
 var { omit } = sharedWithCli2.utils;
 
 // src/cli/options/create-minimist-options.js
@@ -821,12 +912,16 @@ function createMinimistOptions(detailedOptions) {
   const defaultValues = {};
   for (const option of detailedOptions) {
     const { name, alias, type } = option;
-    const names = type === "boolean" ? booleanNames : stringNames;
+    const names = type === 'boolean' ? booleanNames : stringNames;
     names.push(name);
     if (alias) {
       names.push(alias);
     }
-    if (!option.deprecated && (!option.forwardToApi || name === "plugin") && option.default !== void 0) {
+    if (
+      !option.deprecated &&
+      (!option.forwardToApi || name === 'plugin') &&
+      option.default !== void 0
+    ) {
       defaultValues[option.name] = option.default;
     }
   }
@@ -835,7 +930,7 @@ function createMinimistOptions(detailedOptions) {
     alias: {},
     boolean: booleanNames,
     string: stringNames,
-    default: defaultValues
+    default: defaultValues,
   };
 }
 
@@ -845,24 +940,29 @@ var PLACEHOLDER = null;
 function minimistParse(args, options) {
   const boolean = options.boolean ?? [];
   const defaults = options.default ?? {};
-  const booleanWithoutDefault = boolean.filter((key) => !(key in defaults));
+  const booleanWithoutDefault = boolean.filter(key => !(key in defaults));
   const newDefaults = {
     ...defaults,
-    ...Object.fromEntries(
-      booleanWithoutDefault.map((key) => [key, PLACEHOLDER])
-    )
+    ...Object.fromEntries(booleanWithoutDefault.map(key => [key, PLACEHOLDER])),
   };
   const parsed = (0, import_minimist.default)(args, { ...options, default: newDefaults });
-  return Object.fromEntries(
-    Object.entries(parsed).filter(([, value]) => value !== PLACEHOLDER)
-  );
+  return Object.fromEntries(Object.entries(parsed).filter(([, value]) => value !== PLACEHOLDER));
 }
 
 // node_modules/chalk/source/vendor/ansi-styles/index.js
 var ANSI_BACKGROUND_OFFSET = 10;
-var wrapAnsi16 = (offset = 0) => (code) => `\x1B[${code + offset}m`;
-var wrapAnsi256 = (offset = 0) => (code) => `\x1B[${38 + offset};5;${code}m`;
-var wrapAnsi16m = (offset = 0) => (red, green, blue) => `\x1B[${38 + offset};2;${red};${green};${blue}m`;
+var wrapAnsi16 =
+  (offset = 0) =>
+  code =>
+    `\x1B[${code + offset}m`;
+var wrapAnsi256 =
+  (offset = 0) =>
+  code =>
+    `\x1B[${38 + offset};5;${code}m`;
+var wrapAnsi16m =
+  (offset = 0) =>
+  (red, green, blue) =>
+    `\x1B[${38 + offset};2;${red};${green};${blue}m`;
 var styles = {
   modifier: {
     reset: [0, 0],
@@ -874,7 +974,7 @@ var styles = {
     overline: [53, 55],
     inverse: [7, 27],
     hidden: [8, 28],
-    strikethrough: [9, 29]
+    strikethrough: [9, 29],
   },
   color: {
     black: [30, 39],
@@ -897,7 +997,7 @@ var styles = {
     blueBright: [94, 39],
     magentaBright: [95, 39],
     cyanBright: [96, 39],
-    whiteBright: [97, 39]
+    whiteBright: [97, 39],
   },
   bgColor: {
     bgBlack: [40, 49],
@@ -920,8 +1020,8 @@ var styles = {
     bgBlueBright: [104, 49],
     bgMagentaBright: [105, 49],
     bgCyanBright: [106, 49],
-    bgWhiteBright: [107, 49]
-  }
+    bgWhiteBright: [107, 49],
+  },
 };
 var modifierNames = Object.keys(styles.modifier);
 var foregroundColorNames = Object.keys(styles.color);
@@ -933,22 +1033,22 @@ function assembleStyles() {
     for (const [styleName, style] of Object.entries(group)) {
       styles[styleName] = {
         open: `\x1B[${style[0]}m`,
-        close: `\x1B[${style[1]}m`
+        close: `\x1B[${style[1]}m`,
       };
       group[styleName] = styles[styleName];
       codes.set(style[0], style[1]);
     }
     Object.defineProperty(styles, groupName, {
       value: group,
-      enumerable: false
+      enumerable: false,
     });
   }
-  Object.defineProperty(styles, "codes", {
+  Object.defineProperty(styles, 'codes', {
     value: codes,
-    enumerable: false
+    enumerable: false,
   });
-  styles.color.close = "\x1B[39m";
-  styles.bgColor.close = "\x1B[49m";
+  styles.color.close = '\x1B[39m';
+  styles.bgColor.close = '\x1B[49m';
   styles.color.ansi = wrapAnsi16();
   styles.color.ansi256 = wrapAnsi256();
   styles.color.ansi16m = wrapAnsi16m();
@@ -965,11 +1065,16 @@ function assembleStyles() {
           if (red > 248) {
             return 231;
           }
-          return Math.round((red - 8) / 247 * 24) + 232;
+          return Math.round(((red - 8) / 247) * 24) + 232;
         }
-        return 16 + 36 * Math.round(red / 255 * 5) + 6 * Math.round(green / 255 * 5) + Math.round(blue / 255 * 5);
+        return (
+          16 +
+          36 * Math.round((red / 255) * 5) +
+          6 * Math.round((green / 255) * 5) +
+          Math.round((blue / 255) * 5)
+        );
       },
-      enumerable: false
+      enumerable: false,
     },
     hexToRgb: {
       value(hex) {
@@ -979,22 +1084,22 @@ function assembleStyles() {
         }
         let [colorString] = matches;
         if (colorString.length === 3) {
-          colorString = [...colorString].map((character) => character + character).join("");
+          colorString = [...colorString].map(character => character + character).join('');
         }
         const integer = Number.parseInt(colorString, 16);
         return [
           /* eslint-disable no-bitwise */
-          integer >> 16 & 255,
-          integer >> 8 & 255,
-          integer & 255
+          (integer >> 16) & 255,
+          (integer >> 8) & 255,
+          integer & 255,
           /* eslint-enable no-bitwise */
         ];
       },
-      enumerable: false
+      enumerable: false,
     },
     hexToAnsi256: {
-      value: (hex) => styles.rgbToAnsi256(...styles.hexToRgb(hex)),
-      enumerable: false
+      value: hex => styles.rgbToAnsi256(...styles.hexToRgb(hex)),
+      enumerable: false,
     },
     ansi256ToAnsi: {
       value(code) {
@@ -1016,28 +1121,28 @@ function assembleStyles() {
           const remainder = code % 36;
           red = Math.floor(code / 36) / 5;
           green = Math.floor(remainder / 6) / 5;
-          blue = remainder % 6 / 5;
+          blue = (remainder % 6) / 5;
         }
         const value = Math.max(red, green, blue) * 2;
         if (value === 0) {
           return 30;
         }
-        let result = 30 + (Math.round(blue) << 2 | Math.round(green) << 1 | Math.round(red));
+        let result = 30 + ((Math.round(blue) << 2) | (Math.round(green) << 1) | Math.round(red));
         if (value === 2) {
           result += 60;
         }
         return result;
       },
-      enumerable: false
+      enumerable: false,
     },
     rgbToAnsi: {
       value: (red, green, blue) => styles.ansi256ToAnsi(styles.rgbToAnsi256(red, green, blue)),
-      enumerable: false
+      enumerable: false,
     },
     hexToAnsi: {
-      value: (hex) => styles.ansi256ToAnsi(styles.hexToAnsi256(hex)),
-      enumerable: false
-    }
+      value: hex => styles.ansi256ToAnsi(styles.hexToAnsi256(hex)),
+      enumerable: false,
+    },
   });
   return styles;
 }
@@ -1045,28 +1150,38 @@ var ansiStyles = assembleStyles();
 var ansi_styles_default = ansiStyles;
 
 // node_modules/chalk/source/vendor/supports-color/index.js
-import process2 from "process";
-import os from "os";
-import tty from "tty";
+import process2 from 'process';
+import os from 'os';
+import tty from 'tty';
 function hasFlag(flag, argv = globalThis.Deno ? globalThis.Deno.args : process2.argv) {
-  const prefix = flag.startsWith("-") ? "" : flag.length === 1 ? "-" : "--";
+  const prefix = flag.startsWith('-') ? '' : flag.length === 1 ? '-' : '--';
   const position = argv.indexOf(prefix + flag);
-  const terminatorPosition = argv.indexOf("--");
+  const terminatorPosition = argv.indexOf('--');
   return position !== -1 && (terminatorPosition === -1 || position < terminatorPosition);
 }
 var { env } = process2;
 var flagForceColor;
-if (hasFlag("no-color") || hasFlag("no-colors") || hasFlag("color=false") || hasFlag("color=never")) {
+if (
+  hasFlag('no-color') ||
+  hasFlag('no-colors') ||
+  hasFlag('color=false') ||
+  hasFlag('color=never')
+) {
   flagForceColor = 0;
-} else if (hasFlag("color") || hasFlag("colors") || hasFlag("color=true") || hasFlag("color=always")) {
+} else if (
+  hasFlag('color') ||
+  hasFlag('colors') ||
+  hasFlag('color=true') ||
+  hasFlag('color=always')
+) {
   flagForceColor = 1;
 }
 function envForceColor() {
-  if ("FORCE_COLOR" in env) {
-    if (env.FORCE_COLOR === "true") {
+  if ('FORCE_COLOR' in env) {
+    if (env.FORCE_COLOR === 'true') {
       return 1;
     }
-    if (env.FORCE_COLOR === "false") {
+    if (env.FORCE_COLOR === 'false') {
       return 0;
     }
     return env.FORCE_COLOR.length === 0 ? 1 : Math.min(Number.parseInt(env.FORCE_COLOR, 10), 3);
@@ -1080,7 +1195,7 @@ function translateLevel(level) {
     level,
     hasBasic: true,
     has256: level >= 2,
-    has16m: level >= 3
+    has16m: level >= 3,
   };
 }
 function _supportsColor(haveStream, { streamIsTTY, sniffFlags = true } = {}) {
@@ -1093,55 +1208,58 @@ function _supportsColor(haveStream, { streamIsTTY, sniffFlags = true } = {}) {
     return 0;
   }
   if (sniffFlags) {
-    if (hasFlag("color=16m") || hasFlag("color=full") || hasFlag("color=truecolor")) {
+    if (hasFlag('color=16m') || hasFlag('color=full') || hasFlag('color=truecolor')) {
       return 3;
     }
-    if (hasFlag("color=256")) {
+    if (hasFlag('color=256')) {
       return 2;
     }
   }
-  if ("TF_BUILD" in env && "AGENT_NAME" in env) {
+  if ('TF_BUILD' in env && 'AGENT_NAME' in env) {
     return 1;
   }
   if (haveStream && !streamIsTTY && forceColor === void 0) {
     return 0;
   }
   const min = forceColor || 0;
-  if (env.TERM === "dumb") {
+  if (env.TERM === 'dumb') {
     return min;
   }
-  if (process2.platform === "win32") {
-    const osRelease = os.release().split(".");
+  if (process2.platform === 'win32') {
+    const osRelease = os.release().split('.');
     if (Number(osRelease[0]) >= 10 && Number(osRelease[2]) >= 10586) {
       return Number(osRelease[2]) >= 14931 ? 3 : 2;
     }
     return 1;
   }
-  if ("CI" in env) {
-    if (["GITHUB_ACTIONS", "GITEA_ACTIONS", "CIRCLECI"].some((key) => key in env)) {
+  if ('CI' in env) {
+    if (['GITHUB_ACTIONS', 'GITEA_ACTIONS', 'CIRCLECI'].some(key => key in env)) {
       return 3;
     }
-    if (["TRAVIS", "APPVEYOR", "GITLAB_CI", "BUILDKITE", "DRONE"].some((sign) => sign in env) || env.CI_NAME === "codeship") {
+    if (
+      ['TRAVIS', 'APPVEYOR', 'GITLAB_CI', 'BUILDKITE', 'DRONE'].some(sign => sign in env) ||
+      env.CI_NAME === 'codeship'
+    ) {
       return 1;
     }
     return min;
   }
-  if ("TEAMCITY_VERSION" in env) {
+  if ('TEAMCITY_VERSION' in env) {
     return /^(9\.(0*[1-9]\d*)\.|\d{2,}\.)/.test(env.TEAMCITY_VERSION) ? 1 : 0;
   }
-  if (env.COLORTERM === "truecolor") {
+  if (env.COLORTERM === 'truecolor') {
     return 3;
   }
-  if (env.TERM === "xterm-kitty") {
+  if (env.TERM === 'xterm-kitty') {
     return 3;
   }
-  if ("TERM_PROGRAM" in env) {
-    const version2 = Number.parseInt((env.TERM_PROGRAM_VERSION || "").split(".")[0], 10);
+  if ('TERM_PROGRAM' in env) {
+    const version2 = Number.parseInt((env.TERM_PROGRAM_VERSION || '').split('.')[0], 10);
     switch (env.TERM_PROGRAM) {
-      case "iTerm.app": {
+      case 'iTerm.app': {
         return version2 >= 3 ? 3 : 2;
       }
-      case "Apple_Terminal": {
+      case 'Apple_Terminal': {
         return 2;
       }
     }
@@ -1152,7 +1270,7 @@ function _supportsColor(haveStream, { streamIsTTY, sniffFlags = true } = {}) {
   if (/^screen|^xterm|^vt100|^vt220|^rxvt|color|ansi|cygwin|linux/i.test(env.TERM)) {
     return 1;
   }
-  if ("COLORTERM" in env) {
+  if ('COLORTERM' in env) {
     return 1;
   }
   return min;
@@ -1160,13 +1278,13 @@ function _supportsColor(haveStream, { streamIsTTY, sniffFlags = true } = {}) {
 function createSupportsColor(stream, options = {}) {
   const level = _supportsColor(stream, {
     streamIsTTY: stream && stream.isTTY,
-    ...options
+    ...options,
   });
   return translateLevel(level);
 }
 var supportsColor = {
   stdout: createSupportsColor({ isTTY: tty.isatty(1) }),
-  stderr: createSupportsColor({ isTTY: tty.isatty(2) })
+  stderr: createSupportsColor({ isTTY: tty.isatty(2) }),
 };
 var supports_color_default = supportsColor;
 
@@ -1178,7 +1296,7 @@ function stringReplaceAll2(string, substring, replacer) {
   }
   const substringLength = substring.length;
   let endIndex = 0;
-  let returnValue = "";
+  let returnValue = '';
   do {
     returnValue += string.slice(endIndex, index) + substring + replacer;
     endIndex = index + substringLength;
@@ -1189,12 +1307,16 @@ function stringReplaceAll2(string, substring, replacer) {
 }
 function stringEncaseCRLFWithFirstIndex(string, prefix, postfix, index) {
   let endIndex = 0;
-  let returnValue = "";
+  let returnValue = '';
   do {
-    const gotCR = string[index - 1] === "\r";
-    returnValue += string.slice(endIndex, gotCR ? index - 1 : index) + prefix + (gotCR ? "\r\n" : "\n") + postfix;
+    const gotCR = string[index - 1] === '\r';
+    returnValue +=
+      string.slice(endIndex, gotCR ? index - 1 : index) +
+      prefix +
+      (gotCR ? '\r\n' : '\n') +
+      postfix;
     endIndex = index + 1;
-    index = string.indexOf("\n", endIndex);
+    index = string.indexOf('\n', endIndex);
   } while (index !== -1);
   returnValue += string.slice(endIndex);
   return returnValue;
@@ -1202,25 +1324,23 @@ function stringEncaseCRLFWithFirstIndex(string, prefix, postfix, index) {
 
 // node_modules/chalk/source/index.js
 var { stdout: stdoutColor, stderr: stderrColor } = supports_color_default;
-var GENERATOR = Symbol("GENERATOR");
-var STYLER = Symbol("STYLER");
-var IS_EMPTY = Symbol("IS_EMPTY");
-var levelMapping = [
-  "ansi",
-  "ansi",
-  "ansi256",
-  "ansi16m"
-];
+var GENERATOR = Symbol('GENERATOR');
+var STYLER = Symbol('STYLER');
+var IS_EMPTY = Symbol('IS_EMPTY');
+var levelMapping = ['ansi', 'ansi', 'ansi256', 'ansi16m'];
 var styles2 = /* @__PURE__ */ Object.create(null);
 var applyOptions = (object2, options = {}) => {
-  if (options.level && !(Number.isInteger(options.level) && options.level >= 0 && options.level <= 3)) {
-    throw new Error("The `level` option should be an integer from 0 to 3");
+  if (
+    options.level &&
+    !(Number.isInteger(options.level) && options.level >= 0 && options.level <= 3)
+  ) {
+    throw new Error('The `level` option should be an integer from 0 to 3');
   }
   const colorLevel = stdoutColor ? stdoutColor.level : 0;
   object2.level = options.level === void 0 ? colorLevel : options.level;
 };
-var chalkFactory = (options) => {
-  const chalk2 = (...strings) => strings.join(" ");
+var chalkFactory = options => {
+  const chalk2 = (...strings) => strings.join(' ');
   applyOptions(chalk2, options);
   Object.setPrototypeOf(chalk2, createChalk.prototype);
   return chalk2;
@@ -1232,58 +1352,69 @@ Object.setPrototypeOf(createChalk.prototype, Function.prototype);
 for (const [styleName, style] of Object.entries(ansi_styles_default)) {
   styles2[styleName] = {
     get() {
-      const builder = createBuilder(this, createStyler(style.open, style.close, this[STYLER]), this[IS_EMPTY]);
+      const builder = createBuilder(
+        this,
+        createStyler(style.open, style.close, this[STYLER]),
+        this[IS_EMPTY]
+      );
       Object.defineProperty(this, styleName, { value: builder });
       return builder;
-    }
+    },
   };
 }
 styles2.visible = {
   get() {
     const builder = createBuilder(this, this[STYLER], true);
-    Object.defineProperty(this, "visible", { value: builder });
+    Object.defineProperty(this, 'visible', { value: builder });
     return builder;
-  }
+  },
 };
 var getModelAnsi = (model, level, type, ...arguments_) => {
-  if (model === "rgb") {
-    if (level === "ansi16m") {
+  if (model === 'rgb') {
+    if (level === 'ansi16m') {
       return ansi_styles_default[type].ansi16m(...arguments_);
     }
-    if (level === "ansi256") {
+    if (level === 'ansi256') {
       return ansi_styles_default[type].ansi256(ansi_styles_default.rgbToAnsi256(...arguments_));
     }
     return ansi_styles_default[type].ansi(ansi_styles_default.rgbToAnsi(...arguments_));
   }
-  if (model === "hex") {
-    return getModelAnsi("rgb", level, type, ...ansi_styles_default.hexToRgb(...arguments_));
+  if (model === 'hex') {
+    return getModelAnsi('rgb', level, type, ...ansi_styles_default.hexToRgb(...arguments_));
   }
   return ansi_styles_default[type][model](...arguments_);
 };
-var usedModels = ["rgb", "hex", "ansi256"];
+var usedModels = ['rgb', 'hex', 'ansi256'];
 for (const model of usedModels) {
   styles2[model] = {
     get() {
       const { level } = this;
-      return function(...arguments_) {
-        const styler = createStyler(getModelAnsi(model, levelMapping[level], "color", ...arguments_), ansi_styles_default.color.close, this[STYLER]);
+      return function (...arguments_) {
+        const styler = createStyler(
+          getModelAnsi(model, levelMapping[level], 'color', ...arguments_),
+          ansi_styles_default.color.close,
+          this[STYLER]
+        );
         return createBuilder(this, styler, this[IS_EMPTY]);
       };
-    }
+    },
   };
-  const bgModel = "bg" + model[0].toUpperCase() + model.slice(1);
+  const bgModel = 'bg' + model[0].toUpperCase() + model.slice(1);
   styles2[bgModel] = {
     get() {
       const { level } = this;
-      return function(...arguments_) {
-        const styler = createStyler(getModelAnsi(model, levelMapping[level], "bgColor", ...arguments_), ansi_styles_default.bgColor.close, this[STYLER]);
+      return function (...arguments_) {
+        const styler = createStyler(
+          getModelAnsi(model, levelMapping[level], 'bgColor', ...arguments_),
+          ansi_styles_default.bgColor.close,
+          this[STYLER]
+        );
         return createBuilder(this, styler, this[IS_EMPTY]);
       };
-    }
+    },
   };
 }
-var proto = Object.defineProperties(() => {
-}, {
+var proto = Object.defineProperties(() => {}, {
   ...styles2,
   level: {
     enumerable: true,
@@ -1292,8 +1423,8 @@ var proto = Object.defineProperties(() => {
     },
     set(level) {
       this[GENERATOR].level = level;
-    }
-  }
+    },
+  },
 });
 var createStyler = (open, close, parent) => {
   let openAll;
@@ -1310,11 +1441,12 @@ var createStyler = (open, close, parent) => {
     close,
     openAll,
     closeAll,
-    parent
+    parent,
   };
 };
 var createBuilder = (self, _styler, _isEmpty) => {
-  const builder = (...arguments_) => applyStyle(builder, arguments_.length === 1 ? "" + arguments_[0] : arguments_.join(" "));
+  const builder = (...arguments_) =>
+    applyStyle(builder, arguments_.length === 1 ? '' + arguments_[0] : arguments_.join(' '));
   Object.setPrototypeOf(builder, proto);
   builder[GENERATOR] = self;
   builder[STYLER] = _styler;
@@ -1323,20 +1455,20 @@ var createBuilder = (self, _styler, _isEmpty) => {
 };
 var applyStyle = (self, string) => {
   if (self.level <= 0 || !string) {
-    return self[IS_EMPTY] ? "" : string;
+    return self[IS_EMPTY] ? '' : string;
   }
   let styler = self[STYLER];
   if (styler === void 0) {
     return string;
   }
   const { openAll, closeAll } = styler;
-  if (string.includes("\x1B")) {
+  if (string.includes('\x1B')) {
     while (styler !== void 0) {
       string = stringReplaceAll2(string, styler.close, styler.open);
       styler = styler.parent;
     }
   }
-  const lfIndex = string.indexOf("\n");
+  const lfIndex = string.indexOf('\n');
   if (lfIndex !== -1) {
     string = stringEncaseCRLFWithFirstIndex(string, closeAll, openAll, lfIndex);
   }
@@ -1391,7 +1523,14 @@ function leven(first, second) {
     for (index = 0; index < firstLength; index++) {
       temporary2 = bCharacterCode === characterCodeCache[index] ? temporary : temporary + 1;
       temporary = array[index];
-      result = array[index] = temporary > result ? temporary2 > result ? result + 1 : temporary2 : temporary2 > temporary ? temporary + 1 : temporary2;
+      result = array[index] =
+        temporary > result
+          ? temporary2 > result
+            ? result + 1
+            : temporary2
+          : temporary2 > temporary
+            ? temporary + 1
+            : temporary2;
     }
   }
   return result;
@@ -1399,9 +1538,16 @@ function leven(first, second) {
 
 // src/cli/options/normalize-cli-options.js
 var descriptor = {
-  key: (key) => key.length === 1 ? `-${key}` : `--${key}`,
-  value: (value) => vnopts.apiDescriptor.value(value),
-  pair: ({ key, value }) => value === false ? `--no-${key}` : value === true ? descriptor.key(key) : value === "" ? `${descriptor.key(key)} without an argument` : `${descriptor.key(key)}=${value}`
+  key: key => (key.length === 1 ? `-${key}` : `--${key}`),
+  value: value => vnopts.apiDescriptor.value(value),
+  pair: ({ key, value }) =>
+    value === false
+      ? `--no-${key}`
+      : value === true
+        ? descriptor.key(key)
+        : value === ''
+          ? `${descriptor.key(key)} without an argument`
+          : `${descriptor.key(key)}=${value}`,
 };
 var _flags;
 var FlagSchema = class extends vnopts.ChoiceSchema {
@@ -1411,14 +1557,18 @@ var FlagSchema = class extends vnopts.ChoiceSchema {
     __privateSet(this, _flags, [...flags].sort());
   }
   preprocess(value, utils) {
-    if (typeof value === "string" && value.length > 0 && !__privateGet(this, _flags).includes(value)) {
-      const suggestion = __privateGet(this, _flags).find((flag) => leven(flag, value) < 3);
+    if (
+      typeof value === 'string' &&
+      value.length > 0 &&
+      !__privateGet(this, _flags).includes(value)
+    ) {
+      const suggestion = __privateGet(this, _flags).find(flag => leven(flag, value) < 3);
       if (suggestion) {
         utils.logger.warn(
           [
             `Unknown flag ${source_default.yellow(utils.descriptor.value(value))},`,
-            `did you mean ${source_default.blue(utils.descriptor.value(suggestion))}?`
-          ].join(" ")
+            `did you mean ${source_default.blue(utils.descriptor.value(suggestion))}?`,
+          ].join(' ')
         );
         return suggestion;
       }
@@ -1426,7 +1576,7 @@ var FlagSchema = class extends vnopts.ChoiceSchema {
     return value;
   }
   expected() {
-    return "a flag";
+    return 'a flag';
   }
 };
 _flags = new WeakMap();
@@ -1435,7 +1585,7 @@ function normalizeCliOptions(options, optionInfos, opts) {
     ...opts,
     isCLI: true,
     FlagSchema,
-    descriptor
+    descriptor,
   });
 }
 var normalize_cli_options_default = normalizeCliOptions;
@@ -1446,9 +1596,7 @@ function parseArgv(rawArguments, detailedOptions, logger, keys2) {
   const minimistOptions = createMinimistOptions(detailedOptions);
   let argv = minimistParse(rawArguments, minimistOptions);
   if (keys2) {
-    detailedOptions = detailedOptions.filter(
-      (option) => keys2.includes(option.name)
-    );
+    detailedOptions = detailedOptions.filter(option => keys2.includes(option.name));
     argv = pick(argv, keys2);
   }
   const normalized = normalize_cli_options_default(argv, detailedOptions, { logger });
@@ -1462,7 +1610,7 @@ function parseArgv(rawArguments, detailedOptions, logger, keys2) {
     _: (_a = normalized._) == null ? void 0 : _a.map(String),
     get __raw() {
       return argv;
-    }
+    },
   };
 }
 var { detailedOptions: detailedOptionsWithoutPlugins } = getContextOptionsWithoutPlugins();
@@ -1471,7 +1619,7 @@ function parseArgvWithoutPlugins(rawArguments, logger, keys2) {
     rawArguments,
     detailedOptionsWithoutPlugins,
     logger,
-    typeof keys2 === "string" ? [keys2] : keys2
+    typeof keys2 === 'string' ? [keys2] : keys2
   );
 }
 
@@ -1485,9 +1633,7 @@ var Context = class {
   }
   async init() {
     const { rawArguments, logger } = this;
-    const { plugins } = parseArgvWithoutPlugins(rawArguments, logger, [
-      "plugin"
-    ]);
+    const { plugins } = parseArgvWithoutPlugins(rawArguments, logger, ['plugin']);
     await this.pushContextPlugins(plugins);
     const argv = parseArgv(rawArguments, this.detailedOptions, logger);
     this.argv = argv;
@@ -1503,33 +1649,36 @@ var Context = class {
   }
   popContextPlugins() {
     __privateGet(this, _stack).pop();
-    Object.assign(this, at_default(
-      /* isOptionalObject */
-      false,
-      __privateGet(this, _stack),
-      -1
-    ));
+    Object.assign(
+      this,
+      at_default(
+        /* isOptionalObject */
+        false,
+        __privateGet(this, _stack),
+        -1
+      )
+    );
   }
   // eslint-disable-next-line getter-return
   get performanceTestFlag() {
     const { debugBenchmark, debugRepeat } = this.argv;
     if (debugBenchmark) {
       return {
-        name: "--debug-benchmark",
-        debugBenchmark: true
+        name: '--debug-benchmark',
+        debugBenchmark: true,
       };
     }
     if (debugRepeat > 0) {
       return {
-        name: "--debug-repeat",
-        debugRepeat
+        name: '--debug-repeat',
+        debugRepeat,
       };
     }
     const { PRETTIER_PERF_REPEAT } = process.env;
     if (PRETTIER_PERF_REPEAT && /^\d+$/u.test(PRETTIER_PERF_REPEAT)) {
       return {
-        name: "PRETTIER_PERF_REPEAT (environment variable)",
-        debugRepeat: Number(PRETTIER_PERF_REPEAT)
+        name: 'PRETTIER_PERF_REPEAT (environment variable)',
+        debugRepeat: Number(PRETTIER_PERF_REPEAT),
       };
     }
   }
@@ -1539,28 +1688,24 @@ var context_default = Context;
 
 // src/cli/file-info.js
 var import_fast_json_stable_stringify = __toESM(require_fast_json_stable_stringify(), 1);
-import { format, getFileInfo } from "../index.mjs";
+import { format, getFileInfo } from '../index.mjs';
 async function logFileInfoOrDie(context) {
-  const {
-    fileInfo: file,
-    ignorePath,
-    withNodeModules,
-    plugins,
-    config
-  } = context.argv;
+  const { fileInfo: file, ignorePath, withNodeModules, plugins, config } = context.argv;
   const fileInfo = await getFileInfo(file, {
     ignorePath,
     withNodeModules,
     plugins,
-    resolveConfig: config !== false
+    resolveConfig: config !== false,
   });
-  printToScreen(await format((0, import_fast_json_stable_stringify.default)(fileInfo), { parser: "json" }));
+  printToScreen(
+    await format((0, import_fast_json_stable_stringify.default)(fileInfo), { parser: 'json' })
+  );
 }
 var file_info_default = logFileInfoOrDie;
 
 // src/cli/find-config-path.js
-import path2 from "path";
-import { resolveConfigFile } from "../index.mjs";
+import path2 from 'path';
+import { resolveConfigFile } from '../index.mjs';
 async function logResolvedConfigPathOrDie(context) {
   const file = context.argv.findConfigPath;
   const configFile = await resolveConfigFile(file);
@@ -1573,18 +1718,16 @@ async function logResolvedConfigPathOrDie(context) {
 var find_config_path_default = logResolvedConfigPathOrDie;
 
 // src/cli/format.js
-import fs8 from "fs/promises";
-import path11 from "path";
-import * as prettier from "../index.mjs";
+import fs8 from 'fs/promises';
+import path11 from 'path';
+import * as prettier from '../index.mjs';
 
 // src/cli/expand-patterns.js
-import path3 from "path";
+import path3 from 'path';
 async function* expandPatterns(context) {
   const seen = /* @__PURE__ */ new Set();
   let noResults = true;
-  for await (const { filePath, ignoreUnknown, error } of expandPatternsInternal(
-    context
-  )) {
+  for await (const { filePath, ignoreUnknown, error } of expandPatternsInternal(context)) {
     noResults = false;
     if (error) {
       yield { error };
@@ -1599,19 +1742,19 @@ async function* expandPatterns(context) {
   }
   if (noResults && context.argv.errorOnUnmatchedPattern !== false) {
     yield {
-      error: `No matching files. Patterns: ${context.filePatterns.join(" ")}`
+      error: `No matching files. Patterns: ${context.filePatterns.join(' ')}`,
     };
   }
 }
 async function* expandPatternsInternal(context) {
-  const silentlyIgnoredDirs = [".git", ".sl", ".svn", ".hg", ".jj"];
+  const silentlyIgnoredDirs = ['.git', '.sl', '.svn', '.hg', '.jj'];
   if (context.argv.withNodeModules !== true) {
-    silentlyIgnoredDirs.push("node_modules");
+    silentlyIgnoredDirs.push('node_modules');
   }
   const globOptions = {
     dot: true,
-    ignore: silentlyIgnoredDirs.map((dir) => "**/" + dir),
-    followSymbolicLinks: false
+    ignore: silentlyIgnoredDirs.map(dir => '**/' + dir),
+    followSymbolicLinks: false,
   };
   const cwd2 = process.cwd();
   const entries = [];
@@ -1625,36 +1768,34 @@ async function* expandPatternsInternal(context) {
       if (stat.isSymbolicLink()) {
         if (context.argv.errorOnUnmatchedPattern !== false) {
           yield {
-            error: `Explicitly specified pattern "${pattern}" is a symbolic link.`
+            error: `Explicitly specified pattern "${pattern}" is a symbolic link.`,
           };
         } else {
-          context.logger.debug(
-            `Skipping pattern "${pattern}", as it is a symbolic link.`
-          );
+          context.logger.debug(`Skipping pattern "${pattern}", as it is a symbolic link.`);
         }
       } else if (stat.isFile()) {
         entries.push({
-          type: "file",
+          type: 'file',
           glob: escapePathForGlob(fixWindowsSlashes(pattern)),
-          input: pattern
+          input: pattern,
         });
       } else if (stat.isDirectory()) {
-        const relativePath = path3.relative(cwd2, absolutePath) || ".";
+        const relativePath = path3.relative(cwd2, absolutePath) || '.';
         const prefix = escapePathForGlob(fixWindowsSlashes(relativePath));
         entries.push({
-          type: "dir",
+          type: 'dir',
           glob: `${prefix}/**/*`,
           input: pattern,
-          ignoreUnknown: true
+          ignoreUnknown: true,
         });
       }
-    } else if (pattern[0] === "!") {
+    } else if (pattern[0] === '!') {
       globOptions.ignore.push(fixWindowsSlashes(pattern.slice(1)));
     } else {
       entries.push({
-        type: "glob",
+        type: 'glob',
         glob: fixWindowsSlashes(pattern),
-        input: pattern
+        input: pattern,
       });
     }
   }
@@ -1665,7 +1806,7 @@ async function* expandPatternsInternal(context) {
     } catch ({ message }) {
       yield {
         error: `${errorMessages.globError[type]}: "${input}".
-${message}`
+${message}`,
       };
       continue;
     }
@@ -1674,24 +1815,27 @@ ${message}`
         yield { error: `${errorMessages.emptyResults[type]}: "${input}".` };
       }
     } else {
-      yield* sortPaths(result).map((filePath) => ({ filePath, ignoreUnknown }));
+      yield* sortPaths(result).map(filePath => ({ filePath, ignoreUnknown }));
     }
   }
 }
 var errorMessages = {
   globError: {
-    file: "Unable to resolve file",
-    dir: "Unable to expand directory",
-    glob: "Unable to expand glob pattern"
+    file: 'Unable to resolve file',
+    dir: 'Unable to expand directory',
+    glob: 'Unable to expand glob pattern',
   },
   emptyResults: {
-    file: "Explicitly specified file was ignored due to negative glob patterns",
-    dir: "No supported files were found in the directory",
-    glob: "No files matching the pattern were found"
-  }
+    file: 'Explicitly specified file was ignored due to negative glob patterns',
+    dir: 'No supported files were found in the directory',
+    glob: 'No files matching the pattern were found',
+  },
 };
 function containsIgnoredPathSegment(absolutePath, cwd2, ignoredDirectories) {
-  return path3.relative(cwd2, absolutePath).split(path3.sep).some((dir) => ignoredDirectories.includes(dir));
+  return path3
+    .relative(cwd2, absolutePath)
+    .split(path3.sep)
+    .some(dir => ignoredDirectories.includes(dir));
 }
 function sortPaths(paths) {
   return paths.sort((a, b) => a.localeCompare(b));
@@ -1708,46 +1852,46 @@ function escapePathForGlob(path12) {
           /* isOptionalObject */
           false,
           path12,
-          "\\",
-          "\0"
+          '\\',
+          '\0'
         )
         // Workaround for fast-glob#262 (part 1)
       ),
       String.raw`\!`,
-      "@(!)"
+      '@(!)'
     ),
-    "\0",
+    '\0',
     String.raw`@(\\)`
   );
 }
 var fixWindowsSlashes = normalizeToPosix;
 
 // src/cli/find-cache-file.js
-import fs4 from "fs/promises";
-import os2 from "os";
-import path8 from "path";
+import fs4 from 'fs/promises';
+import os2 from 'os';
+import path8 from 'path';
 
 // node_modules/find-cache-dir/index.js
 var import_common_path_prefix = __toESM(require_common_path_prefix(), 1);
-import process4 from "process";
-import path7 from "path";
-import fs3 from "fs";
+import process4 from 'process';
+import path7 from 'path';
+import fs3 from 'fs';
 
 // node_modules/pkg-dir/index.js
-import path6 from "path";
+import path6 from 'path';
 
 // node_modules/pkg-dir/node_modules/find-up/index.js
-import path5 from "path";
-import { fileURLToPath as fileURLToPath2 } from "url";
+import path5 from 'path';
+import { fileURLToPath as fileURLToPath2 } from 'url';
 
 // node_modules/locate-path/index.js
-import process3 from "process";
-import path4 from "path";
-import fs2, { promises as fsPromises } from "fs";
-import { fileURLToPath } from "url";
+import process3 from 'process';
+import path4 from 'path';
+import fs2, { promises as fsPromises } from 'fs';
+import { fileURLToPath } from 'url';
 var typeMappings = {
-  directory: "isDirectory",
-  file: "isFile"
+  directory: 'isDirectory',
+  file: 'isFile',
 };
 function checkType(type) {
   if (Object.hasOwnProperty.call(typeMappings, type)) {
@@ -1756,19 +1900,18 @@ function checkType(type) {
   throw new Error(`Invalid type specified: ${type}`);
 }
 var matchType = (type, stat) => stat[typeMappings[type]]();
-var toPath = (urlOrPath) => urlOrPath instanceof URL ? fileURLToPath(urlOrPath) : urlOrPath;
-function locatePathSync(paths, {
-  cwd: cwd2 = process3.cwd(),
-  type = "file",
-  allowSymlinks = true
-} = {}) {
+var toPath = urlOrPath => (urlOrPath instanceof URL ? fileURLToPath(urlOrPath) : urlOrPath);
+function locatePathSync(
+  paths,
+  { cwd: cwd2 = process3.cwd(), type = 'file', allowSymlinks = true } = {}
+) {
   checkType(type);
   cwd2 = toPath(cwd2);
   const statFunction = allowSymlinks ? fs2.statSync : fs2.lstatSync;
   for (const path_ of paths) {
     try {
       const stat = statFunction(path4.resolve(cwd2, path_), {
-        throwIfNoEntry: false
+        throwIfNoEntry: false,
       });
       if (!stat) {
         continue;
@@ -1776,26 +1919,25 @@ function locatePathSync(paths, {
       if (matchType(type, stat)) {
         return path_;
       }
-    } catch {
-    }
+    } catch {}
   }
 }
 
 // node_modules/pkg-dir/node_modules/find-up/index.js
-var toPath2 = (urlOrPath) => urlOrPath instanceof URL ? fileURLToPath2(urlOrPath) : urlOrPath;
-var findUpStop = Symbol("findUpStop");
+var toPath2 = urlOrPath => (urlOrPath instanceof URL ? fileURLToPath2(urlOrPath) : urlOrPath);
+var findUpStop = Symbol('findUpStop');
 function findUpMultipleSync(name, options = {}) {
-  let directory = path5.resolve(toPath2(options.cwd) || "");
+  let directory = path5.resolve(toPath2(options.cwd) || '');
   const { root } = path5.parse(directory);
   const stopAt = options.stopAt || root;
   const limit = options.limit || Number.POSITIVE_INFINITY;
   const paths = [name].flat();
-  const runMatcher = (locateOptions) => {
-    if (typeof name !== "function") {
+  const runMatcher = locateOptions => {
+    if (typeof name !== 'function') {
       return locatePathSync(paths, locateOptions);
     }
     const foundPath = name(locateOptions.cwd);
-    if (typeof foundPath === "string") {
+    if (typeof foundPath === 'string') {
       return locatePathSync([foundPath], locateOptions);
     }
     return foundPath;
@@ -1823,13 +1965,13 @@ function findUpSync(name, options = {}) {
 
 // node_modules/pkg-dir/index.js
 function packageDirectorySync({ cwd: cwd2 } = {}) {
-  const filePath = findUpSync("package.json", { cwd: cwd2 });
+  const filePath = findUpSync('package.json', { cwd: cwd2 });
   return filePath && path6.dirname(filePath);
 }
 
 // node_modules/find-cache-dir/index.js
 var { env: env2, cwd } = process4;
-var isWritable = (path12) => {
+var isWritable = path12 => {
   try {
     fs3.accessSync(path12, fs3.constants.W_OK);
     return true;
@@ -1844,14 +1986,17 @@ function useDirectory(directory, options) {
   return directory;
 }
 function getNodeModuleDirectory(directory) {
-  const nodeModules = path7.join(directory, "node_modules");
-  if (!isWritable(nodeModules) && (fs3.existsSync(nodeModules) || !isWritable(path7.join(directory)))) {
+  const nodeModules = path7.join(directory, 'node_modules');
+  if (
+    !isWritable(nodeModules) &&
+    (fs3.existsSync(nodeModules) || !isWritable(path7.join(directory)))
+  ) {
     return;
   }
   return nodeModules;
 }
 function findCacheDirectory(options = {}) {
-  if (env2.CACHE_DIR && !["true", "false", "1", "0"].includes(env2.CACHE_DIR)) {
+  if (env2.CACHE_DIR && !['true', 'false', '1', '0'].includes(env2.CACHE_DIR)) {
     return useDirectory(path7.join(env2.CACHE_DIR, options.name), options);
   }
   let { cwd: directory = cwd(), files } = options;
@@ -1859,7 +2004,9 @@ function findCacheDirectory(options = {}) {
     if (!Array.isArray(files)) {
       throw new TypeError(`Expected \`files\` option to be an array, got \`${typeof files}\`.`);
     }
-    directory = (0, import_common_path_prefix.default)(files.map((file) => path7.resolve(directory, file)));
+    directory = (0, import_common_path_prefix.default)(
+      files.map(file => path7.resolve(directory, file))
+    );
   }
   directory = packageDirectorySync({ cwd: directory });
   if (!directory) {
@@ -1869,13 +2016,13 @@ function findCacheDirectory(options = {}) {
   if (!nodeModules) {
     return;
   }
-  return useDirectory(path7.join(directory, "node_modules", ".cache", options.name), options);
+  return useDirectory(path7.join(directory, 'node_modules', '.cache', options.name), options);
 }
 
 // src/cli/find-cache-file.js
 function findDefaultCacheFile() {
-  const cacheDir = findCacheDirectory({ name: "prettier", create: true }) || os2.tmpdir();
-  const cacheFilePath = path8.join(cacheDir, ".prettier-cache");
+  const cacheDir = findCacheDirectory({ name: 'prettier', create: true }) || os2.tmpdir();
+  const cacheFilePath = path8.join(cacheDir, '.prettier-cache');
   return cacheFilePath;
 }
 async function findCacheFileFromOption(cacheLocation) {
@@ -1883,11 +2030,9 @@ async function findCacheFileFromOption(cacheLocation) {
   const stat = await statSafe(cacheFile);
   if (stat) {
     if (stat.isDirectory()) {
-      throw new Error(
-        `Resolved --cache-location '${cacheFile}' is a directory`
-      );
+      throw new Error(`Resolved --cache-location '${cacheFile}' is a directory`);
     }
-    const data = await fs4.readFile(cacheFile, "utf8");
+    const data = await fs4.readFile(cacheFile, 'utf8');
     if (!isJson(data)) {
       throw new Error(`'${cacheFile}' isn't a valid JSON file`);
     }
@@ -1905,16 +2050,16 @@ var find_cache_file_default = findCacheFile;
 
 // src/cli/format-results-cache.js
 var import_fast_json_stable_stringify2 = __toESM(require_fast_json_stable_stringify(), 1);
-import fs7 from "fs";
+import fs7 from 'fs';
 
 // node_modules/file-entry-cache/dist/index.js
-import crypto2 from "crypto";
-import fs6 from "fs";
-import path10 from "path";
+import crypto2 from 'crypto';
+import fs6 from 'fs';
+import path10 from 'path';
 
 // node_modules/file-entry-cache/node_modules/flat-cache/dist/index.js
-import path9 from "path";
-import fs5 from "fs";
+import path9 from 'path';
+import fs5 from 'fs';
 
 // node_modules/hookified/dist/node/index.js
 var Eventified = class {
@@ -2024,7 +2169,9 @@ var Eventified = class {
     const listeners = this._eventListeners.get(event);
     if (listeners) {
       if (listeners.length >= this._maxListeners) {
-        console.warn(`MaxListenersExceededWarning: Possible event memory leak detected. ${listeners.length + 1} ${event} listeners added. Use setMaxListeners() to increase limit.`);
+        console.warn(
+          `MaxListenersExceededWarning: Possible event memory leak detected. ${listeners.length + 1} ${event} listeners added. Use setMaxListeners() to increase limit.`
+        );
       }
       listeners.push(listener);
     }
@@ -2232,7 +2379,7 @@ var Hookified = class extends Eventified {
           await handler(...arguments_);
         } catch (error) {
           const message = `${event}: ${error.message}`;
-          this.emit("error", new Error(message));
+          this.emit('error', new Error(message));
           if (this._throwHookErrors) {
             throw new Error(message);
           }
@@ -2258,16 +2405,16 @@ var Hookified = class extends Eventified {
 };
 
 // node_modules/cacheable/dist/index.js
-import * as crypto from "crypto";
-var structuredClone = globalThis.structuredClone ?? ((value) => JSON.parse(JSON.stringify(value)));
-var shorthandToMilliseconds = (shorthand) => {
+import * as crypto from 'crypto';
+var structuredClone = globalThis.structuredClone ?? (value => JSON.parse(JSON.stringify(value)));
+var shorthandToMilliseconds = shorthand => {
   let milliseconds;
   if (shorthand === void 0) {
     return void 0;
   }
-  if (typeof shorthand === "number") {
+  if (typeof shorthand === 'number') {
     milliseconds = shorthand;
-  } else if (typeof shorthand === "string") {
+  } else if (typeof shorthand === 'string') {
     shorthand = shorthand.trim();
     if (Number.isNaN(Number(shorthand))) {
       const match = /^([\d.]+)\s*(ms|s|m|h|hr|d)$/i.exec(shorthand);
@@ -2280,27 +2427,27 @@ var shorthandToMilliseconds = (shorthand) => {
       const numericValue = Number.parseFloat(value);
       const unitLower = unit.toLowerCase();
       switch (unitLower) {
-        case "ms": {
+        case 'ms': {
           milliseconds = numericValue;
           break;
         }
-        case "s": {
+        case 's': {
           milliseconds = numericValue * 1e3;
           break;
         }
-        case "m": {
+        case 'm': {
           milliseconds = numericValue * 1e3 * 60;
           break;
         }
-        case "h": {
+        case 'h': {
           milliseconds = numericValue * 1e3 * 60 * 60;
           break;
         }
-        case "hr": {
+        case 'hr': {
           milliseconds = numericValue * 1e3 * 60 * 60;
           break;
         }
-        case "d": {
+        case 'd': {
           milliseconds = numericValue * 1e3 * 60 * 60 * 24;
           break;
         }
@@ -2313,7 +2460,7 @@ var shorthandToMilliseconds = (shorthand) => {
       milliseconds = Number(shorthand);
     }
   } else {
-    throw new TypeError("Time must be a string or a number.");
+    throw new TypeError('Time must be a string or a number.');
   }
   return milliseconds;
 };
@@ -2325,18 +2472,18 @@ var shorthandToTime = (shorthand, fromDate) => {
   }
   return fromDate.getTime() + milliseconds;
 };
-function hash(object2, algorithm = "sha256") {
+function hash(object2, algorithm = 'sha256') {
   const objectString = JSON.stringify(object2);
   if (!crypto.getHashes().includes(algorithm)) {
     throw new Error(`Unsupported hash algorithm: '${algorithm}'`);
   }
   const hasher = crypto.createHash(algorithm);
   hasher.update(objectString);
-  return hasher.digest("hex");
+  return hasher.digest('hex');
 }
 function wrapSync(function_, options) {
   const { ttl, keyPrefix, cache } = options;
-  return function(...arguments_) {
+  return function (...arguments_) {
     const cacheKey = createWrapKey(function_, arguments_, keyPrefix);
     let value = cache.get(cacheKey);
     if (value === void 0) {
@@ -2344,7 +2491,7 @@ function wrapSync(function_, options) {
         value = function_(...arguments_);
         cache.set(cacheKey, value, ttl);
       } catch (error) {
-        cache.emit("error", error);
+        cache.emit('error', error);
         if (options.cacheErrors) {
           cache.set(cacheKey, error, ttl);
         }
@@ -2535,7 +2682,18 @@ var CacheableMemory = class extends Hookified {
    * @returns {number} - The size of the cache
    */
   get size() {
-    return this._hash0.size + this._hash1.size + this._hash2.size + this._hash3.size + this._hash4.size + this._hash5.size + this._hash6.size + this._hash7.size + this._hash8.size + this._hash9.size;
+    return (
+      this._hash0.size +
+      this._hash1.size +
+      this._hash2.size +
+      this._hash3.size +
+      this._hash4.size +
+      this._hash5.size +
+      this._hash6.size +
+      this._hash7.size +
+      this._hash8.size +
+      this._hash9.size
+    );
   }
   /**
    * Gets the keys
@@ -2627,9 +2785,9 @@ var CacheableMemory = class extends Hookified {
     const store = this.getStore(key);
     let expires;
     if (ttl !== void 0 || this._ttl !== void 0) {
-      if (typeof ttl === "object") {
+      if (typeof ttl === 'object') {
         if (ttl.expire) {
-          expires = typeof ttl.expire === "number" ? ttl.expire : ttl.expire.getTime();
+          expires = typeof ttl.expire === 'number' ? ttl.expire : ttl.expire.getTime();
         }
         if (ttl.ttl) {
           const finalTtl = shorthandToTime(ttl.ttl);
@@ -2659,10 +2817,7 @@ var CacheableMemory = class extends Hookified {
       }
     }
     const item = { key, value, expires };
-    store.set(
-      key,
-      item
-    );
+    store.set(key, item);
   }
   /**
    * Sets the values of the keys
@@ -2917,7 +3072,7 @@ var CacheableMemory = class extends Hookified {
    * @param {string} [algorithm='sha256'] - The algorithm to hash
    * @returns {string} - The hashed string
    */
-  hash(object2, algorithm = "sha256") {
+  hash(object2, algorithm = 'sha256') {
     return hash(object2, algorithm);
   }
   /**
@@ -2930,7 +3085,7 @@ var CacheableMemory = class extends Hookified {
     const wrapOptions = {
       ttl: (options == null ? void 0 : options.ttl) ?? this._ttl,
       keyPrefix: options == null ? void 0 : options.keyPrefix,
-      cache: this
+      cache: this,
     };
     return wrapSync(function_, wrapOptions);
   }
@@ -2939,16 +3094,27 @@ var CacheableMemory = class extends Hookified {
     if (value === null || value === void 0) {
       return true;
     }
-    if (typeof value === "string" || typeof value === "number" || typeof value === "boolean") {
+    if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
       return true;
     }
     return result;
   }
   concatStores() {
-    return new Map([...this._hash0, ...this._hash1, ...this._hash2, ...this._hash3, ...this._hash4, ...this._hash5, ...this._hash6, ...this._hash7, ...this._hash8, ...this._hash9]);
+    return new Map([
+      ...this._hash0,
+      ...this._hash1,
+      ...this._hash2,
+      ...this._hash3,
+      ...this._hash4,
+      ...this._hash5,
+      ...this._hash6,
+      ...this._hash7,
+      ...this._hash8,
+      ...this._hash9,
+    ]);
   }
   setTtl(ttl) {
-    if (typeof ttl === "string" || ttl === void 0) {
+    if (typeof ttl === 'string' || ttl === void 0) {
       this._ttl = ttl;
     } else if (ttl > 0) {
       this._ttl = ttl;
@@ -2962,12 +3128,12 @@ var CacheableMemory = class extends Hookified {
 var { parse: $parse, stringify: $stringify } = JSON;
 var { keys } = Object;
 var Primitive = String;
-var primitive = "string";
+var primitive = 'string';
 var ignore = {};
-var object = "object";
+var object = 'object';
 var noop = (_2, value) => value;
-var primitives = (value) => value instanceof Primitive ? Primitive(value) : value;
-var Primitives = (_2, value) => typeof value === primitive ? new Primitive(value) : value;
+var primitives = value => (value instanceof Primitive ? Primitive(value) : value);
+var Primitives = (_2, value) => (typeof value === primitive ? new Primitive(value) : value);
 var revive = (input, parsed, output, $) => {
   const lazy = [];
   for (let ke = keys(output), { length } = ke, y = 0; y < length; y++) {
@@ -2979,10 +3145,8 @@ var revive = (input, parsed, output, $) => {
         parsed.add(tmp);
         output[k] = ignore;
         lazy.push({ k, a: [input, parsed, tmp, $] });
-      } else
-        output[k] = $.call(output, k, tmp);
-    } else if (output[k] !== ignore)
-      output[k] = $.call(output, k, value);
+      } else output[k] = $.call(output, k, tmp);
+    } else if (output[k] !== ignore) output[k] = $.call(output, k, value);
   }
   for (let { length } = lazy, i = 0; i < length; i++) {
     const { k, a } = lazy[i];
@@ -2999,21 +3163,25 @@ var parse = (text, reviver) => {
   const input = $parse(text, Primitives).map(primitives);
   const value = input[0];
   const $ = reviver || noop;
-  const tmp = typeof value === object && value ? revive(input, /* @__PURE__ */ new Set(), value, $) : value;
-  return $.call({ "": tmp }, "", tmp);
+  const tmp =
+    typeof value === object && value ? revive(input, /* @__PURE__ */ new Set(), value, $) : value;
+  return $.call({ '': tmp }, '', tmp);
 };
 var stringify2 = (value, replacer, space) => {
-  const $ = replacer && typeof replacer === object ? (k, v) => k === "" || -1 < replacer.indexOf(k) ? v : void 0 : replacer || noop;
+  const $ =
+    replacer && typeof replacer === object
+      ? (k, v) => (k === '' || -1 < replacer.indexOf(k) ? v : void 0)
+      : replacer || noop;
   const known = /* @__PURE__ */ new Map();
   const input = [];
   const output = [];
-  let i = +set(known, input, $.call({ "": value }, "", value));
+  let i = +set(known, input, $.call({ '': value }, '', value));
   let firstRun = !i;
   while (i < input.length) {
     firstRun = true;
     output[i] = $stringify(input[i++], replace, space);
   }
-  return "[" + output.join(",") + "]";
+  return '[' + output.join(',') + ']';
   function replace(key, value2) {
     if (firstRun) {
       firstRun = !firstRun;
@@ -3033,8 +3201,8 @@ var stringify2 = (value, replacer, space) => {
 // node_modules/file-entry-cache/node_modules/flat-cache/dist/index.js
 var FlatCache = class extends Hookified {
   _cache = new CacheableMemory();
-  _cacheDir = ".cache";
-  _cacheId = "cache1";
+  _cacheDir = '.cache';
+  _cacheId = 'cache1';
   _persistInterval = 0;
   _persistTimer;
   _changesSinceLastSave = false;
@@ -3047,7 +3215,7 @@ var FlatCache = class extends Hookified {
         ttl: options.ttl,
         useClone: options.useClone,
         lruSize: options.lruSize,
-        checkInterval: options.expirationInterval
+        checkInterval: options.expirationInterval,
       });
     }
     if (options == null ? void 0 : options.cacheDir) {
@@ -3153,11 +3321,11 @@ var FlatCache = class extends Hookified {
       const filePath = path9.resolve(`${cacheDir ?? this._cacheDir}/${cacheId ?? this._cacheId}`);
       this.loadFile(filePath);
       this.emit(
-        "load"
+        'load'
         /* LOAD */
       );
     } catch (error) {
-      this.emit("error", error);
+      this.emit('error', error);
     }
   }
   /**
@@ -3167,7 +3335,7 @@ var FlatCache = class extends Hookified {
    */
   loadFile(pathToFile) {
     if (fs5.existsSync(pathToFile)) {
-      const data = fs5.readFileSync(pathToFile, "utf8");
+      const data = fs5.readFileSync(pathToFile, 'utf8');
       const items = this._parse(data);
       for (const key of Object.keys(items)) {
         this._cache.set(items[key].key, items[key].value, { expire: items[key].expires });
@@ -3256,14 +3424,14 @@ var FlatCache = class extends Hookified {
   delete(key) {
     this._cache.delete(key);
     this._changesSinceLastSave = true;
-    this.emit("delete", key);
+    this.emit('delete', key);
   }
   /**
-  * (Legacy) Return the value of the provided key. This method will be deprecated in the future
-  * @method getKey<T>
-  * @param key {String} the name of the key to retrieve
-  * @returns {*} at T the value from the key
-  */
+   * (Legacy) Return the value of the provided key. This method will be deprecated in the future
+   * @method getKey<T>
+   * @param key {String} the name of the key to retrieve
+   * @returns {*} at T the value from the key
+   */
   getKey(key) {
     return this.get(key);
   }
@@ -3286,11 +3454,11 @@ var FlatCache = class extends Hookified {
       this._changesSinceLastSave = true;
       this.save();
       this.emit(
-        "clear"
+        'clear'
         /* CLEAR */
       );
     } catch (error) {
-      this.emit("error", error);
+      this.emit('error', error);
     }
   }
   /**
@@ -3310,12 +3478,12 @@ var FlatCache = class extends Hookified {
         fs5.writeFileSync(filePath, data);
         this._changesSinceLastSave = false;
         this.emit(
-          "save"
+          'save'
           /* SAVE */
         );
       }
     } catch (error) {
-      this.emit("error", error);
+      this.emit('error', error);
     }
   }
   /**
@@ -3330,7 +3498,7 @@ var FlatCache = class extends Hookified {
         return true;
       }
     } catch (error) {
-      this.emit("error", error);
+      this.emit('error', error);
     }
     return false;
   }
@@ -3351,11 +3519,11 @@ var FlatCache = class extends Hookified {
       }
       this._changesSinceLastSave = false;
       this.emit(
-        "destroy"
+        'destroy'
         /* DESTROY */
       );
     } catch (error) {
-      this.emit("error", error);
+      this.emit('error', error);
     }
   }
   /**
@@ -3402,8 +3570,8 @@ function create(cacheId, cacheDirectory, useCheckSum, currentWorkingDirectory) {
     useCheckSum,
     cache: {
       cacheId,
-      cacheDir: cacheDirectory
-    }
+      cacheDir: cacheDirectory,
+    },
   };
   const fileEntryCache = new FileEntryCache(options);
   if (cacheDirectory) {
@@ -3422,7 +3590,7 @@ var FileEntryCache = class {
   _cache = new FlatCache({ useClone: false });
   _useCheckSum = false;
   _currentWorkingDirectory;
-  _hashAlgorithm = "md5";
+  _hashAlgorithm = 'md5';
   constructor(options) {
     if (options == null ? void 0 : options.cache) {
       this._cache = new FlatCache(options.cache);
@@ -3469,7 +3637,7 @@ var FileEntryCache = class {
    */
   // eslint-disable-next-line @typescript-eslint/ban-types
   getHash(buffer) {
-    return crypto2.createHash(this._hashAlgorithm).update(buffer).digest("hex");
+    return crypto2.createHash(this._hashAlgorithm).update(buffer).digest('hex');
   }
   /**
    * Create the key for the file path used for caching.
@@ -3479,12 +3647,13 @@ var FileEntryCache = class {
    */
   createFileKey(filePath, options) {
     let result = filePath;
-    const currentWorkingDirectory = (options == null ? void 0 : options.currentWorkingDirectory) ?? this._currentWorkingDirectory;
+    const currentWorkingDirectory =
+      (options == null ? void 0 : options.currentWorkingDirectory) ?? this._currentWorkingDirectory;
     if (currentWorkingDirectory && filePath.startsWith(currentWorkingDirectory)) {
       const splitPath = filePath.split(currentWorkingDirectory).pop();
       if (splitPath) {
         result = splitPath;
-        if (result.startsWith("/")) {
+        if (result.startsWith('/')) {
           result = result.slice(1);
         }
       }
@@ -3501,17 +3670,17 @@ var FileEntryCache = class {
     return !path10.isAbsolute(filePath);
   }
   /**
-  * Delete the cache file from the disk
-  * @method deleteCacheFile
-  * @return {boolean}       true if the file was deleted, false otherwise
-  */
+   * Delete the cache file from the disk
+   * @method deleteCacheFile
+   * @return {boolean}       true if the file was deleted, false otherwise
+   */
   deleteCacheFile() {
     return this._cache.removeCacheFile();
   }
   /**
-  * Remove the cache from the file and clear the memory cache
-  * @method destroy
-  */
+   * Remove the cache from the file and clear the memory cache
+   * @method destroy
+   */
   destroy() {
     this._cache.destroy();
   }
@@ -3522,10 +3691,14 @@ var FileEntryCache = class {
    */
   removeEntry(filePath, options) {
     if (this.isRelativePath(filePath)) {
-      filePath = this.getAbsolutePath(filePath, { currentWorkingDirectory: options == null ? void 0 : options.currentWorkingDirectory });
+      filePath = this.getAbsolutePath(filePath, {
+        currentWorkingDirectory: options == null ? void 0 : options.currentWorkingDirectory,
+      });
       this._cache.removeKey(this.createFileKey(filePath));
     }
-    const key = this.createFileKey(filePath, { currentWorkingDirectory: options == null ? void 0 : options.currentWorkingDirectory });
+    const key = this.createFileKey(filePath, {
+      currentWorkingDirectory: options == null ? void 0 : options.currentWorkingDirectory,
+    });
     this._cache.removeKey(key);
   }
   /**
@@ -3569,15 +3742,17 @@ var FileEntryCache = class {
     const result = {
       key: this.createFileKey(filePath),
       changed: false,
-      meta: {}
+      meta: {},
     };
     result.meta = this._cache.getKey(result.key) ?? {};
-    filePath = this.getAbsolutePath(filePath, { currentWorkingDirectory: options == null ? void 0 : options.currentWorkingDirectory });
+    filePath = this.getAbsolutePath(filePath, {
+      currentWorkingDirectory: options == null ? void 0 : options.currentWorkingDirectory,
+    });
     const useCheckSumValue = (options == null ? void 0 : options.useCheckSum) ?? this._useCheckSum;
     try {
       fstat = fs6.statSync(filePath);
       result.meta = {
-        size: fstat.size
+        size: fstat.size,
       };
       result.meta.mtime = fstat.mtime.getTime();
       if (useCheckSumValue) {
@@ -3587,14 +3762,14 @@ var FileEntryCache = class {
     } catch (error) {
       this.removeEntry(filePath);
       let notFound = false;
-      if (error.message.includes("ENOENT")) {
+      if (error.message.includes('ENOENT')) {
         notFound = true;
       }
       return {
         key: result.key,
         err: error,
         notFound,
-        meta: {}
+        meta: {},
       };
     }
     const metaCache = this._cache.getKey(result.key);
@@ -3606,10 +3781,19 @@ var FileEntryCache = class {
     if (result.meta.data === void 0) {
       result.meta.data = metaCache.data;
     }
-    if ((metaCache == null ? void 0 : metaCache.mtime) !== ((_a = result.meta) == null ? void 0 : _a.mtime) || (metaCache == null ? void 0 : metaCache.size) !== ((_b = result.meta) == null ? void 0 : _b.size)) {
+    if (
+      (metaCache == null ? void 0 : metaCache.mtime) !==
+        ((_a = result.meta) == null ? void 0 : _a.mtime) ||
+      (metaCache == null ? void 0 : metaCache.size) !==
+        ((_b = result.meta) == null ? void 0 : _b.size)
+    ) {
       result.changed = true;
     }
-    if (useCheckSumValue && (metaCache == null ? void 0 : metaCache.hash) !== ((_c = result.meta) == null ? void 0 : _c.hash)) {
+    if (
+      useCheckSumValue &&
+      (metaCache == null ? void 0 : metaCache.hash) !==
+        ((_c = result.meta) == null ? void 0 : _c.hash)
+    ) {
       result.changed = true;
     }
     this._cache.setKey(result.key, result.meta);
@@ -3649,7 +3833,7 @@ var FileEntryCache = class {
     const result = {
       changedFiles: [],
       notFoundFiles: [],
-      notChangedFiles: []
+      notChangedFiles: [],
     };
     const fileDescriptors = this.normalizeEntries(files);
     for (const fileDescriptor of fileDescriptors) {
@@ -3706,7 +3890,10 @@ var FileEntryCache = class {
    */
   getAbsolutePath(filePath, options) {
     if (this.isRelativePath(filePath)) {
-      const currentWorkingDirectory = (options == null ? void 0 : options.currentWorkingDirectory) ?? this._currentWorkingDirectory ?? process.cwd();
+      const currentWorkingDirectory =
+        (options == null ? void 0 : options.currentWorkingDirectory) ??
+        this._currentWorkingDirectory ??
+        process.cwd();
       filePath = path10.resolve(currentWorkingDirectory, filePath);
     }
     return filePath;
@@ -3731,7 +3918,7 @@ var FileEntryCache = class {
 };
 
 // src/cli/format-results-cache.js
-import { version as prettierVersion } from "../index.mjs";
+import { version as prettierVersion } from '../index.mjs';
 var optionsHashCache = /* @__PURE__ */ new WeakMap();
 var nodeVersion = process.version;
 function getHashOfOptions(options) {
@@ -3755,21 +3942,29 @@ var FormatResultsCache = class {
    */
   constructor(cacheFileLocation, cacheStrategy) {
     __privateAdd(this, _fileEntryCache);
-    const useChecksum = cacheStrategy === "content";
+    const useChecksum = cacheStrategy === 'content';
     try {
-      __privateSet(this, _fileEntryCache, FileEntryDefault.createFromFile(
-        /* filePath */
-        cacheFileLocation,
-        useChecksum
-      ));
-    } catch {
-      if (fs7.existsSync(cacheFileLocation)) {
-        fs7.unlinkSync(cacheFileLocation);
-        __privateSet(this, _fileEntryCache, FileEntryDefault.createFromFile(
+      __privateSet(
+        this,
+        _fileEntryCache,
+        FileEntryDefault.createFromFile(
           /* filePath */
           cacheFileLocation,
           useChecksum
-        ));
+        )
+      );
+    } catch {
+      if (fs7.existsSync(cacheFileLocation)) {
+        fs7.unlinkSync(cacheFileLocation);
+        __privateSet(
+          this,
+          _fileEntryCache,
+          FileEntryDefault.createFromFile(
+            /* filePath */
+            cacheFileLocation,
+            useChecksum
+          )
+        );
       }
     }
   }
@@ -3783,7 +3978,8 @@ var FormatResultsCache = class {
     if (fileDescriptor.notFound || fileDescriptor.changed) {
       return false;
     }
-    const hashOfOptions = (_a = getMetadataFromFileDescriptor(fileDescriptor).data) == null ? void 0 : _a.hashOfOptions;
+    const hashOfOptions =
+      (_a = getMetadataFromFileDescriptor(fileDescriptor).data) == null ? void 0 : _a.hashOfOptions;
     return hashOfOptions && hashOfOptions === getHashOfOptions(options);
   }
   /**
@@ -3817,10 +4013,12 @@ function isTTY() {
 
 // src/cli/options/get-options-for-file.js
 var import_dashify2 = __toESM(require_dashify(), 1);
-import { resolveConfig } from "../index.mjs";
+import { resolveConfig } from '../index.mjs';
 function getOptions(argv, detailedOptions) {
   return Object.fromEntries(
-    detailedOptions.filter(({ forwardToApi }) => forwardToApi).map(({ forwardToApi, name }) => [forwardToApi, argv[name]])
+    detailedOptions
+      .filter(({ forwardToApi }) => forwardToApi)
+      .map(({ forwardToApi, name }) => [forwardToApi, argv[name]])
   );
 }
 function cliifyOptions(object2, apiDetailedOptionMap) {
@@ -3834,22 +4032,20 @@ function cliifyOptions(object2, apiDetailedOptionMap) {
 }
 function createApiDetailedOptionMap(detailedOptions) {
   return Object.fromEntries(
-    detailedOptions.filter(
-      (option) => option.forwardToApi && option.forwardToApi !== option.name
-    ).map((option) => [option.forwardToApi, option])
+    detailedOptions
+      .filter(option => option.forwardToApi && option.forwardToApi !== option.name)
+      .map(option => [option.forwardToApi, option])
   );
 }
 function parseArgsToOptions(context, overrideDefaults) {
   const minimistOptions = createMinimistOptions(context.detailedOptions);
-  const apiDetailedOptionMap = createApiDetailedOptionMap(
-    context.detailedOptions
-  );
+  const apiDetailedOptionMap = createApiDetailedOptionMap(context.detailedOptions);
   return getOptions(
     normalize_cli_options_default(
       minimistParse(context.rawArguments, {
         string: minimistOptions.string,
         boolean: minimistOptions.boolean,
-        default: cliifyOptions(overrideDefaults, apiDetailedOptionMap)
+        default: cliifyOptions(overrideDefaults, apiDetailedOptionMap),
       }),
       context.detailedOptions,
       { logger: false }
@@ -3860,23 +4056,23 @@ function parseArgsToOptions(context, overrideDefaults) {
 async function getOptionsOrDie(context, filePath) {
   try {
     if (context.argv.config === false) {
-      context.logger.debug(
-        "'--no-config' option found, skip loading config file."
-      );
+      context.logger.debug("'--no-config' option found, skip loading config file.");
       return null;
     }
     context.logger.debug(
-      context.argv.config ? `load config file from '${context.argv.config}'` : `resolve config from '${filePath}'`
+      context.argv.config
+        ? `load config file from '${context.argv.config}'`
+        : `resolve config from '${filePath}'`
     );
     const options = await resolveConfig(filePath, {
       editorconfig: context.argv.editorconfig,
-      config: context.argv.config
+      config: context.argv.config,
     });
-    context.logger.debug("loaded options `" + JSON.stringify(options) + "`");
+    context.logger.debug('loaded options `' + JSON.stringify(options) + '`');
     return options;
   } catch (error) {
     context.logger.error(
-      `Invalid configuration${filePath ? ` for file "${filePath}"` : ""}:
+      `Invalid configuration${filePath ? ` for file "${filePath}"` : ''}:
 ` + error.message
     );
     process.exit(2);
@@ -3885,11 +4081,11 @@ async function getOptionsOrDie(context, filePath) {
 function applyConfigPrecedence(context, options) {
   try {
     switch (context.argv.configPrecedence) {
-      case "cli-override":
+      case 'cli-override':
         return parseArgsToOptions(context, options);
-      case "file-override":
+      case 'file-override':
         return { ...parseArgsToOptions(context), ...options };
-      case "prefer-file":
+      case 'prefer-file':
         return options || parseArgsToOptions(context);
     }
   } catch (error) {
@@ -3907,10 +4103,11 @@ async function getOptionsForFile(context, filepath) {
     filepath,
     ...applyConfigPrecedence(
       context,
-      options && normalizeOptions(options, context.supportOptions, {
-        logger: context.logger
-      })
-    )
+      options &&
+        normalizeOptions(options, context.supportOptions, {
+          logger: context.logger,
+        })
+    ),
   };
   context.logger.debug(
     `applied config-precedence (${context.argv.configPrecedence}): ${JSON.stringify(appliedOptions)}`
@@ -3925,10 +4122,10 @@ var get_options_for_file_default = getOptionsForFile;
 // src/cli/format.js
 var { getStdin, writeFormattedFile } = mockable;
 function diff(a, b) {
-  return createTwoFilesPatch("", "", a, b, "", "", { context: 2 });
+  return createTwoFilesPatch('', '', a, b, '', '', { context: 2 });
 }
 var DebugError = class extends Error {
-  name = "DebugError";
+  name = 'DebugError';
 };
 function handleError(context, filename, error, printedFilename, ignoreUnknown) {
   ignoreUnknown || (ignoreUnknown = context.argv.ignoreUnknown);
@@ -3937,7 +4134,7 @@ function handleError(context, filename, error, printedFilename, ignoreUnknown) {
     if ((context.argv.write || ignoreUnknown) && errorIsUndefinedParseError) {
       printedFilename.clear();
     } else {
-      process.stdout.write("\n");
+      process.stdout.write('\n');
     }
   }
   if (errorIsUndefinedParseError) {
@@ -3960,16 +4157,14 @@ function handleError(context, filename, error, printedFilename, ignoreUnknown) {
   } else if (error instanceof DebugError) {
     context.logger.error(`${filename}: ${error.message}`);
   } else {
-    context.logger.error(filename + ": " + (error.stack || error));
+    context.logger.error(filename + ': ' + (error.stack || error));
   }
   process.exitCode = 2;
 }
 function writeOutput(context, result, options) {
-  process.stdout.write(
-    context.argv.debugCheck ? result.filepath : result.formatted
-  );
+  process.stdout.write(context.argv.debugCheck ? result.filepath : result.formatted);
   if (options && options.cursorOffset >= 0) {
-    process.stderr.write(result.cursorOffset + "\n");
+    process.stderr.write(result.cursorOffset + '\n');
   }
 }
 async function listDifferent(context, input, options, filename) {
@@ -3977,7 +4172,7 @@ async function listDifferent(context, input, options, filename) {
     return;
   }
   try {
-    if (!await prettier.check(input, options) && !context.argv.write) {
+    if (!(await prettier.check(input, options)) && !context.argv.write) {
       context.logger.log(filename);
       process.exitCode = 1;
     }
@@ -3989,79 +4184,74 @@ async function listDifferent(context, input, options, filename) {
 async function format3(context, input, opt) {
   if (context.argv.debugPrintDoc) {
     const doc = await prettier.__debug.printToDoc(input, opt);
-    return { formatted: await prettier.__debug.formatDoc(doc) + "\n" };
+    return { formatted: (await prettier.__debug.formatDoc(doc)) + '\n' };
   }
   if (context.argv.debugPrintComments) {
     return {
       formatted: await prettier.format(
-        JSON.stringify(
-          (await prettier.formatWithCursor(input, opt)).comments || []
-        ),
-        { parser: "json" }
-      )
+        JSON.stringify((await prettier.formatWithCursor(input, opt)).comments || []),
+        { parser: 'json' }
+      ),
     };
   }
   if (context.argv.debugPrintAst) {
     const { ast } = await prettier.__debug.parse(input, opt);
     return {
-      formatted: JSON.stringify(ast)
+      formatted: JSON.stringify(ast),
     };
   }
   if (context.argv.debugCheck) {
     const pp = await prettier.format(input, opt);
     const pppp = await prettier.format(pp, opt);
     if (pp !== pppp) {
-      throw new DebugError(
-        "prettier(input) !== prettier(prettier(input))\n" + diff(pp, pppp)
-      );
+      throw new DebugError('prettier(input) !== prettier(prettier(input))\n' + diff(pp, pppp));
     } else {
-      const stringify5 = (obj) => JSON.stringify(obj, null, 2);
-      const ast = stringify5(
-        (await prettier.__debug.parse(input, opt, { massage: true })).ast
-      );
-      const past = stringify5(
-        (await prettier.__debug.parse(pp, opt, { massage: true })).ast
-      );
+      const stringify5 = obj => JSON.stringify(obj, null, 2);
+      const ast = stringify5((await prettier.__debug.parse(input, opt, { massage: true })).ast);
+      const past = stringify5((await prettier.__debug.parse(pp, opt, { massage: true })).ast);
       if (ast !== past) {
         const MAX_AST_SIZE = 2097152;
-        const astDiff = ast.length > MAX_AST_SIZE || past.length > MAX_AST_SIZE ? "AST diff too large to render" : diff(ast, past);
+        const astDiff =
+          ast.length > MAX_AST_SIZE || past.length > MAX_AST_SIZE
+            ? 'AST diff too large to render'
+            : diff(ast, past);
         throw new DebugError(
-          "ast(input) !== ast(prettier(input))\n" + astDiff + "\n" + diff(input, pp)
+          'ast(input) !== ast(prettier(input))\n' + astDiff + '\n' + diff(input, pp)
         );
       }
     }
-    return { formatted: pp, filepath: opt.filepath || "(stdin)\n" };
+    return { formatted: pp, filepath: opt.filepath || '(stdin)\n' };
   }
   const { performanceTestFlag } = context;
   if (performanceTestFlag == null ? void 0 : performanceTestFlag.debugBenchmark) {
     let benchmark;
     try {
-      ({ default: benchmark } = await import("benchmark"));
+      ({ default: benchmark } = await import('benchmark'));
     } catch {
-      context.logger.debug(
-        "'--debug-benchmark' requires the 'benchmark' package to be installed."
-      );
+      context.logger.debug("'--debug-benchmark' requires the 'benchmark' package to be installed.");
       process.exit(2);
     }
     context.logger.debug(
       "'--debug-benchmark' option found, measuring formatWithCursor with 'benchmark' module."
     );
     const suite = new benchmark.Suite();
-    suite.add("format", {
+    suite.add('format', {
       defer: true,
       async fn(deferred) {
         await prettier.formatWithCursor(input, opt);
         deferred.resolve();
-      }
+      },
     });
-    const result = await new Promise((resolve) => {
-      suite.on("complete", (event) => {
-        resolve({
-          benchmark: String(event.target),
-          hz: event.target.hz,
-          ms: event.target.times.cycle * 1e3
-        });
-      }).run({ async: false });
+    const result = await new Promise(resolve => {
+      suite
+        .on('complete', event => {
+          resolve({
+            benchmark: String(event.target),
+            hz: event.target.hz,
+            ms: event.target.times.cycle * 1e3,
+          });
+        })
+        .run({ async: false });
     });
     context.logger.debug(
       "'--debug-benchmark' measurements for formatWithCursor: " + JSON.stringify(result, null, 2)
@@ -4081,7 +4271,7 @@ async function format3(context, input, opt) {
     const results = {
       repeat,
       hz: 1e3 / averageMs,
-      ms: averageMs
+      ms: averageMs,
     };
     context.logger.debug(
       `'${performanceTestFlag.name}' measurements for formatWithCursor: ${JSON.stringify(
@@ -4095,10 +4285,7 @@ async function format3(context, input, opt) {
 }
 async function createIsIgnoredFromContextOrDie(context) {
   try {
-    return await createIsIgnoredFunction(
-      context.argv.ignorePath,
-      context.argv.withNodeModules
-    );
+    return await createIsIgnoredFunction(context.argv.ignorePath, context.argv.withNodeModules);
   } catch (e) {
     context.logger.error(e.message);
     process.exit(2);
@@ -4121,7 +4308,7 @@ async function formatStdin(context) {
       context,
       filepath ? path11.resolve(filepath) : void 0
     );
-    if (await listDifferent(context, input, options, "(stdin)")) {
+    if (await listDifferent(context, input, options, '(stdin)')) {
       return;
     }
     const formatted = await format3(context, input, options);
@@ -4134,7 +4321,7 @@ async function formatStdin(context) {
     }
     writeOutput(context, formatted, options);
   } catch (error) {
-    handleError(context, filepath || "stdin", error);
+    handleError(context, filepath || 'stdin', error);
   }
 }
 async function formatFiles(context) {
@@ -4143,14 +4330,14 @@ async function formatFiles(context) {
   let numberOfUnformattedFilesFound = 0;
   const { performanceTestFlag } = context;
   if (context.argv.check && !performanceTestFlag) {
-    context.logger.log("Checking formatting...");
+    context.logger.log('Checking formatting...');
   }
   let formatResultsCache;
   const cacheFilePath = await find_cache_file_default(context.argv.cacheLocation);
   if (context.argv.cache) {
     formatResultsCache = new format_results_cache_default(
       cacheFilePath,
-      context.argv.cacheStrategy || "content"
+      context.argv.cacheStrategy || 'content'
     );
   } else if (!context.argv.cacheLocation) {
     const stat = await statSafe(cacheFilePath);
@@ -4158,35 +4345,39 @@ async function formatFiles(context) {
       await fs8.unlink(cacheFilePath);
     }
   }
-  for await (const { error, filename, ignoreUnknown } of expandPatterns(
-    context
-  )) {
+  for await (const { error, filename, ignoreUnknown } of expandPatterns(context)) {
     if (error) {
       context.logger.error(error);
       process.exitCode = 2;
       continue;
     }
     const isFileIgnored = isIgnored(filename);
-    if (isFileIgnored && (context.argv.debugCheck || context.argv.write || context.argv.check || context.argv.listDifferent)) {
+    if (
+      isFileIgnored &&
+      (context.argv.debugCheck ||
+        context.argv.write ||
+        context.argv.check ||
+        context.argv.listDifferent)
+    ) {
       continue;
     }
     const options = {
-      ...await get_options_for_file_default(context, filename),
-      filepath: filename
+      ...(await get_options_for_file_default(context, filename)),
+      filepath: filename,
     };
     const fileNameToDisplay = normalizeToPosix(path11.relative(cwd2, filename));
     let printedFilename;
     if (isTTY()) {
       printedFilename = context.logger.log(fileNameToDisplay, {
         newline: false,
-        clearable: true
+        clearable: true,
       });
     }
     let input;
     try {
-      input = await fs8.readFile(filename, "utf8");
+      input = await fs8.readFile(filename, 'utf8');
     } catch (error2) {
-      context.logger.log("");
+      context.logger.log('');
       context.logger.error(
         `Unable to read file "${fileNameToDisplay}":
 ${error2.message}`
@@ -4200,10 +4391,10 @@ ${error2.message}`
       continue;
     }
     const start = Date.now();
-    const isCacheExists = formatResultsCache == null ? void 0 : formatResultsCache.existsAvailableFormatResultsCache(
-      filename,
-      options
-    );
+    const isCacheExists =
+      formatResultsCache == null
+        ? void 0
+        : formatResultsCache.existsAvailableFormatResultsCache(filename, options);
     let result;
     let output;
     try {
@@ -4214,13 +4405,7 @@ ${error2.message}`
       }
       output = result.formatted;
     } catch (error2) {
-      handleError(
-        context,
-        fileNameToDisplay,
-        error2,
-        printedFilename,
-        ignoreUnknown
-      );
+      handleError(context, fileNameToDisplay, error2, printedFilename, ignoreUnknown);
       continue;
     }
     const isDifferent = output !== input;
@@ -4265,7 +4450,9 @@ ${error2.message}`
       writeOutput(context, result, options);
     }
     if (shouldSetCache) {
-      formatResultsCache == null ? void 0 : formatResultsCache.setFormatResultsCache(filename, options);
+      formatResultsCache == null
+        ? void 0
+        : formatResultsCache.setFormatResultsCache(filename, options);
     } else {
       formatResultsCache == null ? void 0 : formatResultsCache.removeFormatResultsCache(filename);
     }
@@ -4281,39 +4468,49 @@ ${error2.message}`
   formatResultsCache == null ? void 0 : formatResultsCache.reconcile();
   if (context.argv.check) {
     if (numberOfUnformattedFilesFound === 0) {
-      context.logger.log("All matched files use Prettier code style!");
+      context.logger.log('All matched files use Prettier code style!');
     } else {
-      const files = numberOfUnformattedFilesFound === 1 ? "the above file" : `${numberOfUnformattedFilesFound} files`;
+      const files =
+        numberOfUnformattedFilesFound === 1
+          ? 'the above file'
+          : `${numberOfUnformattedFilesFound} files`;
       context.logger.warn(
-        context.argv.write ? `Code style issues fixed in ${files}.` : `Code style issues found in ${files}. Run Prettier with --write to fix.`
+        context.argv.write
+          ? `Code style issues fixed in ${files}.`
+          : `Code style issues found in ${files}. Run Prettier with --write to fix.`
       );
     }
   }
-  if ((context.argv.check || context.argv.listDifferent) && numberOfUnformattedFilesFound > 0 && !process.exitCode && !context.argv.write) {
+  if (
+    (context.argv.check || context.argv.listDifferent) &&
+    numberOfUnformattedFilesFound > 0 &&
+    !process.exitCode &&
+    !context.argv.write
+  ) {
     process.exitCode = 1;
   }
 }
 
 // src/cli/logger.js
-import readline from "readline";
+import readline from 'readline';
 
 // node_modules/strip-ansi/node_modules/ansi-regex/index.js
 function ansiRegex({ onlyFirst = false } = {}) {
-  const ST = "(?:\\u0007|\\u001B\\u005C|\\u009C)";
+  const ST = '(?:\\u0007|\\u001B\\u005C|\\u009C)';
   const pattern = [
     `[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]+)*|[a-zA-Z\\d]+(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]*)*)?${ST})`,
-    "(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PR-TZcf-nq-uy=><~]))"
-  ].join("|");
-  return new RegExp(pattern, onlyFirst ? void 0 : "g");
+    '(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PR-TZcf-nq-uy=><~]))',
+  ].join('|');
+  return new RegExp(pattern, onlyFirst ? void 0 : 'g');
 }
 
 // node_modules/strip-ansi/index.js
 var regex = ansiRegex();
 function stripAnsi(string) {
-  if (typeof string !== "string") {
+  if (typeof string !== 'string') {
     throw new TypeError(`Expected a \`string\`, got \`${typeof string}\``);
   }
-  return string.replace(regex, "");
+  return string.replace(regex, '');
 }
 
 // node_modules/wcwidth.js/combining.js
@@ -4459,13 +4656,13 @@ var combining_default = [
   [119362, 119364],
   [917505, 917505],
   [917536, 917631],
-  [917760, 917999]
+  [917760, 917999],
 ];
 
 // node_modules/wcwidth.js/index.js
 var DEFAULTS = {
   nul: 0,
-  control: 0
+  control: 0,
 };
 function bisearch(ucs) {
   let min = 0;
@@ -4482,23 +4679,31 @@ function bisearch(ucs) {
 }
 function wcwidth(ucs, opts) {
   if (ucs === 0) return opts.nul;
-  if (ucs < 32 || ucs >= 127 && ucs < 160) return opts.control;
+  if (ucs < 32 || (ucs >= 127 && ucs < 160)) return opts.control;
   if (bisearch(ucs)) return 0;
-  return 1 + (ucs >= 4352 && (ucs <= 4447 || // Hangul Jamo init. consonants
-  ucs == 9001 || ucs == 9002 || ucs >= 11904 && ucs <= 42191 && ucs != 12351 || // CJK ... Yi
-  ucs >= 44032 && ucs <= 55203 || // Hangul Syllables
-  ucs >= 63744 && ucs <= 64255 || // CJK Compatibility Ideographs
-  ucs >= 65040 && ucs <= 65049 || // Vertical forms
-  ucs >= 65072 && ucs <= 65135 || // CJK Compatibility Forms
-  ucs >= 65280 && ucs <= 65376 || // Fullwidth Forms
-  ucs >= 65504 && ucs <= 65510 || ucs >= 131072 && ucs <= 196605 || ucs >= 196608 && ucs <= 262141));
+  return (
+    1 +
+    (ucs >= 4352 &&
+      (ucs <= 4447 || // Hangul Jamo init. consonants
+        ucs == 9001 ||
+        ucs == 9002 ||
+        (ucs >= 11904 && ucs <= 42191 && ucs != 12351) || // CJK ... Yi
+        (ucs >= 44032 && ucs <= 55203) || // Hangul Syllables
+        (ucs >= 63744 && ucs <= 64255) || // CJK Compatibility Ideographs
+        (ucs >= 65040 && ucs <= 65049) || // Vertical forms
+        (ucs >= 65072 && ucs <= 65135) || // CJK Compatibility Forms
+        (ucs >= 65280 && ucs <= 65376) || // Fullwidth Forms
+        (ucs >= 65504 && ucs <= 65510) ||
+        (ucs >= 131072 && ucs <= 196605) ||
+        (ucs >= 196608 && ucs <= 262141)))
+  );
 }
 function wcswidth(str, opts) {
   let h;
   let l;
   let s = 0;
   let n;
-  if (typeof str !== "string") return wcwidth(str, opts);
+  if (typeof str !== 'string') return wcwidth(str, opts);
   for (let i = 0; i < str.length; i++) {
     h = str.charCodeAt(i);
     if (h >= 55296 && h <= 56319) {
@@ -4515,13 +4720,13 @@ function wcswidth(str, opts) {
   }
   return s;
 }
-var _ = (str) => wcswidth(str, DEFAULTS);
+var _ = str => wcswidth(str, DEFAULTS);
 _.config = (opts = {}) => {
   opts = {
     ...DEFAULTS,
-    ...opts
+    ...opts,
   };
-  return (str) => wcswidth(str, opts);
+  return str => wcswidth(str, opts);
 };
 var wcwidth_default = _;
 
@@ -4529,7 +4734,7 @@ var wcwidth_default = _;
 var countLines = (stream, text) => {
   const columns = stream.columns || 80;
   let lineCount = 0;
-  for (const line of stripAnsi(text).split("\n")) {
+  for (const line of stripAnsi(text).split('\n')) {
     lineCount += Math.max(1, Math.ceil(wcwidth_default(line) / columns));
   }
   return lineCount;
@@ -4544,65 +4749,65 @@ var clear = (stream, text) => () => {
     readline.cursorTo(stream, 0);
   }
 };
-var emptyLogResult = { clear() {
-} };
-function createLogger(logLevel = "log") {
+var emptyLogResult = { clear() {} };
+function createLogger(logLevel = 'log') {
   return {
     logLevel,
-    warn: createLogFunc("warn", "yellow"),
-    error: createLogFunc("error", "red"),
-    debug: createLogFunc("debug", "blue"),
-    log: createLogFunc("log")
+    warn: createLogFunc('warn', 'yellow'),
+    error: createLogFunc('error', 'red'),
+    debug: createLogFunc('debug', 'blue'),
+    log: createLogFunc('log'),
   };
   function createLogFunc(loggerName, color) {
     if (!shouldLog(loggerName)) {
       return () => emptyLogResult;
     }
-    const stream = process[loggerName === "log" ? "stdout" : "stderr"];
-    const chalkInstance = loggerName === "log" ? source_default : chalkStderr;
-    const prefix = color ? `[${chalkInstance[color](loggerName)}] ` : "";
+    const stream = process[loggerName === 'log' ? 'stdout' : 'stderr'];
+    const chalkInstance = loggerName === 'log' ? source_default : chalkStderr;
+    const prefix = color ? `[${chalkInstance[color](loggerName)}] ` : '';
     return (message, options) => {
       options = {
         newline: true,
         clearable: false,
-        ...options
+        ...options,
       };
-      message = string_replace_all_default(
-        /* isOptionalObject */
-        false,
-        message,
-        /^/gmu,
-        prefix
-      ) + (options.newline ? "\n" : "");
+      message =
+        string_replace_all_default(
+          /* isOptionalObject */
+          false,
+          message,
+          /^/gmu,
+          prefix
+        ) + (options.newline ? '\n' : '');
       stream.write(message);
       if (options.clearable) {
         return {
-          clear: clear(stream, message)
+          clear: clear(stream, message),
         };
       }
     };
   }
   function shouldLog(loggerName) {
     switch (logLevel) {
-      case "silent":
+      case 'silent':
         return false;
-      case "debug":
-        if (loggerName === "debug") {
+      case 'debug':
+        if (loggerName === 'debug') {
           return true;
         }
       // fall through
-      case "log":
-        if (loggerName === "log") {
+      case 'log':
+        if (loggerName === 'log') {
           return true;
         }
       // fall through
-      case "warn":
-        if (loggerName === "warn") {
+      case 'warn':
+        if (loggerName === 'warn') {
           return true;
         }
       // fall through
-      case "error":
-        return loggerName === "error";
+      case 'error':
+        return loggerName === 'error';
     }
   }
 }
@@ -4610,29 +4815,26 @@ var logger_default = createLogger;
 
 // src/cli/print-support-info.js
 var import_fast_json_stable_stringify3 = __toESM(require_fast_json_stable_stringify(), 1);
-import { format as format4, getSupportInfo as getSupportInfo2 } from "../index.mjs";
-var sortByName = (array2) => array2.sort((a, b) => a.name.localeCompare(b.name));
+import { format as format4, getSupportInfo as getSupportInfo2 } from '../index.mjs';
+var sortByName = array2 => array2.sort((a, b) => a.name.localeCompare(b.name));
 async function printSupportInfo() {
   const { languages, options } = await getSupportInfo2();
   const supportInfo = {
     languages: sortByName(languages),
-    options: sortByName(options).map(
-      (option) => omit(option, ["cliName", "cliCategory", "cliDescription"])
-    )
+    options: sortByName(options).map(option =>
+      omit(option, ['cliName', 'cliCategory', 'cliDescription'])
+    ),
   };
-  printToScreen(await format4((0, import_fast_json_stable_stringify3.default)(supportInfo), { parser: "json" }));
+  printToScreen(
+    await format4((0, import_fast_json_stable_stringify3.default)(supportInfo), { parser: 'json' })
+  );
 }
 var print_support_info_default = printSupportInfo;
 
 // src/cli/constants.evaluate.js
-var categoryOrder = [
-  "Output",
-  "Format",
-  "Config",
-  "Editor",
-  "Other"
-];
-var usageSummary = "Usage: prettier [options] [file/dir/glob ...]\n\nBy default, output is written to stdout.\nStdin is read if it is piped to Prettier and no files are given.";
+var categoryOrder = ['Output', 'Format', 'Config', 'Editor', 'Other'];
+var usageSummary =
+  'Usage: prettier [options] [file/dir/glob ...]\n\nBy default, output is written to stdout.\nStdin is read if it is piped to Prettier and no files are given.';
 
 // src/cli/usage.js
 var OPTION_USAGE_THRESHOLD = 25;
@@ -4644,62 +4846,68 @@ function indent(str, spaces) {
     false,
     str,
     /^/gmu,
-    " ".repeat(spaces)
+    ' '.repeat(spaces)
   );
 }
 function createDefaultValueDisplay(value) {
-  return Array.isArray(value) ? `[${value.map(createDefaultValueDisplay).join(", ")}]` : value;
+  return Array.isArray(value) ? `[${value.map(createDefaultValueDisplay).join(', ')}]` : value;
 }
 function getOptionDefaultValue(context, optionName) {
   var _a;
-  const option = context.detailedOptions.find(
-    ({ name }) => name === optionName
-  );
+  const option = context.detailedOptions.find(({ name }) => name === optionName);
   if ((option == null ? void 0 : option.default) !== void 0) {
     return option.default;
   }
   const optionCamelName = camelCase(optionName);
-  return formatOptionsHiddenDefaults[optionCamelName] ?? ((_a = context.supportOptions.find(
-    (option2) => !option2.deprecated && option2.name === optionCamelName
-  )) == null ? void 0 : _a.default);
+  return (
+    formatOptionsHiddenDefaults[optionCamelName] ??
+    ((_a = context.supportOptions.find(
+      option2 => !option2.deprecated && option2.name === optionCamelName
+    )) == null
+      ? void 0
+      : _a.default)
+  );
 }
 function createOptionUsageHeader(option) {
   const name = `--${option.name}`;
   const alias = option.alias ? `-${option.alias},` : null;
   const type = createOptionUsageType(option);
-  return [alias, name, type].filter(Boolean).join(" ");
+  return [alias, name, type].filter(Boolean).join(' ');
 }
 function createOptionUsageRow(header, content, threshold) {
-  const separator = header.length >= threshold ? `
-${" ".repeat(threshold)}` : " ".repeat(threshold - header.length);
+  const separator =
+    header.length >= threshold
+      ? `
+${' '.repeat(threshold)}`
+      : ' '.repeat(threshold - header.length);
   const description = string_replace_all_default(
     /* isOptionalObject */
     false,
     content,
-    "\n",
+    '\n',
     `
-${" ".repeat(threshold)}`
+${' '.repeat(threshold)}`
   );
   return `${header}${separator}${description}`;
 }
 function createOptionUsageType(option) {
   switch (option.type) {
-    case "boolean":
+    case 'boolean':
       return null;
-    case "choice":
-      return `<${option.choices.filter((choice) => !choice.deprecated).map((choice) => choice.value).join("|")}>`;
+    case 'choice':
+      return `<${option.choices
+        .filter(choice => !choice.deprecated)
+        .map(choice => choice.value)
+        .join('|')}>`;
     default:
       return `<${option.type}>`;
   }
 }
 function createChoiceUsages(choices, margin, indentation) {
-  const activeChoices = choices.filter((choice) => !choice.deprecated);
-  const threshold = Math.max(0, ...activeChoices.map((choice) => choice.value.length)) + margin;
-  return activeChoices.map(
-    (choice) => indent(
-      createOptionUsageRow(choice.value, choice.description, threshold),
-      indentation
-    )
+  const activeChoices = choices.filter(choice => !choice.deprecated);
+  const threshold = Math.max(0, ...activeChoices.map(choice => choice.value.length)) + margin;
+  return activeChoices.map(choice =>
+    indent(createOptionUsageRow(choice.value, choice.description, threshold), indentation)
   );
 }
 function createOptionUsage(context, option, threshold) {
@@ -4707,86 +4915,90 @@ function createOptionUsage(context, option, threshold) {
   const optionDefaultValue = getOptionDefaultValue(context, option.name);
   return createOptionUsageRow(
     header,
-    `${option.description}${optionDefaultValue === void 0 ? "" : `
-Defaults to ${createDefaultValueDisplay(optionDefaultValue)}.`}`,
+    `${option.description}${
+      optionDefaultValue === void 0
+        ? ''
+        : `
+Defaults to ${createDefaultValueDisplay(optionDefaultValue)}.`
+    }`,
     threshold
   );
 }
 function getOptionsWithOpposites(options) {
-  const optionsWithOpposites = options.map((option) => [
+  const optionsWithOpposites = options.map(option => [
     option.description ? option : null,
-    option.oppositeDescription ? {
-      ...option,
-      name: `no-${option.name}`,
-      type: "boolean",
-      description: option.oppositeDescription
-    } : null
+    option.oppositeDescription
+      ? {
+          ...option,
+          name: `no-${option.name}`,
+          type: 'boolean',
+          description: option.oppositeDescription,
+        }
+      : null,
   ]);
   return optionsWithOpposites.flat().filter(Boolean);
 }
 function createUsage(context) {
-  const sortedOptions = context.detailedOptions.sort(
-    (optionA, optionB) => optionA.name.localeCompare(optionB.name)
+  const sortedOptions = context.detailedOptions.sort((optionA, optionB) =>
+    optionA.name.localeCompare(optionB.name)
   );
   const options = getOptionsWithOpposites(sortedOptions).filter(
     // remove unnecessary option (e.g. `semi`, `color`, etc.), which is only used for --help <flag>
-    (option) => !(option.type === "boolean" && option.oppositeDescription && !option.name.startsWith("no-"))
+    option =>
+      !(option.type === 'boolean' && option.oppositeDescription && !option.name.startsWith('no-'))
   );
-  const groupedOptions = groupBy(options, (option) => option.category);
+  const groupedOptions = groupBy(options, option => option.category);
   const firstCategories = categoryOrder.slice(0, -1);
   const lastCategories = categoryOrder.slice(-1);
   const restCategories = Object.keys(groupedOptions).filter(
-    (category) => !categoryOrder.includes(category)
+    category => !categoryOrder.includes(category)
   );
-  const allCategories = [
-    ...firstCategories,
-    ...restCategories,
-    ...lastCategories
-  ];
-  const optionsUsage = allCategories.map((category) => {
-    const categoryOptions = groupedOptions[category].map(
-      (option) => createOptionUsage(context, option, OPTION_USAGE_THRESHOLD)
-    ).join("\n");
+  const allCategories = [...firstCategories, ...restCategories, ...lastCategories];
+  const optionsUsage = allCategories.map(category => {
+    const categoryOptions = groupedOptions[category]
+      .map(option => createOptionUsage(context, option, OPTION_USAGE_THRESHOLD))
+      .join('\n');
     return `${category} options:
 
 ${indent(categoryOptions, 2)}`;
   });
-  return [usageSummary, ...optionsUsage, ""].join("\n\n");
+  return [usageSummary, ...optionsUsage, ''].join('\n\n');
 }
 function createPluginDefaults(pluginDefaults) {
   if (!pluginDefaults || Object.keys(pluginDefaults).length === 0) {
-    return "";
+    return '';
   }
-  const defaults = Object.entries(pluginDefaults).sort(
-    ([pluginNameA], [pluginNameB]) => pluginNameA.localeCompare(pluginNameB)
-  ).map(
-    ([plugin, value]) => `* ${plugin}: ${createDefaultValueDisplay(value)}`
-  ).join("\n");
+  const defaults = Object.entries(pluginDefaults)
+    .sort(([pluginNameA], [pluginNameB]) => pluginNameA.localeCompare(pluginNameB))
+    .map(([plugin, value]) => `* ${plugin}: ${createDefaultValueDisplay(value)}`)
+    .join('\n');
   return `
 Plugin defaults:
 ${defaults}`;
 }
 function createDetailedUsage(context, flag) {
   const option = getOptionsWithOpposites(context.detailedOptions).find(
-    (option2) => option2.name === flag || option2.alias === flag
+    option2 => option2.name === flag || option2.alias === flag
   );
   const header = createOptionUsageHeader(option);
   const description = `
 
 ${indent(option.description, 2)}`;
-  const choices = option.type !== "choice" ? "" : `
+  const choices =
+    option.type !== 'choice'
+      ? ''
+      : `
 
 Valid options:
 
-${createChoiceUsages(
-    option.choices,
-    CHOICE_USAGE_MARGIN,
-    CHOICE_USAGE_INDENTATION
-  ).join("\n")}`;
+${createChoiceUsages(option.choices, CHOICE_USAGE_MARGIN, CHOICE_USAGE_INDENTATION).join('\n')}`;
   const optionDefaultValue = getOptionDefaultValue(context, option.name);
-  const defaults = optionDefaultValue !== void 0 ? `
+  const defaults =
+    optionDefaultValue !== void 0
+      ? `
 
-Default: ${createDefaultValueDisplay(optionDefaultValue)}` : "";
+Default: ${createDefaultValueDisplay(optionDefaultValue)}`
+      : '';
   const pluginDefaults = createPluginDefaults(option.pluginDefaults);
   return `${header}${description}${choices}${defaults}${pluginDefaults}`;
 }
@@ -4795,18 +5007,14 @@ Default: ${createDefaultValueDisplay(optionDefaultValue)}` : "";
 async function run(rawArguments = process.argv.slice(2)) {
   let logger = logger_default();
   try {
-    const { logLevel } = parseArgvWithoutPlugins(
-      rawArguments,
-      logger,
-      "log-level"
-    );
+    const { logLevel } = parseArgvWithoutPlugins(rawArguments, logger, 'log-level');
     if (logLevel !== logger.logLevel) {
       logger = logger_default(logLevel);
     }
     const context = new context_default({ rawArguments, logger });
     await context.init();
-    if (logger.logLevel !== "debug" && context.performanceTestFlag) {
-      context.logger = logger_default("debug");
+    if (logger.logLevel !== 'debug' && context.performanceTestFlag) {
+      context.logger = logger_default('debug');
     }
     await main(context);
   } catch (error) {
@@ -4817,19 +5025,19 @@ async function run(rawArguments = process.argv.slice(2)) {
 async function main(context) {
   context.logger.debug(`normalized argv: ${JSON.stringify(context.argv)}`);
   if (context.argv.check && context.argv.listDifferent) {
-    throw new Error("Cannot use --check and --list-different together.");
+    throw new Error('Cannot use --check and --list-different together.');
   }
   if (context.argv.write && context.argv.debugCheck) {
-    throw new Error("Cannot use --write and --debug-check together.");
+    throw new Error('Cannot use --write and --debug-check together.');
   }
   if (context.argv.findConfigPath && context.filePatterns.length > 0) {
-    throw new Error("Cannot use --find-config-path with multiple files");
+    throw new Error('Cannot use --find-config-path with multiple files');
   }
   if (context.argv.fileInfo && context.filePatterns.length > 0) {
-    throw new Error("Cannot use --file-info with multiple files");
+    throw new Error('Cannot use --file-info with multiple files');
   }
   if (!context.argv.cache && context.argv.cacheStrategy) {
-    throw new Error("`--cache-strategy` cannot be used without `--cache`.");
+    throw new Error('`--cache-strategy` cannot be used without `--cache`.');
   }
   if (context.argv.version) {
     printToScreen(prettier2.version);
@@ -4837,7 +5045,9 @@ async function main(context) {
   }
   if (context.argv.help !== void 0) {
     printToScreen(
-      typeof context.argv.help === "string" && context.argv.help !== "" ? createDetailedUsage(context, context.argv.help) : createUsage(context)
+      typeof context.argv.help === 'string' && context.argv.help !== ''
+        ? createDetailedUsage(context, context.argv.help)
+        : createUsage(context)
     );
     return;
   }
@@ -4856,7 +5066,7 @@ async function main(context) {
   const useStdin = !hasFilePatterns && (!process.stdin.isTTY || context.argv.filepath);
   if (useStdin) {
     if (context.argv.cache) {
-      throw new Error("`--cache` cannot be used when formatting stdin.");
+      throw new Error('`--cache` cannot be used when formatting stdin.');
     }
     await formatStdin(context);
     return;
@@ -4868,6 +5078,4 @@ async function main(context) {
   process.exitCode = 1;
   printToScreen(createUsage(context));
 }
-export {
-  run
-};
+export { run };

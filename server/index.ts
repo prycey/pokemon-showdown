@@ -51,7 +51,7 @@ require('source-map-support').install();
 // Check for version
 const nodeVersion = parseInt(process.versions.node);
 if (isNaN(nodeVersion) || nodeVersion < 18) {
-	throw new Error("We require Node.js version 18 or later; you're using " + process.version);
+  throw new Error("We require Node.js version 18 or later; you're using " + process.version);
 }
 
 import { FS, Repl } from '../lib';
@@ -62,80 +62,80 @@ import { FS, Repl } from '../lib';
  * and many of our imports require the `Config` global to be set up.
  *********************************************************/
 function setupGlobals() {
-	const ConfigLoader = require('./config-loader');
-	global.Config = ConfigLoader.Config;
+  const ConfigLoader = require('./config-loader');
+  global.Config = ConfigLoader.Config;
 
-	const { Monitor } = require('./monitor');
-	global.Monitor = Monitor;
-	global.__version = { head: '' };
-	void Monitor.version().then((hash: any) => {
-		global.__version.tree = hash;
-	});
-	Repl.cleanup();
+  const { Monitor } = require('./monitor');
+  global.Monitor = Monitor;
+  global.__version = { head: '' };
+  void Monitor.version().then((hash: any) => {
+    global.__version.tree = hash;
+  });
+  Repl.cleanup();
 
-	if (Config.watchconfig) {
-		FS('config/config.js').onModify(() => {
-			try {
-				global.Config = ConfigLoader.load(true);
-				// ensure that battle prefixes configured via the chat plugin are not overwritten
-				// by battle prefixes manually specified in config.js
-				Chat.plugins['username-prefixes']?.prefixManager.refreshConfig(true);
-				Monitor.notice('Reloaded ../config/config.js');
-			} catch (e: any) {
-				Monitor.adminlog("Error reloading ../config/config.js: " + e.stack);
-			}
-		});
-	}
+  if (Config.watchconfig) {
+    FS('config/config.js').onModify(() => {
+      try {
+        global.Config = ConfigLoader.load(true);
+        // ensure that battle prefixes configured via the chat plugin are not overwritten
+        // by battle prefixes manually specified in config.js
+        Chat.plugins['username-prefixes']?.prefixManager.refreshConfig(true);
+        Monitor.notice('Reloaded ../config/config.js');
+      } catch (e: any) {
+        Monitor.adminlog('Error reloading ../config/config.js: ' + e.stack);
+      }
+    });
+  }
 
-	const { Dex } = require('../sim/dex');
-	global.Dex = Dex;
-	global.toID = Dex.toID;
+  const { Dex } = require('../sim/dex');
+  global.Dex = Dex;
+  global.toID = Dex.toID;
 
-	const { Teams } = require('../sim/teams');
-	global.Teams = Teams;
+  const { Teams } = require('../sim/teams');
+  global.Teams = Teams;
 
-	const { LoginServer } = require('./loginserver');
-	global.LoginServer = LoginServer;
+  const { LoginServer } = require('./loginserver');
+  global.LoginServer = LoginServer;
 
-	const { Ladders } = require('./ladders');
-	global.Ladders = Ladders;
+  const { Ladders } = require('./ladders');
+  global.Ladders = Ladders;
 
-	const { Chat } = require('./chat');
-	global.Chat = Chat;
+  const { Chat } = require('./chat');
+  global.Chat = Chat;
 
-	const { Users } = require('./users');
-	global.Users = Users;
+  const { Users } = require('./users');
+  global.Users = Users;
 
-	const { Punishments } = require('./punishments');
-	global.Punishments = Punishments;
+  const { Punishments } = require('./punishments');
+  global.Punishments = Punishments;
 
-	const { Rooms } = require('./rooms');
-	global.Rooms = Rooms;
-	// We initialize the global room here because roomlogs.ts needs the Rooms global
-	Rooms.global = new Rooms.GlobalRoomState();
+  const { Rooms } = require('./rooms');
+  global.Rooms = Rooms;
+  // We initialize the global room here because roomlogs.ts needs the Rooms global
+  Rooms.global = new Rooms.GlobalRoomState();
 
-	const Verifier = require('./verifier');
-	global.Verifier = Verifier;
-	Verifier.PM.spawn();
+  const Verifier = require('./verifier');
+  global.Verifier = Verifier;
+  Verifier.PM.spawn();
 
-	const { Tournaments } = require('./tournaments');
-	global.Tournaments = Tournaments;
+  const { Tournaments } = require('./tournaments');
+  global.Tournaments = Tournaments;
 
-	const { IPTools } = require('./ip-tools');
-	global.IPTools = IPTools;
-	void IPTools.loadHostsAndRanges();
+  const { IPTools } = require('./ip-tools');
+  global.IPTools = IPTools;
+  void IPTools.loadHostsAndRanges();
 }
 setupGlobals();
 
 if (Config.crashguard) {
-	// graceful crash - allow current battles to finish before restarting
-	process.on('uncaughtException', (err: Error) => {
-		Monitor.crashlog(err, 'The main process');
-	});
+  // graceful crash - allow current battles to finish before restarting
+  process.on('uncaughtException', (err: Error) => {
+    Monitor.crashlog(err, 'The main process');
+  });
 
-	process.on('unhandledRejection', err => {
-		Monitor.crashlog(err as any, 'A main process Promise');
-	});
+  process.on('unhandledRejection', err => {
+    Monitor.crashlog(err as any, 'A main process Promise');
+  });
 }
 
 /*********************************************************
@@ -146,21 +146,21 @@ import { Sockets } from './sockets';
 global.Sockets = Sockets;
 
 export function listen(port: number, bindAddress: string, workerCount: number) {
-	Sockets.listen(port, bindAddress, workerCount);
+  Sockets.listen(port, bindAddress, workerCount);
 }
 
 if (require.main === module) {
-	// Launch the server directly when app.js is the main module. Otherwise,
-	// in the case of app.js being imported as a module (e.g. unit tests),
-	// postpone launching until app.listen() is called.
-	let port;
-	for (const arg of process.argv) {
-		if (/^[0-9]+$/.test(arg)) {
-			port = parseInt(arg);
-			break;
-		}
-	}
-	Sockets.listen(port);
+  // Launch the server directly when app.js is the main module. Otherwise,
+  // in the case of app.js being imported as a module (e.g. unit tests),
+  // postpone launching until app.listen() is called.
+  let port;
+  for (const arg of process.argv) {
+    if (/^[0-9]+$/.test(arg)) {
+      port = parseInt(arg);
+      break;
+    }
+  }
+  Sockets.listen(port);
 }
 
 /*********************************************************
@@ -183,22 +183,22 @@ Repl.start('app', cmd => eval(cmd));
  *********************************************************/
 
 if (Config.startuphook) {
-	process.nextTick(Config.startuphook);
+  process.nextTick(Config.startuphook);
 }
 
 if (Config.ofemain) {
-	try {
-		require.resolve('node-oom-heapdump');
-	} catch (e: any) {
-		if (e.code !== 'MODULE_NOT_FOUND') throw e; // should never happen
-		throw new Error(
-			'node-oom-heapdump is not installed, but it is a required dependency if Config.ofe is set to true! ' +
-			'Run npm install node-oom-heapdump and restart the server.'
-		);
-	}
+  try {
+    require.resolve('node-oom-heapdump');
+  } catch (e: any) {
+    if (e.code !== 'MODULE_NOT_FOUND') throw e; // should never happen
+    throw new Error(
+      'node-oom-heapdump is not installed, but it is a required dependency if Config.ofe is set to true! ' +
+        'Run npm install node-oom-heapdump and restart the server.'
+    );
+  }
 
-	// Create a heapdump if the process runs out of memory.
-	global.nodeOomHeapdump = (require as any)('node-oom-heapdump')({
-		addTimestamp: true,
-	});
+  // Create a heapdump if the process runs out of memory.
+  global.nodeOomHeapdump = (require as any)('node-oom-heapdump')({
+    addTimestamp: true,
+  });
 }

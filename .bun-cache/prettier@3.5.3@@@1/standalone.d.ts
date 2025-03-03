@@ -1,4 +1,4 @@
-import { CursorOptions, CursorResult, Options, SupportInfo } from "./index.js";
+import { CursorOptions, CursorResult, Options, SupportInfo } from './index.js';
 
 /**
  * formatWithCursor both formats the code, and translates a cursor position from unformatted code to formatted code.
@@ -11,10 +11,7 @@ import { CursorOptions, CursorResult, Options, SupportInfo } from "./index.js";
  * ```
  * `-> { formatted: "1;\n", cursorOffset: 1 }`
  */
-export function formatWithCursor(
-  source: string,
-  options: CursorOptions,
-): Promise<CursorResult>;
+export function formatWithCursor(source: string, options: CursorOptions): Promise<CursorResult>;
 
 /**
  * `format` is used to format text using Prettier. [Options](https://prettier.io/docs/options) may be provided to override the defaults.

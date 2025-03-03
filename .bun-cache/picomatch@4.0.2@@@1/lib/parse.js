@@ -12,7 +12,7 @@ const {
   POSIX_REGEX_SOURCE,
   REGEX_NON_SPECIAL_CHARS,
   REGEX_SPECIAL_CHARS_BACKREF,
-  REPLACEMENTS
+  REPLACEMENTS,
 } = constants;
 
 /**
@@ -60,7 +60,8 @@ const parse = (input, options) => {
   input = REPLACEMENTS[input] || input;
 
   const opts = { ...options };
-  const max = typeof opts.maxLength === 'number' ? Math.min(MAX_LENGTH, opts.maxLength) : MAX_LENGTH;
+  const max =
+    typeof opts.maxLength === 'number' ? Math.min(MAX_LENGTH, opts.maxLength) : MAX_LENGTH;
 
   let len = input.length;
   if (len > max) {
@@ -88,7 +89,7 @@ const parse = (input, options) => {
     QMARK,
     QMARK_NO_DOT,
     STAR,
-    START_ANCHOR
+    START_ANCHOR,
   } = PLATFORM_CHARS;
 
   const globstar = opts => {
@@ -123,7 +124,7 @@ const parse = (input, options) => {
     parens: 0,
     quotes: 0,
     globstar: false,
-    tokens
+    tokens,
   };
 
   input = utils.removePrefix(input, state);
@@ -140,8 +141,8 @@ const parse = (input, options) => {
    */
 
   const eos = () => state.index === len - 1;
-  const peek = state.peek = (n = 1) => input[state.index + n];
-  const advance = state.advance = () => input[++state.index] || '';
+  const peek = (state.peek = (n = 1) => input[state.index + n]);
+  const advance = (state.advance = () => input[++state.index] || '');
   const remaining = () => input.slice(state.index + 1);
   const consume = (value = '', num = 0) => {
     state.consumed += value;
@@ -192,7 +193,8 @@ const parse = (input, options) => {
   const push = tok => {
     if (prev.type === 'globstar') {
       const isBrace = state.braces > 0 && (tok.type === 'comma' || tok.type === 'brace');
-      const isExtglob = tok.extglob === true || (extglobs.length && (tok.type === 'pipe' || tok.type === 'paren'));
+      const isExtglob =
+        tok.extglob === true || (extglobs.length && (tok.type === 'pipe' || tok.type === 'paren'));
 
       if (tok.type !== 'slash' && tok.type !== 'paren' && !isBrace && !isExtglob) {
         state.output = state.output.slice(0, -prev.output.length);
@@ -309,7 +311,7 @@ const parse = (input, options) => {
         output = output.replace(/\\/g, '');
       } else {
         output = output.replace(/\\+/g, m => {
-          return m.length % 2 === 0 ? '\\\\' : (m ? '\\' : '');
+          return m.length % 2 === 0 ? '\\\\' : m ? '\\' : '';
         });
       }
     }
@@ -555,7 +557,7 @@ const parse = (input, options) => {
         value,
         output: '(',
         outputIndex: state.output.length,
-        tokensIndex: state.tokens.length
+        tokensIndex: state.tokens.length,
       };
 
       braces.push(open);
@@ -598,7 +600,7 @@ const parse = (input, options) => {
         value = output = '\\}';
         state.output = out;
         for (const t of toks) {
-          state.output += (t.output || t.value);
+          state.output += t.output || t.value;
         }
       }
 
@@ -674,7 +676,7 @@ const parse = (input, options) => {
         continue;
       }
 
-      if ((state.braces + state.parens) === 0 && prev.type !== 'bos' && prev.type !== 'slash') {
+      if (state.braces + state.parens === 0 && prev.type !== 'bos' && prev.type !== 'slash') {
         push({ type: 'text', value, output: DOT_LITERAL });
         continue;
       }
@@ -698,7 +700,10 @@ const parse = (input, options) => {
         const next = peek();
         let output = value;
 
-        if ((prev.value === '(' && !/[!=<:]/.test(next)) || (next === '<' && !/<([!=]|\w+>)/.test(remaining()))) {
+        if (
+          (prev.value === '(' && !/[!=<:]/.test(next)) ||
+          (next === '<' && !/<([!=]|\w+>)/.test(remaining()))
+        ) {
           output = `\\${value}`;
         }
 
@@ -748,7 +753,10 @@ const parse = (input, options) => {
         continue;
       }
 
-      if ((prev && (prev.type === 'bracket' || prev.type === 'paren' || prev.type === 'brace')) || state.parens > 0) {
+      if (
+        (prev && (prev.type === 'bracket' || prev.type === 'paren' || prev.type === 'brace')) ||
+        state.parens > 0
+      ) {
         push({ type: 'plus', value });
         continue;
       }
@@ -933,11 +941,9 @@ const parse = (input, options) => {
       if (prev.type === 'dot') {
         state.output += NO_DOT_SLASH;
         prev.output += NO_DOT_SLASH;
-
       } else if (opts.dot === true) {
         state.output += NO_DOTS_SLASH;
         prev.output += NO_DOTS_SLASH;
-
       } else {
         state.output += nodot;
         prev.output += nodot;
@@ -998,7 +1004,8 @@ const parse = (input, options) => {
 
 parse.fastpaths = (input, options) => {
   const opts = { ...options };
-  const max = typeof opts.maxLength === 'number' ? Math.min(MAX_LENGTH, opts.maxLength) : MAX_LENGTH;
+  const max =
+    typeof opts.maxLength === 'number' ? Math.min(MAX_LENGTH, opts.maxLength) : MAX_LENGTH;
   const len = input.length;
   if (len > max) {
     throw new SyntaxError(`Input length: ${len}, exceeds maximum allowed length: ${max}`);
@@ -1016,7 +1023,7 @@ parse.fastpaths = (input, options) => {
     NO_DOTS,
     NO_DOTS_SLASH,
     STAR,
-    START_ANCHOR
+    START_ANCHOR,
   } = constants.globChars(opts.windows);
 
   const nodot = opts.dot ? NO_DOTS : NO_DOT;
